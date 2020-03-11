@@ -1,10 +1,13 @@
 {
     "rooms": {
-        "NDL": {
-            
+        "id1": {
+            "building_name": "NDL",
+            "room_name": "L315"
+             
         },
-        "NDC": {
-
+        "id2": {
+            "building_name": "NDC",
+            "room_name": "N16A"
         }
     }
 }
