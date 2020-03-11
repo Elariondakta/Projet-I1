@@ -99,3 +99,5 @@ api = API()
 api.addComputer({"name" : "salut"})
 
 api.saveData()
+
+#fix uuid error
