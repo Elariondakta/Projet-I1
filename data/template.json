@@ -36,23 +36,34 @@
             "VGA", 
             "HDMI"
         ],
-        "screen_res": [
+        "screen_res": "1080",
+        "screen_size": [
             600,
             800
         ],
-        "screen_size": [
-            20,
-            15
-        ],
         "nb_USB_port": 6,
-        "storage_size": "",
-        "CD_player":"",
-        "network_card":"",
-        "wifi":"",
-        "bluetooth":"",
+        "storage": [
+            {
+                "type": "SSD",
+                "port": 1,
+                "size": "100GB"
+            },
+            {
+                "type": "HDD",
+                "port": 2,
+                "size": "1000GB"
+            }
+        ],
+        "CD_player": true,
+        "network_card": {
+            "speed": "4GHz",
+            "brand": "Intel"
+        },
+        "wifi": true,
+        "bluetooth": true,
         "maker": "Microsoft",
-        "provider": "Microsoft",
-        "purchase_date": "5/10/18",
+        "provider": "Auchan",
+        "purchase_date_timestamp": 4567876544567,
         "user": {
             "name": "Albert",
             "username": "Bébert",
