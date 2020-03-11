@@ -1,6 +1,6 @@
 # coding: utf-8 
 
-import json
+import json, uuid
 
 class API():
 
@@ -31,33 +31,64 @@ class API():
     
     #ROOM
     def addRoom(self, room):
-        choices['rooms'].append(room)
+        choices['rooms'][uuid.uuid1()] = room
 
-    def setRoom(self, room):
-        choices['rooms'].pop(room)
-        choices['rooms'].append(room)
+    def setRoom(self, id, room):
+        choices['rooms'][id] = room
 
-    def removeRoom(self, room):
-        choices['rooms'].pop(room)
+    def removeRoom(self, id):
+        choices['rooms'].remove(id)
 
     def getRooms(self):
         return choices['rooms']
 
-    def getRoom(self, room):
-        return choices['rooms'][room]
+    def getRoom(self, id):
+        return choices['rooms'][id]
 
     #COMPUTER
     def addComputer(self, computer):
-        user_data['computers'].append(computer)
+        user_data[uuid.uuid1()] = computer
 
-    def setComputer(self, computer):
-        user_data['computers'].pop(computer)
-        user_data['computers'].append(computer)
+    def setComputer(self, id, computer):
+        user_data[id] = computer
 
-    def removeComputer(self, computer):
-        user_data['computers'].pop(computer)
+    def removeComputer(self, id):
+        user_data.remove(id)
+
+    def getComputers(self):
+        return user_data
+
+    def getComputer(self, id):
+        return user_data[id]
 
     #SOFTWARE
-    
+    def addSoftware(self, computer_id, software):
+        user_data[computer_id]['softwares'][uuid.uuid1()] = software
+
+    def setSoftware(self, computer_id, software_id, software):
+        user_data[computer_id]['softwares'][software_id] = software
+
+    def removeSoftware(self, computer_id, software_id):
+        user_data[computer_id]['softwares'].remove(software_id)
+
+    def getSoftwares(self, computer_id):
+        return user_data[computer_id]['softwares']
+
+    def getSoftware(self, computer_id, software_id):
+        return user_data[computer_id]['softwares'][software_id]
 
     #PLUGINS
+    def addPlugin(self, computer_id, software_id, plugin):
+        user_data[computer_id]['softwares'][software_id]['add_on'][uuid.uuid1()] = plugin
+
+    def setPlugin(self, computer_id, software_id, plugin_id, plugin):
+        user_data[computer_id]['softwares'][software_id]['add_on'][plugin_id] = plugin
+
+    def removePlugin(self, computer_id, software_id, plugin_id):
+        user_data[computer_id]['softwares'][software_id]['add_on'].remove(plugin_id)
+
+    def getPlugins(self, computer_id, software_id):
+        return user_data[computer_id]['softwares'][software_id]['add-on']
+
+    def getPlugin(self, computer_id, software_id, plugin_id):
+        return user_data[computer_id]['softwares'][software_id]['add-on'][plugin_id]
