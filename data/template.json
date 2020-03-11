@@ -1,78 +1,158 @@
 {
-    "software": {
-        "name": "OpenOffice",
-        "editor": "Francis",
-        "provider": "Microsoft",
-        "version": "2.4.3892",
-        "licence_exp_date": 3456787456,
-        "ID": "trhdfg3356",
-        "add_on": {
-            "ID": "trhdfg3356",
+    "pc1": {
+        "software": {
             "name": "OpenOffice",
             "editor": "Francis",
             "provider": "Microsoft",
-            "version": "2.4.3892"
-        }
-    },
-    "specs": {
-        "processor": {
-            "plateform": 32,
-            "brand": "Intel",
-            "speed": "4GHz",
-            "size_cache": "1MB",
-            "model": "I5-994U"
-        },
-        "RAM": {
-            "number": 2,
-            "total_size": "4GB"
-        },
-        "BUS": "PCI",
-        "graphic_card": {
-            "brand": "NVIDIA",
-            "memory": "6GB",
-            "model": "Geforce 1060"
-        },
-        "video_port": [
-            "VGA", 
-            "HDMI"
-        ],
-        "screen_res": "1080",
-        "screen_size": [
-            600,
-            800
-        ],
-        "nb_USB_port": 6,
-        "storage": [
-            {
-                "type": "SSD",
-                "port": 1,
-                "size": "100GB"
-            },
-            {
-                "type": "HDD",
-                "port": 2,
-                "size": "1000GB"
+            "version": "2.4.3892",
+            "licence_exp_date": 3456787456,
+            "ID": "trhdfg3356",
+            "add_on": {
+                "ID": "trhdfg3356",
+                "name": "OpenOffice",
+                "editor": "Francis",
+                "provider": "Microsoft",
+                "version": "2.4.3892"
             }
-        ],
-        "CD_player": true,
-        "network_card": {
-            "speed": "4GHz",
-            "brand": "Intel"
         },
-        "wifi": true,
-        "bluetooth": true,
-        "maker": "Microsoft",
-        "provider": "Auchan",
-        "purchase_date_timestamp": 4567876544567,
-        "user": {
-            "name": "Albert",
-            "username": "Bébert",
-            "ID": "trhdfg3356"
-        }
+        "specs": {
+            "processor": {
+                "plateform": 32,
+                "brand": "Intel",
+                "speed": "4GHz",
+                "size_cache": "1MB",
+                "model": "I5-994U"
+            },
+            "RAM": {
+                "number": 2,
+                "total_size": "4GB"
+            },
+            "BUS": "PCI",
+            "graphic_card": {
+                "brand": "NVIDIA",
+                "memory": "6GB",
+                "model": "Geforce 1060"
+            },
+            "video_port": [
+                "VGA", 
+                "HDMI"
+            ],
+            "screen_res": "1080",
+            "screen_size": [
+                600,
+                800
+            ],
+            "nb_USB_port": 6,
+            "storage": [
+                {
+                    "type": "SSD",
+                    "port": 1,
+                    "size": "100GB"
+                },
+                {
+                    "type": "HDD",
+                    "port": 2,
+                    "size": "1000GB"
+                }
+            ],
+            "CD_player": true,
+            "network_card": {
+                "speed": "4GHz",
+                "brand": "Intel"
+            },
+            "wifi": true,
+            "bluetooth": true,
+            "maker": "Microsoft",
+            "provider": "Auchan",
+            "purchase_date_timestamp": 4567876544567,
+            "user": {
+                "name": "Albert",
+                "username": "Bébert",
+                "ID": "trhdfg3356"
+            }
+        },
+        "localisation": {
+            "building": "NDC",
+            "room": "N16"
+        },
+        "ID": "trhdfg3356"
     },
-    "localisation": {
-        "building": "NDC",
-        "room": "N16"
-    },
-    "ID": "trhdfg3356"
-} 
+    "PC2": {
+        "software": {
+            "name": "OpenOffice",
+            "editor": "Francis",
+            "provider": "Microsoft",
+            "version": "2.4.3892",
+            "licence_exp_date": 3456787456,
+            "ID": "trhdfg3356",
+            "add_on": {
+                "ID": "trhdfg3356",
+                "name": "OpenOffice",
+                "editor": "Francis",
+                "provider": "Microsoft",
+                "version": "2.4.3892"
+            }
+        },
+        "specs": {
+            "processor": {
+                "plateform": 32,
+                "brand": "Intel",
+                "speed": "4GHz",
+                "size_cache": "1MB",
+                "model": "I5-994U"
+            },
+            "RAM": {
+                "number": 2,
+                "total_size": "4GB"
+            },
+            "BUS": "PCI",
+            "graphic_card": {
+                "brand": "NVIDIA",
+                "memory": "6GB",
+                "model": "Geforce 1060"
+            },
+            "video_port": [
+                "VGA", 
+                "HDMI"
+            ],
+            "screen_res": "1080",
+            "screen_size": [
+                600,
+                800
+            ],
+            "nb_USB_port": 6,
+            "storage": [
+                {
+                    "type": "SSD",
+                    "port": 1,
+                    "size": "100GB"
+                },
+                {
+                    "type": "HDD",
+                    "port": 2,
+                    "size": "1000GB"
+                }
+            ],
+            "CD_player": true,
+            "network_card": {
+                "speed": "4GHz",
+                "brand": "Intel"
+            },
+            "wifi": true,
+            "bluetooth": true,
+            "maker": "Microsoft",
+            "provider": "Auchan",
+            "purchase_date_timestamp": 4567876544567,
+            "user": {
+                "name": "Albert",
+                "username": "Bébert",
+                "ID": "trhdfg3356"
+            }
+        },
+        "localisation": {
+            "building": "NDC",
+            "room": "N16"
+        },
+        "ID": "trhdfg3356"
+    }  
+}
