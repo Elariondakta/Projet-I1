@@ -1,0 +1,67 @@
+{
+    "software": {
+        "name": "OpenOffice",
+        "editor": "Francis",
+        "provider": "Microsoft",
+        "version": "2.4.3892",
+        "licence_exp_date": "19/03/25",
+        "ID": "trhdfg3356",
+        "add_on": {
+            "ID": "trhdfg3356",
+            "name": "OpenOffice",
+            "editor": "Francis",
+            "provider": "Microsoft",
+            "version": "2.4.3892"
+        }
+    },
+    "specs": {
+        "processor": {
+            "plateform": 32,
+            "brand": "Intel",
+            "speed": "4GHz",
+            "size_cache": "1MB",
+            "model": "I5-994U"
+        },
+        "RAM": {
+            "number": 2,
+            "total_size": "4GB"
+        },
+        "BUS": "PCI",
+        "graphic_card": {
+            "brand": "NVIDIA",
+            "memory": "6GB",
+            "model": "Geforce 1060"
+        },
+        "video_port": [
+            "VGA", 
+            "HDMI"
+        ],
+        "screen_res": [
+            600,
+            800
+        ],
+        "screen_size": [
+            20,
+            15
+        ],
+        "nb_USB_port": 6,
+        "storage_size": "",
+        "CD_player":"",
+        "network_card":"",
+        "wifi":"",
+        "bluetooth":"",
+        "maker": "Microsoft",
+        "provider": "Microsoft",
+        "purchase_date": "5/10/18",
+        "user": {
+            "name": "Albert",
+            "username": "Bébert",
+            "ID": "trhdfg3356"
+        }
+    },
+    "localisation": {
+        "building": "NDC",
+        "room": "N16"
+    },
+    "ID": "trhdfg3356"
+} 
