@@ -1,18 +1,21 @@
 {
     "pc1": {
-        "software": {
-            "name": "OpenOffice",
-            "editor": "Francis",
-            "provider": "Microsoft",
-            "version": "2.4.3892",
-            "licence_exp_date": 3456787456,
-            "ID": "trhdfg3356",
-            "add_on": {
-                "ID": "trhdfg3356",
+        "softwares": {
+           "jdioehz" : {
                 "name": "OpenOffice",
                 "editor": "Francis",
                 "provider": "Microsoft",
-                "version": "2.4.3892"
+                "version": "2.4.3892",
+                "licence_exp_date": 3456787456,
+                "add_on": {
+                    "jehne" : {
+                        "ID": "trhdfg3356",
+                        "name": "OpenOffice",
+                        "editor": "Francis",
+                        "provider": "Microsoft",
+                        "version": "2.4.3892"
+                    }
+                }
             }
         },
         "specs": {
@@ -74,8 +77,7 @@
         "localisation": {
             "building": "NDC",
             "room": "N16"
-        },
-        "ID": "trhdfg3356"
+        }
     },
     "PC2": {
         "software": {
@@ -152,7 +154,6 @@
         "localisation": {
             "building": "NDC",
             "room": "N16"
-        },
-        "ID": "trhdfg3356"
+        }
     }  
 }
