@@ -6,6 +6,7 @@ class HomeForm(npyscreen.FormBaseNew):
     
     def create(self):
         self.build()
+        #self.handlers.update(curses.KEY_EXIT: self.parentApp.switchForm(None))
         
     def exit_application(self):
         curses.beep()

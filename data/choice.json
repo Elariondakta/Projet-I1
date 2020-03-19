@@ -1,12 +1,385 @@
 {
     "rooms": {
-        "id1": {
+        "8b093928-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDL",
+            "room_name": "L101"
+        },
+        "8b093a22-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDL",
+            "room_name": "L102"
+        },
+        "8b093acc-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDL",
+            "room_name": "L103"
+        },
+        "8b093b76-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDL",
+            "room_name": "L104"
+        },
+        "8b093c02-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDL",
+            "room_name": "L105"
+        },
+        "8b093c84-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDL",
+            "room_name": "L106"
+        },
+        "8b093d06-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDL",
+            "room_name": "L107"
+        },
+        "8b093d88-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDL",
+            "room_name": "L108"
+        },
+        "8b093e5a-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDL",
+            "room_name": "L109"
+        },
+        "8b093f36-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDL",
+            "room_name": "L110"
+        },
+        "8b093fd6-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDL",
+            "room_name": "L111"
+        },
+        "8b094062-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDL",
+            "room_name": "L112"
+        },
+        "8b0940e4-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDL",
+            "room_name": "L113"
+        },
+        "8b094166-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDL",
+            "room_name": "L114"
+        },
+        "8b0941e8-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDL",
+            "room_name": "L115"
+        },
+        "8b094260-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDL",
+            "room_name": "L116"
+        },
+        "8b0942e2-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDL",
+            "room_name": "L117"
+        },
+        "8b09435a-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDL",
+            "room_name": "L118"
+        },
+        "8b0943dc-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDL",
+            "room_name": "L119"
+        },
+        "8b09445e-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDL",
+            "room_name": "L201"
+        },
+        "8b0944e0-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDL",
+            "room_name": "L202"
+        },
+        "8b094562-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDL",
+            "room_name": "L203"
+        },
+        "8b0945ee-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDL",
+            "room_name": "L204"
+        },
+        "8b094670-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDL",
+            "room_name": "L205"
+        },
+        "8b094710-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDL",
+            "room_name": "L206"
+        },
+        "8b094792-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDL",
+            "room_name": "L207"
+        },
+        "8b094814-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDL",
+            "room_name": "L208"
+        },
+        "8b09488c-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDL",
+            "room_name": "L209"
+        },
+        "8b09490e-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDL",
+            "room_name": "L210"
+        },
+        "8b094a76-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDL",
+            "room_name": "L211"
+        },
+        "8b094b16-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDL",
+            "room_name": "L212"
+        },
+        "8b094b98-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDL",
+            "room_name": "L213"
+        },
+        "8b094c10-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDL",
+            "room_name": "L214"
+        },
+        "8b094c92-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDL",
+            "room_name": "L215"
+        },
+        "8b094d78-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDL",
+            "room_name": "L216"
+        },
+        "8b094dfa-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDL",
+            "room_name": "L217"
+        },
+        "8b094e7c-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDL",
+            "room_name": "L218"
+        },
+        "8b094f26-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDL",
+            "room_name": "L219"
+        },
+        "8b094fb2-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDL",
+            "room_name": "L301"
+        },
+        "8b09503e-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDL",
+            "room_name": "L302"
+        },
+        "8b0950de-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDL",
+            "room_name": "L303"
+        },
+        "8b0951a6-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDL",
+            "room_name": "L304"
+        },
+        "8b0952c8-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDL",
+            "room_name": "L305"
+        },
+        "8b0953fe-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDL",
+            "room_name": "L306"
+        },
+        "8b095502-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDL",
+            "room_name": "L307"
+        },
+        "8b095728-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDL",
+            "room_name": "L308"
+        },
+        "8b09599e-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDL",
+            "room_name": "L309"
+        },
+        "8b095bce-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDL",
+            "room_name": "L310"
+        },
+        "8b095d2c-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDL",
+            "room_name": "L311"
+        },
+        "8b095f0c-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDL",
+            "room_name": "L312"
+        },
+        "8b09627c-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDL",
+            "room_name": "L313"
+        },
+        "8b0964d4-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDL",
+            "room_name": "L314"
+        },
+        "8b096ad8-69fa-11ea-bf03-648099fe1a64": {
             "building_name": "NDL",
             "room_name": "L315"
         },
-        "id2": {
+        "8b096f74-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDL",
+            "room_name": "L316"
+        },
+        "8b097078-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDL",
+            "room_name": "L317"
+        },
+        "8b097316-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDL",
+            "room_name": "L318"
+        },
+        "8b0976ea-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDL",
+            "room_name": "L319"
+        },
+        "8b097aaa-69fa-11ea-bf03-648099fe1a64": {
             "building_name": "NDC",
-            "room_name": "N16A"
+            "room_name": "N11"
+        },
+        "8b097cda-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDC",
+            "room_name": "N12"
+        },
+        "8b097fc8-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDC",
+            "room_name": "N13"
+        },
+        "8b0984d2-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDC",
+            "room_name": "N14"
+        },
+        "8b0989f0-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDC",
+            "room_name": "N15"
+        },
+        "8b098f18-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDC",
+            "room_name": "N16"
+        },
+        "8b099184-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDC",
+            "room_name": "N17"
+        },
+        "8b09931e-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDC",
+            "room_name": "N18"
+        },
+        "8b099418-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDC",
+            "room_name": "N21"
+        },
+        "8b0994d6-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDC",
+            "room_name": "N22"
+        },
+        "8b099558-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDC",
+            "room_name": "N23"
+        },
+        "8b0995da-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDC",
+            "room_name": "N24"
+        },
+        "8b099670-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDC",
+            "room_name": "N25"
+        },
+        "8b09977e-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDC",
+            "room_name": "N26"
+        },
+        "8b099828-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDC",
+            "room_name": "N27"
+        },
+        "8b0998aa-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDC",
+            "room_name": "N28"
+        },
+        "8b099936-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDC",
+            "room_name": "N31"
+        },
+        "8b0999ae-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDC",
+            "room_name": "N32"
+        },
+        "8b099a30-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDC",
+            "room_name": "N33"
+        },
+        "8b099ab2-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDC",
+            "room_name": "N34"
+        },
+        "8b099b34-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDC",
+            "room_name": "N35"
+        },
+        "8b099bb6-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDC",
+            "room_name": "N36"
+        },
+        "8b099c38-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDC",
+            "room_name": "N37"
+        },
+        "8b099cba-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDC",
+            "room_name": "N38"
+        },
+        "8b099d3c-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDC",
+            "room_name": "N41"
+        },
+        "8b099dbe-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDC",
+            "room_name": "N42"
+        },
+        "8b099e40-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDC",
+            "room_name": "N43"
+        },
+        "8b099ecc-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDC",
+            "room_name": "N44"
+        },
+        "8b09a020-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDC",
+            "room_name": "N45"
+        },
+        "8b09a19c-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDC",
+            "room_name": "N46"
+        },
+        "8b09a2b4-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDC",
+            "room_name": "N47"
+        },
+        "8b09a390-69fa-11ea-bf03-648099fe1a64": {
+            "building_name": "NDC",
+            "room_name": "N48"
+        }
+    },
+    "choices": {
+        "computer": {
+            "specs": {
+                "processor": {
+                    "plateform": [
+                        32,
+                        64
+                    ]
+                },
+                "video_port": [
+                    "VGA",
+                    "HDMI",
+                    "DISPLAY PORT",
+                    "DVI-D",
+                    "USB-C"
+                ],
+                "storage": {
+                    "type": [
+                        "SSD",
+                        "HDD"
+                    ]
+                }
+            }
         }
     }
 }

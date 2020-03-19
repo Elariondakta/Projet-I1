@@ -1,6 +1,6 @@
 import npyscreen
 
-class RoomsForm(npyscreen.FormBaseNew):
+class RoomsForm(npyscreen.Form):
     def create(self):
         self.build()
 

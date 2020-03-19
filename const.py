@@ -1,0 +1,1 @@
+OK_BUTTON_TEXT="Retour"

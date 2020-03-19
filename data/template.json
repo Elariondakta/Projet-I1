@@ -30,14 +30,13 @@
                 "number": 2,
                 "total_size": "4GB"
             },
-            "BUS": "PCI",
             "graphic_card": {
                 "brand": "NVIDIA",
                 "memory": "6GB",
                 "model": "Geforce 1060"
             },
             "video_port": [
-                "VGA", 
+                "VGA",
                 "HDMI"
             ],
             "screen_res": "1080",
