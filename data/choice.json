@@ -1,358 +1,358 @@
 {
     "rooms": {
-        "8b093928-69fa-11ea-bf03-648099fe1a64": {
+        "618f8b87-6cec-4580-abd1-5234d73bc829": {
             "building_name": "NDL",
             "room_name": "L101"
         },
-        "8b093a22-69fa-11ea-bf03-648099fe1a64": {
+        "4ebe0fe3-043a-41cc-aec4-a8fadb487dd4": {
             "building_name": "NDL",
             "room_name": "L102"
         },
-        "8b093acc-69fa-11ea-bf03-648099fe1a64": {
+        "78fd59e0-83c6-4aa3-a6d9-1c0744139de0": {
             "building_name": "NDL",
             "room_name": "L103"
         },
-        "8b093b76-69fa-11ea-bf03-648099fe1a64": {
+        "c3165cef-d7f9-485d-8dea-0c8b3ff48e11": {
             "building_name": "NDL",
             "room_name": "L104"
         },
-        "8b093c02-69fa-11ea-bf03-648099fe1a64": {
+        "e55a5234-10db-4a05-825b-c57f1a32f969": {
             "building_name": "NDL",
             "room_name": "L105"
         },
-        "8b093c84-69fa-11ea-bf03-648099fe1a64": {
+        "0bcd8558-bc0d-4c75-a707-dddbc76cb96d": {
             "building_name": "NDL",
             "room_name": "L106"
         },
-        "8b093d06-69fa-11ea-bf03-648099fe1a64": {
+        "fafde3ff-fef0-4b39-8ac3-c4b4d10e8d15": {
             "building_name": "NDL",
             "room_name": "L107"
         },
-        "8b093d88-69fa-11ea-bf03-648099fe1a64": {
+        "27d7331c-91fc-43bc-9603-cbcb47e374f8": {
             "building_name": "NDL",
             "room_name": "L108"
         },
-        "8b093e5a-69fa-11ea-bf03-648099fe1a64": {
+        "d116298d-e473-4a2b-bf4b-5e50653316b8": {
             "building_name": "NDL",
             "room_name": "L109"
         },
-        "8b093f36-69fa-11ea-bf03-648099fe1a64": {
+        "1ff8e25c-6560-43f0-912a-de54ff2e1903": {
             "building_name": "NDL",
             "room_name": "L110"
         },
-        "8b093fd6-69fa-11ea-bf03-648099fe1a64": {
+        "b4cf6dd6-ecc4-49e5-83c9-47a7885359bf": {
             "building_name": "NDL",
             "room_name": "L111"
         },
-        "8b094062-69fa-11ea-bf03-648099fe1a64": {
+        "0402edcd-625b-42be-a806-91cbc3f05d8b": {
             "building_name": "NDL",
             "room_name": "L112"
         },
-        "8b0940e4-69fa-11ea-bf03-648099fe1a64": {
+        "113f4d6a-fd98-4382-a31a-1977d1495069": {
             "building_name": "NDL",
             "room_name": "L113"
         },
-        "8b094166-69fa-11ea-bf03-648099fe1a64": {
+        "a158a98c-97b4-4333-8973-06fa635fcc9b": {
             "building_name": "NDL",
             "room_name": "L114"
         },
-        "8b0941e8-69fa-11ea-bf03-648099fe1a64": {
+        "ea1de0b8-7577-4055-a885-77233650000c": {
             "building_name": "NDL",
             "room_name": "L115"
         },
-        "8b094260-69fa-11ea-bf03-648099fe1a64": {
+        "92973054-5f80-4b8e-8e46-d41dd581f401": {
             "building_name": "NDL",
             "room_name": "L116"
         },
-        "8b0942e2-69fa-11ea-bf03-648099fe1a64": {
+        "58d1c2f3-712c-4107-8995-f1a5063aa6a3": {
             "building_name": "NDL",
             "room_name": "L117"
         },
-        "8b09435a-69fa-11ea-bf03-648099fe1a64": {
+        "fa7a99ca-66c1-446c-92df-83b56d806ffd": {
             "building_name": "NDL",
             "room_name": "L118"
         },
-        "8b0943dc-69fa-11ea-bf03-648099fe1a64": {
+        "c7e1fc13-9912-4d36-92cc-b8d0cc2bb319": {
             "building_name": "NDL",
             "room_name": "L119"
         },
-        "8b09445e-69fa-11ea-bf03-648099fe1a64": {
+        "bf6d1fae-3d25-4901-967a-1865f088af81": {
             "building_name": "NDL",
             "room_name": "L201"
         },
-        "8b0944e0-69fa-11ea-bf03-648099fe1a64": {
+        "fd625bb4-2256-49ef-85ef-d18923f74fd5": {
             "building_name": "NDL",
             "room_name": "L202"
         },
-        "8b094562-69fa-11ea-bf03-648099fe1a64": {
+        "ba3ebe74-0e44-419a-99d4-e921ae76acbf": {
             "building_name": "NDL",
             "room_name": "L203"
         },
-        "8b0945ee-69fa-11ea-bf03-648099fe1a64": {
+        "1169a54c-86e2-4d08-bbe3-311e7358cb4c": {
             "building_name": "NDL",
             "room_name": "L204"
         },
-        "8b094670-69fa-11ea-bf03-648099fe1a64": {
+        "7f98dc06-9bff-4871-83b8-492f4eefcf1b": {
             "building_name": "NDL",
             "room_name": "L205"
         },
-        "8b094710-69fa-11ea-bf03-648099fe1a64": {
+        "130d3dba-6cca-41a6-9089-da12b1e15195": {
             "building_name": "NDL",
             "room_name": "L206"
         },
-        "8b094792-69fa-11ea-bf03-648099fe1a64": {
+        "fdce95e6-33e4-4a9b-a2c8-01b134f483dd": {
             "building_name": "NDL",
             "room_name": "L207"
         },
-        "8b094814-69fa-11ea-bf03-648099fe1a64": {
+        "074c5d77-37e2-465b-a682-5cd7f894cadb": {
             "building_name": "NDL",
             "room_name": "L208"
         },
-        "8b09488c-69fa-11ea-bf03-648099fe1a64": {
+        "7ceadedc-4084-4eeb-adbd-5421d3a646d9": {
             "building_name": "NDL",
             "room_name": "L209"
         },
-        "8b09490e-69fa-11ea-bf03-648099fe1a64": {
+        "d5d105b5-4cd4-4227-9bb4-ceb2b34ec359": {
             "building_name": "NDL",
             "room_name": "L210"
         },
-        "8b094a76-69fa-11ea-bf03-648099fe1a64": {
+        "5246db2a-d65b-44cb-a1a3-3007ce9bf4ca": {
             "building_name": "NDL",
             "room_name": "L211"
         },
-        "8b094b16-69fa-11ea-bf03-648099fe1a64": {
+        "e74e4b88-cfff-448b-87ab-da0e51e9f11a": {
             "building_name": "NDL",
             "room_name": "L212"
         },
-        "8b094b98-69fa-11ea-bf03-648099fe1a64": {
+        "595c92f7-4343-4958-99b6-4a6b4dff5b48": {
             "building_name": "NDL",
             "room_name": "L213"
         },
-        "8b094c10-69fa-11ea-bf03-648099fe1a64": {
+        "73a2f521-e19f-40bc-a6b1-63810bd3425c": {
             "building_name": "NDL",
             "room_name": "L214"
         },
-        "8b094c92-69fa-11ea-bf03-648099fe1a64": {
+        "3d928d53-4c71-4cff-92c0-b786241e4a48": {
             "building_name": "NDL",
             "room_name": "L215"
         },
-        "8b094d78-69fa-11ea-bf03-648099fe1a64": {
+        "56b58c87-9f7a-48e5-b037-26f25a8ae534": {
             "building_name": "NDL",
             "room_name": "L216"
         },
-        "8b094dfa-69fa-11ea-bf03-648099fe1a64": {
+        "c723e9ad-9b7c-4efc-a760-dc839fdacc7d": {
             "building_name": "NDL",
             "room_name": "L217"
         },
-        "8b094e7c-69fa-11ea-bf03-648099fe1a64": {
+        "9615f037-9328-4c3b-b029-da0989152ff5": {
             "building_name": "NDL",
             "room_name": "L218"
         },
-        "8b094f26-69fa-11ea-bf03-648099fe1a64": {
+        "5249d719-76e4-4663-90c0-812d65be0b30": {
             "building_name": "NDL",
             "room_name": "L219"
         },
-        "8b094fb2-69fa-11ea-bf03-648099fe1a64": {
+        "5b912e59-68c9-4377-9e41-b849fd30ee25": {
             "building_name": "NDL",
             "room_name": "L301"
         },
-        "8b09503e-69fa-11ea-bf03-648099fe1a64": {
+        "f9641c65-bcc1-4559-bb77-8a8f2077656b": {
             "building_name": "NDL",
             "room_name": "L302"
         },
-        "8b0950de-69fa-11ea-bf03-648099fe1a64": {
+        "dda5418f-37d7-4afd-bfb3-1f4b75b27800": {
             "building_name": "NDL",
             "room_name": "L303"
         },
-        "8b0951a6-69fa-11ea-bf03-648099fe1a64": {
+        "73e33138-2b65-4791-91f3-6452e3d8f414": {
             "building_name": "NDL",
             "room_name": "L304"
         },
-        "8b0952c8-69fa-11ea-bf03-648099fe1a64": {
+        "d78438b9-95e3-433e-90bf-ae98f46982cf": {
             "building_name": "NDL",
             "room_name": "L305"
         },
-        "8b0953fe-69fa-11ea-bf03-648099fe1a64": {
+        "d5a7099b-75e1-49e8-891d-9c54df8f6bba": {
             "building_name": "NDL",
             "room_name": "L306"
         },
-        "8b095502-69fa-11ea-bf03-648099fe1a64": {
+        "3ec80f82-28df-49c6-a3d0-ed76a86eaaf4": {
             "building_name": "NDL",
             "room_name": "L307"
         },
-        "8b095728-69fa-11ea-bf03-648099fe1a64": {
+        "3a68fdff-ee87-4b0a-9e2d-f0a1617616a5": {
             "building_name": "NDL",
             "room_name": "L308"
         },
-        "8b09599e-69fa-11ea-bf03-648099fe1a64": {
+        "13a9a65d-3c15-4d71-8920-4662db0b642e": {
             "building_name": "NDL",
             "room_name": "L309"
         },
-        "8b095bce-69fa-11ea-bf03-648099fe1a64": {
+        "13aff18b-296e-4432-9c25-8b63b5f84df7": {
             "building_name": "NDL",
             "room_name": "L310"
         },
-        "8b095d2c-69fa-11ea-bf03-648099fe1a64": {
+        "023c7ed9-4ce7-4981-92d5-85c5cb3d1889": {
             "building_name": "NDL",
             "room_name": "L311"
         },
-        "8b095f0c-69fa-11ea-bf03-648099fe1a64": {
+        "075ec803-d1cb-4f0c-bc0c-c166891c0189": {
             "building_name": "NDL",
             "room_name": "L312"
         },
-        "8b09627c-69fa-11ea-bf03-648099fe1a64": {
+        "bbddfa67-af2a-4219-b654-8468d594ec08": {
             "building_name": "NDL",
             "room_name": "L313"
         },
-        "8b0964d4-69fa-11ea-bf03-648099fe1a64": {
+        "60975a98-d739-4f64-9634-1327ad855488": {
             "building_name": "NDL",
             "room_name": "L314"
         },
-        "8b096ad8-69fa-11ea-bf03-648099fe1a64": {
+        "bf29f486-2894-4100-8f50-df0d80398164": {
             "building_name": "NDL",
             "room_name": "L315"
         },
-        "8b096f74-69fa-11ea-bf03-648099fe1a64": {
+        "f97f7eff-6d57-4e67-b736-946da2e9a44f": {
             "building_name": "NDL",
             "room_name": "L316"
         },
-        "8b097078-69fa-11ea-bf03-648099fe1a64": {
+        "ed78fb05-99cd-45f9-bfa0-dec196f66056": {
             "building_name": "NDL",
             "room_name": "L317"
         },
-        "8b097316-69fa-11ea-bf03-648099fe1a64": {
+        "a9d0e739-cc0e-4ce9-bc0b-e818d064788c": {
             "building_name": "NDL",
             "room_name": "L318"
         },
-        "8b0976ea-69fa-11ea-bf03-648099fe1a64": {
+        "d7ff0c63-ac0f-42ee-b8df-c362361a8a5a": {
             "building_name": "NDL",
             "room_name": "L319"
         },
-        "8b097aaa-69fa-11ea-bf03-648099fe1a64": {
+        "d64ae905-0740-4668-8886-7727d166e30a": {
             "building_name": "NDC",
             "room_name": "N11"
         },
-        "8b097cda-69fa-11ea-bf03-648099fe1a64": {
+        "3f4c4355-b486-4525-bbe4-3c0e2cb7a822": {
             "building_name": "NDC",
             "room_name": "N12"
         },
-        "8b097fc8-69fa-11ea-bf03-648099fe1a64": {
+        "fb122486-484a-4a4b-bfa4-6bbc38ee72a3": {
             "building_name": "NDC",
             "room_name": "N13"
         },
-        "8b0984d2-69fa-11ea-bf03-648099fe1a64": {
+        "689ab7fa-ee81-4e86-ade0-3b643c5119c4": {
             "building_name": "NDC",
             "room_name": "N14"
         },
-        "8b0989f0-69fa-11ea-bf03-648099fe1a64": {
+        "00d5bf2f-ac1c-416a-b2d9-661c7575caf1": {
             "building_name": "NDC",
             "room_name": "N15"
         },
-        "8b098f18-69fa-11ea-bf03-648099fe1a64": {
+        "703689b1-6a4b-49db-a525-f58ea8d8256d": {
             "building_name": "NDC",
             "room_name": "N16"
         },
-        "8b099184-69fa-11ea-bf03-648099fe1a64": {
+        "64ce6235-9dd0-48eb-a27b-1aa1a629f1e6": {
             "building_name": "NDC",
             "room_name": "N17"
         },
-        "8b09931e-69fa-11ea-bf03-648099fe1a64": {
+        "e0ae745b-60a3-4e51-8e64-1390c27c54ba": {
             "building_name": "NDC",
             "room_name": "N18"
         },
-        "8b099418-69fa-11ea-bf03-648099fe1a64": {
+        "b18c4168-598f-4eff-a53a-907098b63c9c": {
             "building_name": "NDC",
             "room_name": "N21"
         },
-        "8b0994d6-69fa-11ea-bf03-648099fe1a64": {
+        "0ccb6b74-f601-485c-9c7f-14334a6b8380": {
             "building_name": "NDC",
             "room_name": "N22"
         },
-        "8b099558-69fa-11ea-bf03-648099fe1a64": {
+        "4a567347-3bd1-4abb-851b-eccf1f5983bd": {
             "building_name": "NDC",
             "room_name": "N23"
         },
-        "8b0995da-69fa-11ea-bf03-648099fe1a64": {
+        "b8458ac6-9c31-4df5-a20c-f9228e80ca37": {
             "building_name": "NDC",
             "room_name": "N24"
         },
-        "8b099670-69fa-11ea-bf03-648099fe1a64": {
+        "c4824fc6-54b6-4596-b73e-d4808dd15859": {
             "building_name": "NDC",
             "room_name": "N25"
         },
-        "8b09977e-69fa-11ea-bf03-648099fe1a64": {
+        "fde48620-ddcb-4f6b-b93d-8bbeabc2d67d": {
             "building_name": "NDC",
             "room_name": "N26"
         },
-        "8b099828-69fa-11ea-bf03-648099fe1a64": {
+        "6b12d082-4c5c-4bc5-8f5d-f89822eca4e3": {
             "building_name": "NDC",
             "room_name": "N27"
         },
-        "8b0998aa-69fa-11ea-bf03-648099fe1a64": {
+        "da19e474-8533-49ee-8013-c141a8552a52": {
             "building_name": "NDC",
             "room_name": "N28"
         },
-        "8b099936-69fa-11ea-bf03-648099fe1a64": {
+        "3aa05b9c-62a6-4a0a-8c13-64dca956c5fd": {
             "building_name": "NDC",
             "room_name": "N31"
         },
-        "8b0999ae-69fa-11ea-bf03-648099fe1a64": {
+        "2ca9a7bf-3a7d-4ccb-a13a-cc58abeca483": {
             "building_name": "NDC",
             "room_name": "N32"
         },
-        "8b099a30-69fa-11ea-bf03-648099fe1a64": {
+        "9f82a9ea-cf35-4c2c-9d87-bf897b301263": {
             "building_name": "NDC",
             "room_name": "N33"
         },
-        "8b099ab2-69fa-11ea-bf03-648099fe1a64": {
+        "7f8df729-4d83-4232-9583-16b884e66439": {
             "building_name": "NDC",
             "room_name": "N34"
         },
-        "8b099b34-69fa-11ea-bf03-648099fe1a64": {
+        "7d4f7212-5209-4c80-9880-a19f318e631f": {
             "building_name": "NDC",
             "room_name": "N35"
         },
-        "8b099bb6-69fa-11ea-bf03-648099fe1a64": {
+        "3ffec3ad-8163-447a-bb42-cae09a4da95b": {
             "building_name": "NDC",
             "room_name": "N36"
         },
-        "8b099c38-69fa-11ea-bf03-648099fe1a64": {
+        "91dc4eef-1900-4177-afeb-3535617db6b1": {
             "building_name": "NDC",
             "room_name": "N37"
         },
-        "8b099cba-69fa-11ea-bf03-648099fe1a64": {
+        "b135dd6b-3b7e-49f4-a65e-d36f7c4862da": {
             "building_name": "NDC",
             "room_name": "N38"
         },
-        "8b099d3c-69fa-11ea-bf03-648099fe1a64": {
+        "a45a5587-2497-4f22-9d1a-7652476f51f0": {
             "building_name": "NDC",
             "room_name": "N41"
         },
-        "8b099dbe-69fa-11ea-bf03-648099fe1a64": {
+        "73a5602c-3a0a-4bfa-a237-685357bd3d54": {
             "building_name": "NDC",
             "room_name": "N42"
         },
-        "8b099e40-69fa-11ea-bf03-648099fe1a64": {
+        "e41ee755-6a1f-4746-98dd-ca8f7da0e83b": {
             "building_name": "NDC",
             "room_name": "N43"
         },
-        "8b099ecc-69fa-11ea-bf03-648099fe1a64": {
+        "6e480178-a171-4453-93cd-86706907e7f7": {
             "building_name": "NDC",
             "room_name": "N44"
         },
-        "8b09a020-69fa-11ea-bf03-648099fe1a64": {
+        "d299034e-22b3-4794-84c2-158b12a40ae2": {
             "building_name": "NDC",
             "room_name": "N45"
         },
-        "8b09a19c-69fa-11ea-bf03-648099fe1a64": {
+        "c4ef8be1-cad4-4786-a7bf-f5cea2451652": {
             "building_name": "NDC",
             "room_name": "N46"
         },
-        "8b09a2b4-69fa-11ea-bf03-648099fe1a64": {
+        "46520b43-2ea7-423d-9879-3be6bf29b09d": {
             "building_name": "NDC",
             "room_name": "N47"
         },
-        "8b09a390-69fa-11ea-bf03-648099fe1a64": {
+        "c0c863b6-5862-472c-96ed-99bf6006b057": {
             "building_name": "NDC",
             "room_name": "N48"
         }
