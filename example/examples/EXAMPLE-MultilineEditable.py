@@ -17,7 +17,7 @@ class TestApp(npyscreen.NPSApp):
                         max_height=20,
                         name='List of Values',
                         footer="Press i or o to insert values", 
-                        values=value_list, 
+                        values=value_list,
                         slow_scroll=False)
         
         # This lets the user play with the Form.

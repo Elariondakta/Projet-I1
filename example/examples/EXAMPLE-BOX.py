@@ -23,12 +23,14 @@ class TestApp(npyscreen.NPSApp):
         
         
         t2.entry_widget.scroll_exit = True
-        t2.values = ["Hello", 
+        t2.values = [
+            "Hello", 
             "This is a Test", 
             "This is another test", 
             "And here is another line",
             "And here is another line, which is really very long.  abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz",
-            "And one more."]
+            "And one more."
+        ]
         t3.values = t2.values
         
         
