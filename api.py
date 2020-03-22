@@ -1,13 +1,13 @@
 # coding: utf-8 
 
 import json, uuid
-
+import logging
 class API():
 
-    choice_file = "choice.json"
+    choice_file = "./data/choice.json"
     choices = []
 
-    data_file = "user_data.json"
+    data_file = "./data/user_data.json"
     user_data = []
 
     def __init__(self):
@@ -44,6 +44,14 @@ class API():
 
     def getRoom(self, id):
         return self.choices['rooms'][id]
+    
+    def searchRooms(self, query):
+        results = {}
+        self.choices['rooms']
+        for room_id in self.choices["rooms"].keys():
+            if self.choices["rooms"][room_id]["room_name"].find(query) != -1:
+                results[room_id] = self.choices["rooms"][room_id]
+        return results
 
     #COMPUTER
     def addComputer(self, computer):

@@ -7,7 +7,7 @@ class ProcessBar(npyscreen.Slider):
         self.editable = False
         
 class ProcessBarBox(npyscreen.BoxTitle):          
-    _contained_widget = ProcessBar
+    _contained_widget = ProcessBar  
 
 
 
