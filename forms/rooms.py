@@ -53,8 +53,15 @@ class RoomsForm(npyscreen.Form):
             relx=70,
             rely=2,
         )
-        RoomsForm.searchResults = self.add(npyscreen.MultiLineEditableBoxed, 
+        RoomsForm.searchResults = self.add(MultiAction, 
             editable=True,
             values=[],
-            name="Salles : "
+            name="Salles : ",
         )
+
+class MultiAction(npyscreen.MultiLineAction):
+
+    def  actionHighlighted(self, act_on_this, key_press):
+        #10 correspond a la touche Entrer
+        if key_press == 10:
+            print("this is working!")
