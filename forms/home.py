@@ -4,18 +4,21 @@ from const import *
 
 class HomeForm(npyscreen.FormBaseNew):
     
+    ##Override
     def create(self):
         self.build()
         #self.handlers.update(curses.KEY_EXIT: self.parentApp.switchForm(None))
-        
+    
+    ##Override
     def exit_application(self):
-        curses.beep()
+        #curses.beep()
         self.parentApp.setNextForm(None)
         self.editing = False
         
     def dispRooms(self): 
         pass
     
+    ##Pas override
     def build(self):
         
         self.add(npyscreen.FixedText, name="title", value="Bienvenue sur notre gestionnaire d'ordinateur :")
