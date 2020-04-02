@@ -1,5 +1,5 @@
 import npyscreen
-import curses
+import curses 
 #hiskfsdzzdzz
 #ssjdsjdsdsj
 #"software": {
