@@ -1,8 +1,9 @@
 import npyscreen
 import curses
 
+#je fait chier clem
 #"software": {
-#            "name": "OpenOffice",dd
+#            "name": "OpenOffice",
 #            "editor": "Francis",
 #            "provider": "Microsoft",
 #            "version": "2.4.3892",
