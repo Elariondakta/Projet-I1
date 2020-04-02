@@ -23,6 +23,18 @@ class ButtonAddRoom(npyscreen.ButtonPress):
         
 class ButtonAddRoomBox(npyscreen.BoxTitle):
     _contained_widget = ButtonAddRoom
+
+class MultiAction(npyscreen.MultiLineAction):
+    def __init__(self, *args, **keywords):
+        super(MultiAction, self).__init__(*args, **keywords)
+
+    def  actionHighlighted(self, act_on_this, key_press):
+        #10 correspond a la touche Entrer
+        if key_press == 10:
+            self.find_parent_app().switchForm("SOFTWARES")
+
+class MultiActionBox(npyscreen.BoxTitle):
+    _contained_widget = MultiAction
     
 class RoomsForm(npyscreen.Form):
     searchResults = None
@@ -53,15 +65,8 @@ class RoomsForm(npyscreen.Form):
             relx=70,
             rely=2,
         )
-        RoomsForm.searchResults = self.add(MultiAction, 
+        RoomsForm.searchResults = self.add(MultiActionBox, 
             editable=True,
             values=[],
             name="Salles : ",
         )
-
-class MultiAction(npyscreen.MultiLineAction):
-
-    def  actionHighlighted(self, act_on_this, key_press):
-        #10 correspond a la touche Entrer
-        if key_press == 10:
-            print("this is working!")
