@@ -1,4 +1,4 @@
-import npyscreen 
+import npyscreen
 import curses
 #hiskfsdzzdzz
 #ssjdsjdsdsj
@@ -18,7 +18,7 @@ import curses
 
 
 class addSoftware(npyscreen.Form):      
-    def create(self):
+    def create(self):  
         self.add(npyscreen.TitleText, value="Titre", relx=10)
         self.add(npyscreen.TitleText,  value="Champ", relx=10)
         self.add(npyscreen.ComboBox, value= " coucou", display_value="text") 
