@@ -17,6 +17,8 @@ import curses
 #                "version": "2.4.3892"
 # jzjz dz
 #jdjzjdd
+#dhd
+
 
 
 class addSoftware(npyscreen.Form):      
