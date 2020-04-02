@@ -15,6 +15,7 @@ import curses
 #                "editor": "Francis",
 #                "provider": "Microsoft",
 #                "version": "2.4.3892"
+# jzjz dz
 
 
 class addSoftware(npyscreen.Form):      
