@@ -1,7 +1,6 @@
 import npyscreen
 import curses
-
-#je fait chier clem
+#hiskfsdhs
 #"software": {
 #            "name": "OpenOffice",
 #            "editor": "Francis",
