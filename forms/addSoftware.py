@@ -2,7 +2,7 @@ import npyscreen
 import curses
 
 #"software": {
-#            "name": "OpenOffice",
+#            "name": "OpenOffice",dd
 #            "editor": "Francis",
 #            "provider": "Microsoft",
 #            "version": "2.4.3892",
