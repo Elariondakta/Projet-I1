@@ -1,36 +1,23 @@
 import npyscreen
+import curses
 
-class SoftwareForm(npyscreen.Form):
-    searchResults = None
-    api = API()
-    searchResultsData = {}
-    
-    @staticmethod
-    def updateSearchResults(values):
-        RoomsForm.searchResultsData = values
-        RoomsForm.searchResults.values = []
-        for key in values.keys():
-            RoomsForm.searchResults.values.append("⌂  " + values[key]["building_name"] + "\t --> \t" + values[key]["room_name"] + "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t [Suppr] : Supprimer, \t\t\t\t[↵] : Accéder à la salle")
-        RoomsForm.searchResults.update()
-        
+#"software": {
+#            "name": "OpenOffice",
+#            "editor": "Francis",
+#            "provider": "Microsoft",
+#            "version": "2.4.3892",
+#            "licence_exp_date": 3456787456,
+#            "ID": "trhdfg3356",
+#            "add_on": {
+#                "ID": "trhdfg3356",
+#                "name": "OpenOffice",
+#                "editor": "Francis",
+#                "provider": "Microsoft",
+#                "version": "2.4.3892"
+
+
+class addSoftware(npyscreen.Form):      
     def create(self):
-        self.build()
-
-    def build(self):
-        self.add(SearchBar, name="Rechercher une salle : ", 
-            max_height=4,
-            max_width=50,
-            relx=15,
-            rely=1,
-        )
-        self.add(ButtonAddRoomBox,
-            max_height=3,
-            max_width=15,
-            relx=70,
-            rely=2,
-        )
-        RoomsForm.searchResults = self.add(MultiAction, 
-            editable=True,
-            values=[],
-            name="Salles : ",
-        )
+        self.add(npyscreen.TitleText, value="Titre", relx=10)
+        self.add(npyscreen.TitleText,  value="Champ", relx=10)
+        self.add(npyscreen.ComboBox, value= " coucou", display_value="text") 
