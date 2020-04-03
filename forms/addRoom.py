@@ -1,11 +1,21 @@
 import npyscreen
 import curses
+from api import API
 
-class AddRoom(npyscreen.Form):
+class AddRoom(npyscreen.ActionFormV2):
     def create(self):
-        self.add(npyscreen.FixedText, value="Mon formulaire", relx=10)
+        self.api = API()
+        self.buildingField = self.add(npyscreen.TitleText, name="Batiment : ", relx=10)
+        self.nextrely += 1
+        self.roomField = self.add(npyscreen.TitleText, name="Salle : ", relx=10)
 
-        self.add(npyscreen.TitleText, name="Batiment : ", relx=20)
-        self.add(npyscreen.TitleText, name="Salle : ", relx=20, rely=5)
-        self.add(npyscreen.TitleText, name="Test", relx=20)
-        self.add(npyscreen.BoxTitle, name="Test", entry_widget=npyscreen.TitleText)
+
+    def on_ok(self):
+        if self.api.addRoom(self.roomField.get_value(), self.buildingField.get_value()):
+            npyscreen.notify_confirm("La salle " + self.roomField.get_value() + " à bien été ajoutée", "Succès")
+            self.find_parent_app().switchForm("ROOMS")
+        else:
+            npyscreen.notify_confirm("Une erreur est apparue lors de l'ajout de votre salle", "Erreur")
+
+    def on_cancel(self):
+        self.find_parent_app().switchForm("ROOMS")

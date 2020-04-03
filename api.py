@@ -23,31 +23,51 @@ class API():
             self.user_data = json.load(f)
 
     def saveData(self):
-        with open(self.data_file, 'w') as f:
-            json.dump(self.user_data, f)
+        try:
+            with open(self.data_file, 'w') as f:
+                json.dump(self.user_data, f)
 
-        with open(self.choice_file, 'w') as f:
-            json.dump(self.choices, f)
-    
-    #ROOM
-    def addRoom(self, room):
-        self.choices['rooms'][uuid.uuid1()] = room
+            with open(self.choice_file, 'w') as f:
+                json.dump(self.choices, f)
+        except BaseException:
+            return False
+        return True
+
+    # ROOM
+    def addRoom(self, room, building):
+        self.choices['rooms'][str(uuid.uuid4())] = {
+            "building_name": building,
+            "room_name": room
+        }
+        return self.saveData()
 
     def setRoom(self, id, room):
         self.choices['rooms'][id] = room
 
     def removeRoom(self, id):
-        self.choices['rooms'].remove(id)
+        del self.choices['rooms'][id]
+        return self.saveData()
 
     def getRooms(self):
         return self.choices['rooms']
 
     def getRoom(self, id):
         return self.choices['rooms'][id]
-    
+    """
+    Retourne une liste de tous les bâtiments disponibles
+    """
+    def getBuildings(self):
+        results = {}
+        for room_id in self.choices["rooms"].keys():
+            if self.choices["rooms"][room_id]["building_name"] in results.values():
+                results[room_id] = self.choices["rooms"][room_id]["building_name"]
+        return results
+
+    """
+    Recherche d'une salle parmi la liste de toutes les salles disponibles
+    """
     def searchRooms(self, query):
         results = {}
-        self.choices['rooms']
         for room_id in self.choices["rooms"].keys():
             if self.choices["rooms"][room_id]["room_name"].find(query) != -1:
                 results[room_id] = self.choices["rooms"][room_id]
@@ -55,7 +75,7 @@ class API():
 
     #COMPUTER
     def addComputer(self, computer):
-        self.user_data[uuid.uuid1()] = computer
+        self.user_data[str(uuid.uuid4())] = computer
 
     def setComputer(self, id, computer):
         self.user_data[id] = computer
@@ -71,7 +91,7 @@ class API():
 
     #SOFTWARE
     def addSoftware(self, computer_id, software):
-        self.user_data[computer_id]['softwares'][uuid.uuid1()] = software
+        self.user_data[computer_id]['softwares'][str(uuid.uuid4())] = software
 
     def setSoftware(self, computer_id, software_id, software):
         self.user_data[computer_id]['softwares'][software_id] = software
@@ -87,7 +107,7 @@ class API():
 
     #PLUGINS
     def addPlugin(self, computer_id, software_id, plugin):
-        self.user_data[computer_id]['softwares'][software_id]['add_on'][uuid.uuid1()] = plugin
+        self.user_data[computer_id]['softwares'][software_id]['add_on'][str(uuid.uuid4())] = plugin
 
     def setPlugin(self, computer_id, software_id, plugin_id, plugin):
         self.user_data[computer_id]['softwares'][software_id]['add_on'][plugin_id] = plugin
