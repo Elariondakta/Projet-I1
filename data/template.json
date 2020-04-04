@@ -152,7 +152,8 @@
         },
         "localisation": {
             "building": "NDC",
-            "room": "N16"
+            "room": "N16",
+            "room_id": "TYU11221231"
         }
     }  
 }
