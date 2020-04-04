@@ -41,9 +41,13 @@ class API():
         }
         return self.saveData()
 
-    def setRoom(self, id, room):
-        self.choices['rooms'][id] = room
-
+    """
+    Renomme une salle avec commme arguments un id et le nouveau nom
+    """
+    def renameRoom(self, id, name):
+        self.choices['rooms'][id]["room_name"] = name
+        return self.saveData()
+ 
     def removeRoom(self, id):
         del self.choices['rooms'][id]
         return self.saveData()
@@ -88,6 +92,17 @@ class API():
 
     def getComputer(self, id):
         return self.user_data[id]
+
+    """
+    Permet de trouver tous les ordinateurs dans une salle
+    Renvoie un Dictionnaire avec les infos pour chaque ordinateur et son id comme clef
+    """ 
+    def getComputersInRoom(self, roomId):
+        results = {}
+        for computer_key in list(self.user_data.keys()):
+            if self.user_data[computer_key]["localisation"]["room_id"] == roomId:
+                results[computer_key] = self.user_data[computer_key]
+        return results
 
     #SOFTWARE
     def addSoftware(self, computer_id, software):
