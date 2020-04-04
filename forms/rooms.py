@@ -37,7 +37,7 @@ class MultiAction(npyscreen.MultiLineAction):
         room_id = list(RoomsForm.searchResultsData.keys())[self.values.index(act_on_this)]
 
         if key_press == curses.ascii.NL:
-            TransfertArgs.args = {"room_id" : room_id}
+            transfertArgs.args = {"room_id" : room_id}
             self.find_parent_app().switchForm("VIEW_ROOM")
         elif key_press == curses.ascii.DEL:   #SP
             # On récupère l'id de la room à partir de l'index de la liste dans le tableau affiché et 

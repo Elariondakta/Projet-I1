@@ -1,3 +1,7 @@
 class TransfertArgs():
     
-    args = []
+    args = {
+        "room_id" : ""
+    }
+
+transfertArgs = TransfertArgs()

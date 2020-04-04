@@ -1,7 +1,7 @@
 import npyscreen
 from api import API
 import curses
-
+from utils import *
     
 class ViewRoom(npyscreen.ActionFormMinimal):
     api = API()
@@ -10,5 +10,6 @@ class ViewRoom(npyscreen.ActionFormMinimal):
         self.build()
 
     def build(self):
-        print("ok")
+        print(transfertArgs.args['room_id'])
+        
 
