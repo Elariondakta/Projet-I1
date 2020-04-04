@@ -5,6 +5,7 @@ from forms.computers import ComputersForm
 from forms.software import SoftwareForm
 from forms.rooms import RoomsForm
 from forms.addRoom import AddRoom
+from forms.viewRoom import ViewRoom
 from const import *
 
 class App(NPSAppManaged):
@@ -15,3 +16,5 @@ class App(NPSAppManaged):
         self.registerForm("SOFTWARES", SoftwareForm(name="Vue des logiciels"))
         self.registerForm("ROOMS", RoomsForm(name="Vue des salles"))
         self.registerForm("ADD_ROOM", AddRoom(name="Ajout d'une salle"))
+        self.registerForm("VIEW_ROOM", ViewRoom(name="Salle"))
+

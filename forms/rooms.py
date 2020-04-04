@@ -1,5 +1,6 @@
 import npyscreen
 from api import API
+from utils import TransfertArgs
 import curses
 
 class SearchTextField(npyscreen.Textfield):
@@ -32,12 +33,15 @@ class MultiAction(npyscreen.MultiLineAction):
         super(MultiAction, self).__init__(*args, **keywords)
 
     def  actionHighlighted(self, act_on_this, key_press):
+
+        room_id = list(RoomsForm.searchResultsData.keys())[self.values.index(act_on_this)]
+
         if key_press == curses.ascii.NL:
-            self.find_parent_app().switchForm("SOFTWARES")
-        elif key_press == curses.ascii.SP:
+            TransfertArgs.args = {"room_id" : room_id}
+            self.find_parent_app().switchForm("VIEW_ROOM")
+        elif key_press == curses.ascii.DEL:   #SP
             # On récupère l'id de la room à partir de l'index de la liste dans le tableau affiché et 
-            # notre tableau de données
-            room_id = list(RoomsForm.searchResultsData.keys())[self.values.index(act_on_this)]
+            # notre tableau de données           
             if npyscreen.notify_ok_cancel("Est ce que vous êtes sur de supprimer cette salle ?", "Confirmation"):
                 if RoomsForm.api.removeRoom(room_id):
                     npyscreen.notify_confirm("La salle " + RoomsForm.searchResultsData[room_id]["room_name"] + " à bien été supprimée", "Succès")
