@@ -6,6 +6,7 @@ from forms.software import SoftwareForm
 from forms.rooms import RoomsForm
 from forms.addRoom import AddRoom
 from forms.viewRoom import ViewRoom
+from api import API
 from const import *
 
 class App(NPSAppManaged):

@@ -12,7 +12,7 @@ class SearchTextField(npyscreen.Textfield):
         })
         
     def __search(self, charCode):
-        RoomsForm.updateSearchResults(RoomsForm.api.searchRooms(self.value))
+        RoomsForm.updateSearchResults(API.searchRooms(self.value))
 
 class SearchBar(npyscreen.BoxTitle):
     _contained_widget = SearchTextField
@@ -32,21 +32,19 @@ class MultiAction(npyscreen.MultiLineAction):
     def __init__(self, *args, **keywords):
         super(MultiAction, self).__init__(*args, **keywords)
 
-    def  actionHighlighted(self, act_on_this, key_press):
+    def actionHighlighted(self, act_on_this, key_press):
 
         room_id = list(RoomsForm.searchResultsData.keys())[self.values.index(act_on_this)]
-
         if key_press == curses.ascii.NL:
-            transfertArgs.args = {"room_id" : room_id}
+            TransfertArgs.args = {"room_id" : room_id}
             self.find_parent_app().switchForm("VIEW_ROOM")
-        elif key_press == curses.ascii.DEL:   #SP
+        if key_press == curses.ascii.SP:   #SP
             # On récupère l'id de la room à partir de l'index de la liste dans le tableau affiché et 
             # notre tableau de données           
             if npyscreen.notify_ok_cancel("Est ce que vous êtes sur de supprimer cette salle ?", "Confirmation"):
-                if RoomsForm.api.removeRoom(room_id):
+                if API.removeRoom(room_id):
                     npyscreen.notify_confirm("La salle " + RoomsForm.searchResultsData[room_id]["room_name"] + " à bien été supprimée", "Succès")
-                    del RoomsForm.searchResultsData[room_id]
-                    RoomsForm.updateSearchResults(RoomsForm.searchResultsData)
+                    RoomsForm.updateSearchResults(API.searchRooms(""))  #On réinitialise les donnée affichée pour que notre ajout soit affiché
                 else:
                     npyscreen.notify_confirm("Une erreur est apparue lors de la suppression de la salle", "Erreur")
 
@@ -55,7 +53,6 @@ class MultiActionBox(npyscreen.BoxTitle):
     
 class RoomsForm(npyscreen.ActionFormMinimal):
     searchResults = None
-    api = API()
     searchResultsData = {}
 
     @staticmethod
@@ -68,6 +65,7 @@ class RoomsForm(npyscreen.ActionFormMinimal):
         
     def create(self):
         self.build()
+        RoomsForm.updateSearchResults(API.searchRooms(""))
 
     def build(self):
         self.add(SearchBar, name="Rechercher une salle : ", 
