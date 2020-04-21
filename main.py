@@ -1,6 +1,6 @@
 import npyscreen
 from app import App
-
+from api import API
 # Redirect stdout and stderr to files
 import sys
 

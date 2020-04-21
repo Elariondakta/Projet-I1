@@ -33,7 +33,7 @@ class MultiAction(npyscreen.MultiLineAction):
         super(MultiAction, self).__init__(*args, **keywords)
 
     def actionHighlighted(self, act_on_this, key_press):
-
+        print(key_press)
         room_id = list(RoomsForm.searchResultsData.keys())[self.values.index(act_on_this)]
         if key_press == curses.ascii.NL:
             TransfertArgs.args = {"room_id" : room_id}
@@ -60,7 +60,7 @@ class RoomsForm(npyscreen.ActionFormMinimal):
         RoomsForm.searchResultsData = values
         RoomsForm.searchResults.values = []
         for key in values.keys():
-            RoomsForm.searchResults.values.append("⌂  " + values[key]["building_name"] + "\t --> \t" + values[key]["room_name"] + "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t [Suppr] : Supprimer, \t\t\t\t[↵] : Accéder à la salle")
+            RoomsForm.searchResults.values.append("⌂  " + values[key]["building_name"] + "\t --> \t" + values[key]["room_name"] + "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t [Espace] : Supprimer, \t\t\t\t[↵] : Accéder à la salle")
         RoomsForm.searchResults.update()
         
     def create(self):
