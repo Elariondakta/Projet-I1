@@ -39,11 +39,14 @@
                 "VGA",
                 "HDMI"
             ],
-            "screen_res": "1080",
-            "screen_size": [
-                600,
-                800
-            ],
+            "screen": {
+                "screen_res": "1080",
+                "screen_size": [
+                    600,
+                    800
+                ] 
+            },
+            
             "nb_USB_port": 6,
             "storage": [
                 {
