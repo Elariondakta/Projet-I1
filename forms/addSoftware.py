@@ -24,7 +24,7 @@ class ButtonAddAddOn(npyscreen.ButtonPress):
         self.form_instance = keywords.get("form_instance")
 
     def whenPressed(self):
-        self.form_instance.build()
+        self.find_parent_app().switchForm("ADD_ADDON")
 
 class ButtonAddAddOnBox(npyscreen.BoxTitle):
     _contained_widget = ButtonAddAddOn
@@ -42,12 +42,12 @@ class addSoftware(npyscreen.ActionFormV2):
         self.nextrely += 1
         self.versionField = self.add(npyscreen.TitleText, name="Version : ", relx=10)
         self.nextrely += 1
-        self.license_expiration_dateField = self.add(npyscreen.TitleText, name="Date d'expiration de la license (JJ/MM/AAAA): ", relx=10)
+        self.license_expiration_dateField = self.add(npyscreen.TitleDateCombo, name="Date d'expiration de la license : ", allowClear=False, relx=10)
         self.nextrely += 1
         self.IDField = self.add(npyscreen.TitleText, name="Identifiant : ", relx=10)
         self.nextrely += 1
         self.add(ButtonAddAddOnBox, form_instance = self)
-    
+
     def on_ok(self):
         if len(self.editorField.get_value()) == 0 or len(self.nameField.get_value()) == 0 or len(self.providorField.get_value()) == 0 or len(self.versionField.get_value()) == 0 or len(self.versionField.get_value()) == 0 or len(self.license_expiration_dateField.get_value()) == 0 or len(self.IDField.get_value()) == 0:
             npyscreen.notify_confirm("Vous devez remplir tous les champs du formulaires avant de confirmer", "Erreur")
@@ -57,6 +57,7 @@ class addSoftware(npyscreen.ActionFormV2):
             npyscreen.notify_confirm("Le logiciel " + self.nameField.get_value() + " à bien été ajoutée", "Succès")
             # RoomsForm.updateSearchResults(API.searchRooms(""))  #On réinitialise les donnée affichée pour que notre ajout soit affiché
             self.find_parent_app().switchForm("SOFTWARE")
+
         else:
             npyscreen.notify_confirm("Une erreur est apparue lors de l'ajout de votre salle", "Erreur")
 

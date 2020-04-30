@@ -39,7 +39,7 @@ class addAddOn(npyscreen.ActionFormV2):
         if API.addRoom(self.nameField.get_value(), self.nameField.get_value()):
             npyscreen.notify_confirm("Le plug in " + self.nameField.get_value() + " à bien été ajoutée", "Succès")
             # RoomsForm.updateSearchResults(API.searchRooms(""))  #On réinitialise les donnée affichée pour que notre ajout soit affiché
-            self.find_parent_app().switchForm("ADD_SOFTWARE")
+            self.find_parent_app().switchForm("MAIN") #A MODIFIER ET REMPLACER PAR "ADD_SOFTWARE" quand on ne lancera plus plus que ca !!
         else:
             npyscreen.notify_confirm("Une erreur est apparue lors de l'ajout de votre salle", "Erreur")
 
