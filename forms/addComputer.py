@@ -4,11 +4,10 @@ import curses
 class ButtonAddUSB(npyscreen.ButtonPress):
     def __init__(self, *args, **keywords):
         super(ButtonAddUSB, self).__init__(*args, **keywords)
-        self.name="Ajouter un Port USB"
-        self.form_instance = keywords.get("form_instance")
-
+        self.name="Ajouter_un_Port_USB"
+        
     def whenPressed(self):
-        self.form_instance.build()
+        self.find_parent_app().switchForm("ADD_USB")
 
 class ButtonAddUSBBox(npyscreen.BoxTitle):
     _contained_widget = ButtonAddUSB
@@ -69,7 +68,7 @@ class AddComputer(npyscreen.FormMultiPageAction):
         self.nextrely += 1
         self.add_widget_intelligent (npyscreen.TitleText, name = "Maker : ", relx=10)
         self.add_widget_intelligent (npyscreen.TitleText, name = "Provider : ", relx=10)
-        self.add_widget_intelligent (npyscreen.TitleText, name = "Purchase Date Timestamp : ", relx=10)
+        self.add_widget_intelligent (npyscreen.TitleDateCombo, name = "Purchase Date Timestamp : ", relx=10, allowClear=False)
         self.nextrely += 1
         self.add_widget_intelligent (npyscreen.FixedText, value = "Further Features : ", relx=25)
         self.nextrely += 1
@@ -77,7 +76,7 @@ class AddComputer(npyscreen.FormMultiPageAction):
         self.add_widget_intelligent (npyscreen.RoundCheckBox, name = "WIFI : ", relx=10)
         self.add_widget_intelligent (npyscreen.RoundCheckBox, name = "Bluetooth : ", relx=10)
         self.nextrely += 1
-        self.add_widget_intelligent (ButtonAddUSB, form_instance = self)
+        self.add_widget_intelligent (ButtonAddUSB)
 
 
 def on_ok(self):

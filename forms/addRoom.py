@@ -12,7 +12,7 @@ class AddRoom(npyscreen.ActionFormV2):
     def on_ok(self):
         if len(self.roomField.get_value()) == 0 or len(self.buildingField.get_value()) == 0:
             npyscreen.notify_confirm("Vous devez remplir tous les champs du formulaires avant de confirmer", "Erreur")
-            return;
+            return
         
         if API.addRoom(self.roomField.get_value(), self.buildingField.get_value()):
             npyscreen.notify_confirm("La salle " + self.roomField.get_value() + " à bien été ajoutée", "Succès")
