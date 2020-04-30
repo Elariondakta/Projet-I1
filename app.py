@@ -6,6 +6,7 @@ from forms.software import SoftwareForm
 from forms.rooms import RoomsForm
 from forms.addRoom import AddRoom
 from forms.viewRoom import ViewRoom
+from forms.viewComputer import ViewComputer
 from api import API
 from const import *
 
@@ -18,4 +19,5 @@ class App(NPSAppManaged):
         self.registerForm("ROOMS", RoomsForm(name="Vue des salles"))
         self.registerForm("ADD_ROOM", AddRoom(name="Ajout d'une salle"))
         self.registerForm("VIEW_ROOM", ViewRoom(name="Salle"))
+        self.registerForm("VIEW_COMPUTER", ViewComputer(name="Vue d'un ordinateur"))
 
