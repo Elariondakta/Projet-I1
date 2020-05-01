@@ -150,21 +150,21 @@ class API():
 
     #PLUGINS
     @staticmethod 
-    def addPlugin(computer_id, software_id, plugin):
-        API.computer_data[computer_id]['softwares'][software_id]['add_on'][str(uuid.uuid4())] = plugin
+    def addPlugin(software_id, plugin):
+        API.software_data[software_id]['add_on'][str(uuid.uuid4())] = plugin
 
     @staticmethod 
-    def setPlugin(computer_id, software_id, plugin_id, plugin):
-        API.computer_data[computer_id]['softwares'][software_id]['add_on'][plugin_id] = plugin
+    def setPlugin(software_id, plugin_id, plugin):
+        API.software_data[software_id]['add_on'][plugin_id] = plugin
 
     @staticmethod 
-    def removePlugin(computer_id, software_id, plugin_id):
-        API.computer_data[computer_id]['softwares'][software_id]['add_on'].remove(plugin_id)
+    def removePlugin(software_id, plugin_id):
+        API.software_data[software_id]['add_on'].remove(plugin_id)
 
     @staticmethod 
-    def getPlugins(computer_id, software_id):
-        return API.computer_data[computer_id]['softwares'][software_id]['add-on']
+    def getPlugins(software_id):
+        return API.software_data[software_id]['add-on']
 
     @staticmethod 
-    def getPlugin(computer_id, software_id, plugin_id):
-        return API.computer_data[computer_id]['softwares'][software_id]['add-on'][plugin_id]
+    def getPlugin(software_id, plugin_id):
+        return API.software_data[software_id]['add-on'][plugin_id]
