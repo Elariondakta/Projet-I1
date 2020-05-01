@@ -168,7 +168,7 @@ class Rooms:
 
             if res_index == 0:
                 ##Afficher le gestionnaire des salles
-                self.edit_room(room)
+                self.edit_room(room_id)
             elif res_index == 1:
                 #Editer
                 #self.edit_room(room)
@@ -183,19 +183,32 @@ class Rooms:
                 rooms_handler = Rooms()
                 rooms_handler.display()
 
-    def edit_room(self, room):
-        questions = [
+    def edit_room(self, room_id):
+        room = API.getRoom(room_id)
+
+        option_name = [
             {
-                'type': 'editor',
-                'name': 'bio',
-                'message': 'Please write a short bio of at least 3 lines.',
-                'default': 'Hello World',
-                'validate': lambda text: len(text.split('\n')) >= 3 or 'Must be at least 3 lines.',
-                'eargs': {
-                    'editor':'default',
-                    'ext':'.py'
-                }
+                'type': 'input',
+                'name': 'edit_room_name',
+                'message': 'Nom de la salle : ',
+                'default': room["room_name"],
             }
         ]
 
-        answers = prompt(questions)["bio"]
+        name = prompt(option_name)["edit_room_name"]
+
+        option_building = [
+            {
+                'type': 'input',
+                'name': 'edit_room_building',
+                'message': 'Batiment : ',
+                'default': room["building_name"],
+            }
+        ]
+
+        building = prompt(option_building)["edit_room_building"]
+
+        new_room = {"room_name" : name, "building_name" : building}
+
+        API.setRoom(room_id, new_room)
+

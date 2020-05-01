@@ -55,8 +55,8 @@ class API():
     Renomme une salle avec commme arguments un id et le nouveau nom
     """
     @staticmethod 
-    def renameRoom(id, name):
-        API.room_data[id]["room_name"] = name
+    def setRoom(id, room):
+        API.room_data[id] = room
         return API.saveData()
  
     @staticmethod 
