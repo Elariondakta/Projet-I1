@@ -2,7 +2,7 @@
 
 Ca va être le turfu
 
-Requirements : npyscreen
+Requirements : *PyInquirer PrettyTable*
 
 Projet : https://github.com/users/Elariondakta/projects/3/
 
