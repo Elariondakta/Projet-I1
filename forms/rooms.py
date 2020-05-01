@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-from PyInquirer import prompt, Separator
-=======
 from PyInquirer import prompt, Separator, Validator, ValidationError
->>>>>>> d67c11870a87aa9c7f8a0f76c21f6812dc5c3a74
 from prettytable import PrettyTable
 from utils import clear
 from api import API
