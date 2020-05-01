@@ -2,6 +2,7 @@ from api import API
 from utils import clear
 from PyInquirer import prompt, Separator
 from forms.rooms import Rooms
+from forms.softwares import Software
 import sys
 
 
@@ -40,6 +41,7 @@ if __name__ == '__main__':
             pass
         elif res_index == 2:
             ##Afficher le gestionnaire des softwares
-            pass
+            software_handler = Software()
+            software_handler.display()
         elif res_index == 4:    ##Fonction pour quiter
             break
