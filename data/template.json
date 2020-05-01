@@ -1,23 +1,6 @@
 {
     "pc1": {
-        "softwares": {
-           "jdioehz" : {
-                "name": "OpenOffice",
-                "editor": "Francis",
-                "provider": "Microsoft",
-                "version": "2.4.3892",
-                "licence_exp_date": 3456787456,
-                "add_on": {
-                    "jehne" : {
-                        "ID": "trhdfg3356",
-                        "name": "OpenOffice",
-                        "editor": "Francis",
-                        "provider": "Microsoft",
-                        "version": "2.4.3892"
-                    }
-                }
-            }
-        },
+        "softwares": [],
         "specs": {
             "processor": {
                 "plateform": 32,

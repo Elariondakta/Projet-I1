@@ -10,6 +10,8 @@ class API():
 
     room_file = "./data/rooms.json"
 
+    software_file = "./data/softwares.json"
+
     @staticmethod 
     def loadData():
         with open(API.choice_file, 'r') as f:
@@ -21,6 +23,9 @@ class API():
         with open(API.room_file, 'r') as f:
             API.room_data = json.load(f)
 
+        with open(API.software_file, 'r') as f:
+            API.software_data = json.load(f)
+
     @staticmethod 
     def saveData():
         try:
@@ -29,6 +34,10 @@ class API():
 
             with open(API.room_file, 'w') as f:
                 json.dump(API.room_data, f)
+
+            with open(API.software_file, 'w') as f:
+                json.dump(API.software_data, f)
+
         except BaseException:
             return False
         return True
@@ -120,24 +129,24 @@ class API():
 
     #SOFTWARE
     @staticmethod 
-    def addSoftware(computer_id, software):
-        API.computer_data[computer_id]['softwares'][str(uuid.uuid4())] = software
+    def addSoftware(software):
+        API.software_data[str(uuid.uuid4())] = software
 
     @staticmethod 
-    def setSoftware(computer_id, software_id, software):
-        API.computer_data[computer_id]['softwares'][software_id] = software
+    def setSoftware(software_id, software):
+        API.software_data[software_id] = software
 
     @staticmethod 
-    def removeSoftware(computer_id, software_id):
-        API.computer_data[computer_id]['softwares'].remove(software_id)
+    def removeSoftware(software_id):
+        API.software_data.remove(software_id)
 
     @staticmethod 
-    def getSoftwares(computer_id):
-        return API.computer_data[computer_id]['softwares']
+    def getSoftwares():
+        return API.software_data
 
     @staticmethod 
-    def getSoftware(computer_id, software_id):
-        return API.computer_data[computer_id]['softwares'][software_id]
+    def getSoftware(software_id):
+        return API.software_data[software_id]
 
     #PLUGINS
     @staticmethod 
