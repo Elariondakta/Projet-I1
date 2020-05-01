@@ -17,7 +17,6 @@ class Rooms:
         table = PrettyTable()
         table.field_names = ["Id", "Bâtiment", "Salle"]
         i = 0
-        print(self.active_data)
         for table_row_key in self.base_data.keys():
             if table_row_key not in list(self.active_data.keys()) and disp_active:
                 i += 1
@@ -67,6 +66,7 @@ class Rooms:
             self.display_room_detail(query)
         elif res_index == 3:
             ##On créer une salle
+            self.createRoom()
             pass
         elif res_index == 4:
             self.display_delete()
@@ -85,7 +85,6 @@ class Rooms:
         self.display_table(True)
 
     def display_delete(self):
-        # self.display_table()
         options = [
             {
                 'type': 'input',
@@ -116,6 +115,24 @@ class Rooms:
         except:
             return "Vous devez rentrer un nombre !"
 
+    def createRoom(self):
+        options = [
+            {
+                'type': "input",
+                "message": "Nom de la salle",
+                "name": "room_name"
+            },
+            {
+                'type': "input",
+                "message": "Nom du bâtiment",
+                "name": "building_name"
+            }
+        ]
+        res = prompt(options)
+        API.addRoom(res["room_name"], res["building_name"])
+        clear()
+        print(Separator("La salle à bien été ajoutée !"))
+        self.display_options()
 
 
 
