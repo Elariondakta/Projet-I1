@@ -1,4 +1,4 @@
-from PyInquirer import prompt
+from PyInquirer import prompt, Separator, Validator, ValidationError
 from prettytable import PrettyTable
 from utils import clear
 from api import API
@@ -54,8 +54,15 @@ class Rooms:
             self.display_search()
             self.display_options()
         elif res_index == 2:
-            ##On liste les détails d'une salle
-            pass
+            options = [
+                {
+                    'type': 'input',
+                    'name': 'search_query',
+                    'message': 'Identifiant de la salle :',
+                },
+            ]
+            query = prompt(options)["search_query"]
+            self.display_room_detail(query)
         elif res_index == 3:
             ##On créer une salle
             pass
@@ -106,3 +113,76 @@ class Rooms:
             else: return "Vous devez rentrer un index existant !"
         except:
             return "Vous devez rentrer un nombre !"
+
+
+
+
+
+
+
+    def display_room_detail(self, room_id):
+        
+        room = API.getRoom(room_id)
+        
+        options = [
+            {
+                'type': 'list',
+                'name': 'menu_room_detail',
+                'message': 'Selectionner un des menus avec les flèches du clavier.',
+                'choices': [
+                    'Editer',
+                    "Ordinateurs de la salle",
+                    Separator(),
+                    "Retour"
+                ]
+            },
+        ]
+        while True:
+            clear()
+            print("Salle : " + room["room_name"])
+            print("Batiment : " + room["building_name"])
+            res = prompt(options)
+            try:
+                res_index = options[0]['choices'].index(res["menu_room_detail"])
+            except KeyError:
+                res_index = 0
+
+            if res_index == 0:
+                ##Afficher le gestionnaire des salles
+                self.edit_room(room)
+            elif res_index == 1:
+                #Editer
+                #self.edit_room(room)
+                pass
+                
+            elif res_index == 2:
+                #Gestion des ordinateurs
+                rooms_handler = Rooms()
+                rooms_handler.display()
+
+            elif res_index == 3:
+                rooms_handler = Rooms()
+                rooms_handler.display()
+
+    def edit_room(self, room):
+        options = [
+            {
+                'type': 'editor',
+                'name': 'edit_room_name',
+                'message': 'Nom de la salle : ',
+                'default' : room["room_name"],
+                'validate' : lambda text:len(text.split('\n')) > 0 or 'Ne doit pas être vide.'
+            },
+        ]
+        name = prompt(options)["edit_room_name"]
+
+        options = [
+            {
+                'type': 'editor',
+                'name': 'edit_room_building',
+                'message': 'Batiment : ',
+                'default' : room["building_name"],
+                'validate' : lambda text:len(text.split('\n')) > 0 or 'Ne doit pas être vide.'
+            },
+        ]
+        building = prompt(options)["edit_room_building"]
