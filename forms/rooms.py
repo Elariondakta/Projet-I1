@@ -1,4 +1,6 @@
-from PyInquirer import prompt, Separator, Validator, ValidationError
+from __future__ import print_function, unicode_literals
+
+from PyInquirer import style_from_dict, Token, prompt, print_json, Separator, Validator, ValidationError
 from prettytable import PrettyTable
 from utils import clear
 from api import API
@@ -165,24 +167,18 @@ class Rooms:
                 rooms_handler.display()
 
     def edit_room(self, room):
-        options = [
+        questions = [
             {
                 'type': 'editor',
-                'name': 'edit_room_name',
-                'message': 'Nom de la salle : ',
-                'default' : room["room_name"],
-                'validate' : lambda text:len(text.split('\n')) > 0 or 'Ne doit pas être vide.'
-            },
+                'name': 'bio',
+                'message': 'Please write a short bio of at least 3 lines.',
+                'default': 'Hello World',
+                'validate': lambda text: len(text.split('\n')) >= 3 or 'Must be at least 3 lines.',
+                'eargs': {
+                    'editor':'default',
+                    'ext':'.py'
+                }
+            }
         ]
-        name = prompt(options)["edit_room_name"]
 
-        options = [
-            {
-                'type': 'editor',
-                'name': 'edit_room_building',
-                'message': 'Batiment : ',
-                'default' : room["building_name"],
-                'validate' : lambda text:len(text.split('\n')) > 0 or 'Ne doit pas être vide.'
-            },
-        ]
-        building = prompt(options)["edit_room_building"]
+        answers = prompt(questions)["bio"]
