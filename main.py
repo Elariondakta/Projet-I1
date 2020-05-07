@@ -3,6 +3,7 @@ from utils import clear
 from PyInquirer import prompt, Separator
 from forms.rooms import Rooms
 from forms.softwares import Software
+from forms.computers import Computers
 import sys
 
 
@@ -36,7 +37,7 @@ if __name__ == '__main__':
             rooms_handler.display()
         elif res_index == 1:
             ##Afficher le gestionnaire des ordinateurs
-            computers_handler = Rooms()
+            computers_handler = Computers()
             computers_handler.display()
             pass
         elif res_index == 2:
