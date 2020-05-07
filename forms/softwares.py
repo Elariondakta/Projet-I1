@@ -3,6 +3,7 @@ from prettytable import PrettyTable
 from examples import custom_style_2
 from utils import clear
 from api import API
+import datetime
 
 class Software:
     def __init__(self): ##Métthode qui charge les données etc...
@@ -40,6 +41,7 @@ class Software:
             self.addSoftware()
         elif res_index == 3:
             ##On supprime un logiciel
+            self.display_delete
             pass
         
     
@@ -80,7 +82,7 @@ class Software:
         {
             'type': 'input',
             'qmark':'',
-            'name': 'providor',
+            'name': 'provider',
             'message': 'Quel est son fournisseur? ', 
             'validate': lambda val: self.checkStrLenght(val) 
         },
@@ -94,7 +96,7 @@ class Software:
         {
             'type': 'input',
             'qmark':'',
-            'name': 'licenseExpirationDate',
+            'name': 'licence_exp_date',
             'message': 'Quelle est la date d\'expiration de la license ? ', 
             'validate': lambda val: self.checkStrLenght(val)
         },
@@ -141,32 +143,50 @@ class Software:
             print(Separator())
             newAddOnCarateristic = prompt(addOnCharacteristic)
             addOn.append(newAddOnCarateristic)
-        newSoftware['addOn']=addOn
-        print("OK")
+        newSoftware['add_on']=addOn
+        newSoftware['licence_exp_date']=int(newSoftware['licence_exp_date'])
+        API.addSoftware(newSoftware["name"], newSoftware["editor"], newSoftware["provider"], newSoftware["version"], newSoftware["licence_exp_date"], newSoftware["add_on"])
+        clear()
+        print(Separator("Le logiciel à bien été ajoutée !"))
     
     def display_table(self, data):
         table = PrettyTable()
-        table.field_names = ["ID", "Nom", "Editeur"]
+        table.field_names = ["ID", "Nom", "Editeur","Date d'expiraion de la lisence"]
         i = 0
         for table_row_key in data.keys():
             table_row_el = data[table_row_key]
-            table.add_row([i, table_row_el["name"], table_row_el["editor"]])
+            table.add_row([i, table_row_el["name"], table_row_el["editor"], datetime.date.fromtimestamp(table_row_el["licence_exp_date"])])
             i += 1
         print(table)
         self.display_options()
 
-    """
-
     def display_delete(self):
         options = [
             {
-                'type': 'when',
-                "message": "Entrez l'Id de la salle à supprimer",
-                "name": 'remove_id'
+                'type': 'input',
+                "message": "Entrez l'Id du logiciel à supprimer",
+                "name": 'remove_id',
+                "validate": lambda val: self._checkSelectedIndex(val, API.getRooms())
             }
         ]
-        remove_index = prompt(options)["remove_id"]
-        remove_id = API.getRooms().keys()[remove_index]
-        print(remove_id)
-        API.removeRoom(remove_id)
-        self.display_table(API.getRooms())"""
+        remove_index = int(prompt(options)["remove_id"])
+        remove_id = list(API.getSoftwares().keys())[remove_index]
+        confirm = [
+            {
+                'type': 'confirm',
+                'name': "confirm",
+                'message': "Etes-vous sur de supprimer le logiciel " + API.getSoftwares()[remove_id]["room_name"] + " ?"
+            }
+        ]
+        res = prompt(confirm)["confirm"]
+        if res == True:
+            API.removeSoftware(remove_id)
+        self.display_options()
+
+    def _checkSelectedIndex(self, val, data):
+        try:
+            if int(val) > 0 and int(val) < len(data):
+                return True
+            else: return "Vous devez rentrer un index existant !"
+        except:
+            return "Vous devez rentrer un nombre !"
