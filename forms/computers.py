@@ -250,7 +250,7 @@ class Computers :
                 'validate': lambda val: self._checkSelectedIndex(val, 10)
             }
         ]
-        nbStrorage = [
+        nbStorage = [
             {
                 'type': 'input',
                 'name': 'nb_storage',
@@ -269,11 +269,11 @@ class Computers :
         userData = prompt(user)
         specs_techData = prompt(specs_tech)
         USBData = int(prompt(USB)["nb_USB_port"])
-        nbStrorageData = int(prompt(nbStrorage)["nb_storage"])
+        nbStorageData = int(prompt(nbStorage)["nb_storage"])
         
         storageData = []
 
-        for i in range(0, nbStrorageData):
+        for i in range(0, nbStorageData):
             storageData.append(prompt([
                 {
                     'type': 'input',
@@ -301,6 +301,9 @@ class Computers :
             }
         ]
         confirmData = prompt(confirm)
+
+        if confirmData == True: 
+            API.addComputer(processorData, RAMData, graphic_cardData, video_portsData, screenData, network_cardData, purchaseData, userData, specs_techData, USBData, nbStorageData)
             
     def remove_display(self):
         options = [
