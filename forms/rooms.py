@@ -5,6 +5,7 @@ from prettytable import PrettyTable
 from utils import clear
 from api import API
 import style
+
 class Rooms:
     def __init__(self): ##Métthode qui charge les données etc...
         self.base_data = API.getRooms()
