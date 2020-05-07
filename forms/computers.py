@@ -1,8 +1,10 @@
-from PyInquirer import prompt
+from PyInquirer import prompt, Separator
 from prettytable import PrettyTable
 from utils import clear
 from api import API
 from datetime import datetime
+import style
+
 class Computers :
     def __init__(self): ##Métthode qui charge les données etc...
         self.base_data = API.getComputers()
@@ -66,7 +68,8 @@ class Computers :
             pass
         elif res_index == 4:
             ##On liste les détails d'un ordi
-            pass
+            self.display_computer_detail()
+
         elif res_index == 5:
             ##On ajoute un software à un ordi
             pass
@@ -250,7 +253,7 @@ class Computers :
                 'validate': lambda val: self._checkSelectedIndex(val, 10)
             }
         ]
-        nbStrorage = [
+        nbStorage = [
             {
                 'type': 'input',
                 'name': 'nb_storage',
@@ -258,7 +261,7 @@ class Computers :
                 'validate': lambda val: self._checkSelectedIndex(val, 10)
             }
         ]
-        
+
         processorData = prompt(processor)
         RAMData = prompt(RAM)
         graphic_cardData = prompt(graphic_card)
@@ -269,11 +272,11 @@ class Computers :
         userData = prompt(user)
         specs_techData = prompt(specs_tech)
         USBData = int(prompt(USB)["nb_USB_port"])
-        nbStrorageData = int(prompt(nbStrorage)["nb_storage"])
-        
+        nbStorageData = int(prompt(nbStorage)["nb_storage"])
+
         storageData = []
 
-        for i in range(0, nbStrorageData):
+        for i in range(0, nbStorageData):
             storageData.append(prompt([
                 {
                     'type': 'input',
@@ -292,7 +295,7 @@ class Computers :
                     'message': 'Taille :',
                 }
             ]))
-        
+
         confirm = [
             {
                 'type': 'confirm',
@@ -301,6 +304,9 @@ class Computers :
             }
         ]
         confirmData = prompt(confirm)
+
+        if confirmData == True: 
+            API.addComputer(processorData, RAMData, graphic_cardData, video_portsData, screenData, network_cardData, purchaseData, userData, specs_techData, USBData, nbStorageData)
             
     def remove_display(self):
         options = [
@@ -345,3 +351,91 @@ class Computers :
                 i += 1
         print(table)
         
+
+
+
+    def display_computer_detail(self, computer_id = "pc1779"):
+    
+        computer = API.getComputer(computer_id) ##Demander l'id de l'ordi à l'utilisateur
+        
+        options = [
+            {
+                'type': 'list',
+                'name': 'menu_computer_detail',
+                'message': 'Selectionner un des menus avec les flèches du clavier.',
+                'choices': [
+                    'Editer',
+                    "Logiciels installés",
+                    Separator(),
+                    "Retour"
+                ]
+            },
+        ]
+
+        clear()
+        print("Ordinateur : " + computer_id)
+        print(Separator())
+        print(style.bold("Spécifications techniques :"))
+
+        #Computer
+        print(style.blue("\nProcesseur :"))
+        print(style.light_cyan("\t" + "Architecture : ") + computer["specs"]["processor"]["plateform"] + " bits")
+        print(style.light_cyan("\t" + "Marque : ") + computer["specs"]["processor"]["brand"])
+        print(style.light_cyan("\t" + "Vitesse : ") + computer["specs"]["processor"]["speed"])
+        print(style.light_cyan("\t" + "Cache : ") + computer["specs"]["processor"]["size_cache"])
+        print(style.light_cyan("\t" + "Modèle : ") + computer["specs"]["processor"]["model"])
+
+        #RAM
+        print(style.blue("\nRAM :"))
+        print(style.light_cyan("\t" + "Nombre de barette : ") + computer["specs"]["RAM"]["number"])
+        print(style.light_cyan("\t" + "Taille : ") + computer["specs"]["RAM"]["total_size"])
+
+        #Graphic card
+        print(style.blue("\nCarte graphique :"))
+        print(style.light_cyan("\t" + "Marque : ") + computer["specs"]["graphic_card"]["brand"])
+        print(style.light_cyan("\t" + "Mémoire : ") + computer["specs"]["graphic_card"]["memory"])
+        print(style.light_cyan("\t" + "Modèle : ") + computer["specs"]["graphic_card"]["model"])
+
+        #Video port
+        print(style.blue("\nPorts vidéo :"))
+        print(style.light_cyan("\t" + "Ports vidéo : ") + computer["specs"]["video_port"])
+
+        #Screen
+        print(style.blue("\nEcran :"))
+        print(style.light_cyan("\t" + "Résolution : ") + computer["specs"]["screen"]['screen_res'])
+        print(style.light_cyan("\t" + "Taille : ") + computer["specs"]["screen"]['screen_size'])
+
+        #Connectors
+        print(style.blue("\nConnecteurs"))
+        print(style.light_cyan("\t" + "Lecteur CD : ") + "TO DO")
+        print(style.light_cyan("\t" + "Ports USB : ") + computer["specs"]["nb_USB_port"])
+
+        #Stockage
+        print(style.blue("\nStockage :"))
+        
+
+        #Network card
+        print(style.blue("\nCarte réseau :"))
+        print(style.light_cyan("\t" + "Vitesse : ") + computer["specs"]["network_card"]['speed'])
+        print(style.light_cyan("\t" + "Marque : ") + computer["specs"]["network_card"]['brand'])
+
+        #Other
+        print(style.blue("\nAutre :"))
+        
+
+        res = prompt(options) ##On affiche le formulaire
+
+        try:
+            res_index = options[0]['choices'].index(res["menu_computer_detail"])
+        except KeyError:
+            res_index = 0
+
+        if res_index == 0: ##Formulaire d'edition de l'ordinateur
+            #self.edit_room(room_id)
+            pass
+        elif res_index == 1: ##Formulaire des logiciels
+            pass
+            
+        elif res_index == 3: ##Retour
+            clear()
+            #self.display_options()
