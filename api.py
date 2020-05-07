@@ -146,7 +146,7 @@ class API():
 
     @staticmethod 
     def removeSoftware(software_id):
-        API.software_data.remove(software_id)
+        del API.software_data[software_id]
 
     @staticmethod 
     def getSoftwares():
