@@ -95,7 +95,7 @@ class API():
 
     #COMPUTER
     @staticmethod 
-    def addComputer(computer):
+    def addComputer(processor, ram, graphic_card, video_ports, screen, network_card, purchase, user, specs_tech, usb_data, nb_storage):
         API.computer_data[str(uuid.uuid4())] = computer
 
     @staticmethod 
@@ -146,7 +146,7 @@ class API():
 
     @staticmethod 
     def removeSoftware(software_id):
-        API.software_data.remove(software_id)
+        del API.software_data[software_id]
 
     @staticmethod 
     def getSoftwares():

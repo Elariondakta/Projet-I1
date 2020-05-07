@@ -273,7 +273,6 @@ class Computers :
         specs_techData = prompt(specs_tech)
         USBData = int(prompt(USB)["nb_USB_port"])
         nbStorageData = int(prompt(nbStorage)["nb_storage"])
-
         storageData = []
 
         for i in range(0, nbStorageData):
