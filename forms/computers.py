@@ -2,20 +2,30 @@ from PyInquirer import prompt
 from prettytable import PrettyTable
 from utils import clear
 from api import API
+from datetime import datetime
 class Computers :
     def __init__(self): ##Métthode qui charge les données etc...
         pass
 
     def display(self):  ##Méthode qui lance l'affichage avec interaction etc...
         clear()
+        self.display_options()
 
-    def _checkSelectedIndex(self, val):
+    def _checkSelectedIndex(self, val, maxValue):
         try:
-            if int(val) > 0 and int(val) < 10:
+            if int(val) >= 0 and int(val) <= maxValue:
                 return True
-            else: return "Vous devez rentrer un nombre entre 0 et 10."
+            else: return "Vous devez rentrer un nombre entre 0 et"+ str(maxValue) +"."
         except:
             return "Vous devez rentrer un nombre."
+
+    def _checkDate(self, val):
+        date_format = '%d/%m/%Y'
+        try:
+            date_obj = datetime.strptime(val, date_format)
+        except ValueError:
+            return"Format incorrect, la date doit etre de la forme JJ/MM/AAAA"
+        return True
 
     def display_options(self):
         options = [
@@ -39,7 +49,7 @@ class Computers :
         res_index = options[0]['choices'].index(res)
         if res_index == 0:
             ##On ajoute un ordi
-            pass
+            self.addComputer ()
         elif res_index == 1:
             ##On supprime un ordi
             pass
@@ -64,62 +74,65 @@ class Computers :
             {
                 'type': 'input',
                 'name': 'plateform',
-                'message': 'Platform :',
+                'message': 'Platforme du processeur:',
+                'validate': lambda val: True if val == "32" or val == "64" else "Veuillez rentrer '32' ou '64' bits"
             },
             {
                 'type': 'input',
                 'name': 'brand',
-                'message': 'Brand :',
+                'message': 'Marque du processeur :',
             },
             {
                 'type': 'input',
                 'name': 'speed',
-                'message': 'Speed :',
+                'message': 'Vitese du processeur :',
             },
             {
                 'type': 'input',
                 'name': 'size_cache',
-                'message': 'Cache Size :',
+                'message': 'Taille du Cache :',
             },
             {
                 'type': 'input',
                 'name': 'model',
-                'message': 'Model :',
+                'message': 'Modèle de processeur :',
             }
         ]
         RAM = [
             {
                 'type': 'input',
                 'name': 'number',
-                'message': 'Number of RAM :',
+                'message': 'Nombre de RAM :',
+                'validate': lambda val: self._checkSelectedIndex(val, 10)
+
             },
             {
                 'type': 'input',
                 'name': 'total_size',
-                'message': 'Total Size :',
+                'message': 'Taille totale de la RAM :',
             }
         ]
         graphic_card = [
             {
                 'type': 'input',
                 'name': 'brand',
-                'message': 'Brand :',
+                'message': 'Marque de la carte graphique :',
             },
             {
                 'type': 'input',
                 'name': 'memory',
-                'message': 'Memory Size :',
+                'message': 'Taille Mémoire de la carte graphique :',
             },
             {
                 'type': 'input',
                 'name': 'model',
-                'message': 'Card Model :',
+                'message': 'Modèle de la carte graphique :',
             }
         ]
         video_ports = [
             {
                 'type': 'checkbox',
-                'message': 'Select ports (To select, press space)',
+                'message': 'Selectionner les ports disponibles',
                 'name': 'video_port',
                 'choices': [ 
                     {
@@ -147,73 +160,73 @@ class Computers :
             {
                 'type': 'input',
                 'name': 'screen_res',
-                'message': 'Screen Resolution :',
+                'message': "Résolution de l'écran :",
+                'validate': lambda val: self._checkSelectedIndex(val, 10000)
             },
             {
                 'type': 'input',
                 'name': 'screen_size_x',
-                'message': 'Screen Width :',
+                'message': "Largeur de l'écran (en px) :",
+                'validate': lambda val: self._checkSelectedIndex(val, 10000)
             },
             {
                 'type': 'input',
                 'name': 'screen_size_y',
-                'message': 'Screen Height :',
+                'message': "Longueur de l'écran (en px) :",
+                'validate': lambda val: self._checkSelectedIndex(val, 30000)
             }
         ]
         network_card = [
             {
                 'type': 'input',
                 'name': 'speed',
-                'message': 'Speed :',
+                'message': 'Vitesse de la carte réseau :',
             },
             {
                 'type': 'input',
                 'name': 'brand',
-                'message': 'Brand :',
+                'message': 'Marque de la carte réseau :',
             }
         ]
         purchase = [
             {
                 'type': 'input',
                 'name': 'maker',
-                'message': 'Maker :',
+                'message': "Fabricant de l'ordinateur:",
             },
             {
                 'type': 'input',
                 'name': 'provider',
-                'message': 'Provider :',
+                'message': "Fournisseur de l'ordinateur:",
             },
             {
                 'type': 'input',
                 'name': 'purchase_date_timestamp',
-                'message': 'Purchase Date Timestamp :',
+                'message': "Date d'achat :",
+                'validate': lambda val: self._checkDate(val)
             }
         ]
+
         user = [
             {
                 'type': 'input',
                 'name': 'name',
-                'message': 'Name :',
+                'message': 'Nom :',
             },
             {
                 'type': 'input',
                 'name': 'username',
-                'message': 'Username :',
-            },
-            {
-                'type': 'input',
-                'name': 'ID',
-                'message': 'ID :',
+                'message': "Nom d'utilisateur :",
             }
         ]
         specs_tech = [
             {
                 'type': 'checkbox',
-                'message': 'Select technical caracteristics (To select, press space)',
+                'message': 'Selectionner les characteristiques technique',
                 'name': 'specs_tech',
                 'choices': [ 
                     {
-                        'name': 'CD Player'
+                        'name': 'Lecteur CD'
                     },
                     {
                         'name': 'Wifi'
@@ -228,8 +241,8 @@ class Computers :
             {
                 'type': 'input',
                 'name': 'nb_USB_port',
-                'message': 'How many USB ports does the computer have ? :',
-                'validate': lambda val: self._checkSelectedIndex(val)
+                'message': "Combien l'ordinateur à t'il de ports USB ? :",
+                'validate': lambda val: self._checkSelectedIndex(val, 10)
             }
         ]
         nbStrorage = [
@@ -237,7 +250,7 @@ class Computers :
                 'type': 'input',
                 'name': 'nb_storage',
                 'message': "Combien d'espaces de stockage l'ordinateur a t'il ? :",
-                'validate': lambda val: self._checkSelectedIndex(val)
+                'validate': lambda val: self._checkSelectedIndex(val, 10)
             }
         ]
         
@@ -259,13 +272,27 @@ class Computers :
             storageData.append(prompt([
                 {
                     'type': 'input',
+                    'name': 'port',
+                    'message': 'Port n° :',
+                    'validate': lambda val: self._checkSelectedIndex(val, 10)
+                },
+                {
+                    'type': 'input',
                     'name': 'type',
                     'message': 'Type :',
                 },
                 {
                     'type': 'input',
                     'name': 'size',
-                    'message': 'Size :',
+                    'message': 'Taille :',
                 }
             ]))
         
+        confirm = [
+            {
+                'type': 'confirm',
+                'name': "confirm",
+                'message': "Confirmer l'ajout de l'ordinateur"
+            }
+        ]
+        confirmData = prompt(confirm)
