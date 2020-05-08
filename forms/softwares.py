@@ -3,7 +3,7 @@ from prettytable import PrettyTable
 from examples import custom_style_2
 from utils import clear
 from api import API
-from datetime import datetime
+from datetime import datetime, date
 import style
 import uuid
 
@@ -114,7 +114,7 @@ class Software:
                 {
                     'type': 'input',
                     'qmark':'',
-                    'name': 'nom',
+                    'name': 'name',
                     'message': 'Quel est le nom du Plugg-in ? ', 
                     'validate': lambda val: self.checkStrLenght(val)
                 }, 
@@ -145,7 +145,7 @@ class Software:
             addOn[str(uuid.uuid4())]=newAddOnCarateristic
         newSoftware['add_on']=addOn
         date_format = '%d/%m/%Y'
-        newSoftware['licence_exp_date'] = datetime.strptime(newSoftware['licence_exp_date'], date_format)
+        newSoftware['licence_exp_date'] = datetime.strptime(newSoftware['licence_exp_date'], date_format).timestamp()
         API.addSoftware(newSoftware)
         clear()
         print(Separator("Le logiciel à bien été ajoutée !"))
@@ -214,7 +214,7 @@ class Software:
         print("- Fournisseur : " + soft["provider"])
         print("- Editeur : " + soft["editor"])
         print("- Version : " + soft["version"])
-        print("- Date d'expiration de la license : " + str(datetime.date.fromtimestamp(soft["licence_exp_date"])))
+        print("- Date d'expiration de la license : " + str(date.fromtimestamp(soft["licence_exp_date"])))
         add_on_of_software = soft["add_on"]
         i = 0
         for software_key in add_on_of_software.keys():
