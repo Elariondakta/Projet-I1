@@ -375,7 +375,7 @@ class Computers :
         ]
 
         clear()
-        print("Ordinateur : " + computer_id)
+        print("Ordinateur : " + computer_id + "\n")
         print(Separator())
         print(style.bold("\nSpécifications techniques :"))
 
@@ -442,15 +442,17 @@ class Computers :
         print(style.light_cyan("\t" + "Fournisseur : ") + computer["specs"]["provider"])
         print(style.light_cyan("\t" + "Date d'achat : ") + datetime.fromtimestamp(computer["specs"]["purchase_date_timestamp"]))
 
+        print("\n")
         print(Separator())
 
         print(style.bold("\nLocalisation :\n"))
-        print(style.blue("\tSalle :"))
-        print(style.light_cyan("\t\t" + "Nom : ") + API.getRoom(computer["localisation"])["room_name"])
-        print(style.light_cyan("\t\t" + "Batiment : ") + API.getRoom(computer["localisation"])["building_name"])
+        print(style.blue("Salle :"))
+        print(style.light_cyan("\t" + "Nom : ") + API.getRoom(computer["localisation"])["room_name"])
+        print(style.light_cyan("\t" + "Batiment : ") + API.getRoom(computer["localisation"])["building_name"])
 
         print("\n")
         print(Separator())
+        print("\n")
 
         res = prompt(options) ##On affiche le formulaire
 
