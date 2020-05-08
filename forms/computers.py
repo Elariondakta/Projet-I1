@@ -405,19 +405,31 @@ class Computers :
         print(style.light_cyan("\t" + "Taille : ") + str(computer["specs"]["screen"]['screen_size']).strip('[]').replace(', ', 'x') + "px")
 
         #Connectors
-        print(style.blue("\nConnecteurs"))
+        print(style.blue("\nConnectique :"))
         print(style.light_cyan("\t" + "Lecteur CD : ") + "Oui" if  computer["specs"]["CD_player"] else "Non" )
         print(style.light_cyan("\t" + "Ports USB : ") + computer["specs"]["nb_USB_port"])
 
         #Stockage
         print(style.blue("\nStockage :"))
-        for stockage in computer["specs"]['storage']:
-            pass
+
+        n_storage = 1
+        for storage in computer["specs"]['storage']:
+            print(style.light_cyan("\tStockage " + str(n_storage) + " :"))
+            print(style.magenta("\t\tType : ") + storage["type"])
+            print(style.magenta("\t\tPort : ") + str(storage["port"]))
+            print(style.magenta("\t\tTaille : ") + str(storage["size"]))
+            n_storage+=1
 
         #Network card
         print(style.blue("\nCarte réseau :"))
         print(style.light_cyan("\t" + "Vitesse : ") + computer["specs"]["network_card"]['speed'])
         print(style.light_cyan("\t" + "Marque : ") + computer["specs"]["network_card"]['brand'])
+
+        #User
+        print(style.blue("\nUtilisateur :"))
+        print(style.light_cyan("\t" + "Nom : ") + computer["specs"]["user"]['name'])
+        print(style.light_cyan("\t" + "Nom  d'utilisation : ") + computer["specs"]["user"]['username'])
+        print(style.light_cyan("\t" + "Identifiant : ") + computer["specs"]["user"]['ID'])
 
         #Other
         print(style.blue("\nAutre :"))
@@ -426,6 +438,10 @@ class Computers :
         print(style.light_cyan("\t" + "Fabriquant : ") + computer["specs"]["maker"])
         print(style.light_cyan("\t" + "Fournisseur : ") + computer["specs"]["provider"])
         print(style.light_cyan("\t" + "Date d'achat : ") + datetime.fromtimestamp(computer["specs"]["purchase_date_timestamp"]))
+
+        print(Separator())
+        print(style.bold("Localisation :"))
+
 
         res = prompt(options) ##On affiche le formulaire
 
