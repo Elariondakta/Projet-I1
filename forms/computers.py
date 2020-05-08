@@ -397,21 +397,22 @@ class Computers :
 
         #Video port
         print(style.blue("\nPorts vidéo :"))
-        print(style.light_cyan("\t" + "Ports vidéo : ") + computer["specs"]["video_port"])
+        print(style.light_cyan("\t" + "Ports vidéo : ") + ', '.join(computer["specs"]["video_port"]))
 
         #Screen
         print(style.blue("\nEcran :"))
         print(style.light_cyan("\t" + "Résolution : ") + computer["specs"]["screen"]['screen_res'])
-        print(style.light_cyan("\t" + "Taille : ") + computer["specs"]["screen"]['screen_size'])
+        print(style.light_cyan("\t" + "Taille : ") + str(computer["specs"]["screen"]['screen_size']).strip('[]').replace(', ', 'x') + "px")
 
         #Connectors
         print(style.blue("\nConnecteurs"))
-        print(style.light_cyan("\t" + "Lecteur CD : ") + "TO DO")
+        print(style.light_cyan("\t" + "Lecteur CD : ") + "Oui" if  computer["specs"]["CD_player"] else "Non" )
         print(style.light_cyan("\t" + "Ports USB : ") + computer["specs"]["nb_USB_port"])
 
         #Stockage
         print(style.blue("\nStockage :"))
-        
+        for stockage in computer["specs"]['storage']:
+            pass
 
         #Network card
         print(style.blue("\nCarte réseau :"))
@@ -420,7 +421,11 @@ class Computers :
 
         #Other
         print(style.blue("\nAutre :"))
-        
+        print(style.light_cyan("\t" + "WiFi : ") + "Oui" if  computer["specs"]["wifi"] else "Non" )
+        print(style.light_cyan("\t" + "Bluetooth : ") + "Oui" if  computer["specs"]["bluetooth"] else "Non" )
+        print(style.light_cyan("\t" + "Fabriquant : ") + computer["specs"]["maker"])
+        print(style.light_cyan("\t" + "Fournisseur : ") + computer["specs"]["provider"])
+        print(style.light_cyan("\t" + "Date d'achat : ") + datetime.fromtimestamp(computer["specs"]["purchase_date_timestamp"]))
 
         res = prompt(options) ##On affiche le formulaire
 
