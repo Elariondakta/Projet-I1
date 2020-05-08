@@ -2,7 +2,7 @@
 
 Ca va être le turfu
 
-Requirements : *PyInquirer PrettyTable*
+Requirements : *PyInquirer PrettyTable style*
 
 Projet : https://github.com/users/Elariondakta/projects/3/
 
