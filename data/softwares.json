@@ -1,1 +1,50 @@
-{"uid1": {"name": "OpenOffice", "editor": "Francis", "provider": "Microsoft", "version": "2.4.3892", "licence_exp_date": 3456787456, "add_on": {"jehne": {"ID": "trhdfg3356", "name": "OpenOffice", "editor": "Francis", "provider": "Microsoft", "version": "2.4.3892"}}}, "uid2": {"name": "Sublime Text 3", "editor": "Francis", "provider": "Jsp", "version": "2.4.3892", "licence_exp_date": 3456787456, "add_on": {"jehne": {"ID": "trhdfg3356", "name": "OpenOffice", "editor": "Francis", "provider": "Microsoft", "version": "2.4.3892"}}}}
+{
+    "uid1": {
+        "name": "OpenOffice",
+        "editor": "Francis",
+        "provider": "Microsoft",
+        "version": "2.4.3892",
+        "licence_exp_date": 3456787456,
+        "add_on": {
+            "jehne": {
+                "ID": "trhdfg3356",
+                "name": "OpenOffice",
+                "editor": "Francis",
+                "provider": "Microsoft",
+                "version": "2.4.3892"
+            }
+        }
+    },
+    "uid2": {
+        "name": "Sublime Text 3",
+        "editor": "Francis",
+        "provider": "Jsp",
+        "version": "2.4.3892",
+        "licence_exp_date": 3456787456,
+        "add_on": {
+            "jehne": {
+                "ID": "trhdfg3356",
+                "name": "OpenOffice",
+                "editor": "Francis",
+                "provider": "Microsoft",
+                "version": "2.4.3892"
+            }
+        }
+    },
+    "b6c2da93-3316-4c8d-b926-16cd49910eee": {
+        "name": "Word",
+        "editor": "Microsoft",
+        "provider": "Choupette",
+        "version": "V2020",
+        "licence_exp_date": 1941141600.0,
+        "numberOfAddOn": "1",
+        "add_on": {
+            "07264e24-8449-4f81-9220-007f05b3ed5d": {
+                "name": "Equation",
+                "editor": "Microsoft",
+                "provider": "Choupette",
+                "version": "V2"
+            }
+        }
+    }
+}

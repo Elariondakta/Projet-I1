@@ -150,15 +150,8 @@ class API():
 
     #SOFTWARE
     @staticmethod 
-    def addSoftware(name, editor, provider, version, licence_exp_date, add_on):
-        API.software_data[str(uuid.uuid4())] = {
-            "name": name,
-            "editor": editor, 
-            "provider": provider, 
-            "version": version, 
-            "licence_exp_date": licence_exp_date, 
-            "add_on": add_on
-        }
+    def addSoftware(softwares):
+        API.software_data[str(uuid.uuid4())] = softwares
         return API.saveData()
 
     @staticmethod 
