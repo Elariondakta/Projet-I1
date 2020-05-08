@@ -190,7 +190,7 @@ class Software:
 
     def _checkSelectedIndex(self, val, data):
         try:
-            if int(val) > 0 and int(val) < len(data):
+            if int(val) >= 0 and int(val) < len(data):
                 return True
             else: return "Vous devez rentrer un index existant !"
         except:
@@ -205,5 +205,9 @@ class Software:
         print("- Editeur : " + soft["editor"])
         print("- Version : " + soft["version"])
         print("- Date d'expiration de la license : " + str(datetime.date.fromtimestamp(soft["licence_exp_date"])))
-        
+        add_on_of_software = soft["add_on"]
+        for i in range(len(add_on_of_software)):
+            print("-"*5+"Plug-in "+str(i+1)+"-"*5)
+            print(add_on_of_software)
+            print("- Nom : " + add_on_of_software[i]["name"])
         self.display_options()
