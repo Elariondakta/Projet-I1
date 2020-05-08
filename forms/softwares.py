@@ -210,5 +210,8 @@ class Software:
         for software_key in add_on_of_software.keys():
             print("-"*5+"Plug-in "+str(i+1)+"-"*5)
             print("- Nom : " + add_on_of_software[software_key]["name"])
+            print("- Editeur : " + add_on_of_software[software_key]["editor"])
+            print("- Fournisseur : " + add_on_of_software[software_key]["provider"])
+            print("- Version : " + add_on_of_software[software_key]["version"])
             i += 1
         self.display_options()
