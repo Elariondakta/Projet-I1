@@ -6,6 +6,7 @@ from datetime import datetime
 import style
 
 class Computers :
+    
     def __init__(self): ##Métthode qui charge les données etc...
         self.base_data = API.getComputers()
         self.active_data = API.getComputers()
@@ -48,7 +49,9 @@ class Computers :
                     "Lister les ordinateurs",
                     "Lister les détails d'un ordinateur",
                     "Ajouter un software à un ordinateur",
-                    "Effectuer une recherche"
+                    "Effectuer une recherche",
+                    Separator(),
+                    "Retour"
                 ]
             }
         ]
@@ -59,7 +62,7 @@ class Computers :
             self.addComputer ()
         elif res_index == 1:
             ##On supprime un ordi
-            self.remove_display()
+            self.remove_computer_display()
             pass
         elif res_index == 2:
             ##On renomme un ordi
@@ -71,7 +74,8 @@ class Computers :
             pass
         elif res_index == 4:
             ##On liste les détails d'un ordi
-            self.display_computer_detail()
+            computer_id = self.form_get_id_computer()
+            self.display_computer_detail(computer_id)
 
         elif res_index == 5:
             ##On ajoute un software à un ordi
@@ -79,8 +83,20 @@ class Computers :
         elif res_index == 6:
             ##On effectue une recherche 
             pass
+        elif res_index == 8:
+            pass
 
     def addComputer (self):
+
+        name = [
+            {
+                'type': 'input',
+                'name': 'name',
+                'message': "Nom de l'ordinateur",
+                'validate': lambda val: True if val != "" else "Nom invalide"
+            },
+        ]
+
         processor = [
             {
                 'type': 'input',
@@ -265,6 +281,7 @@ class Computers :
             }
         ]
 
+        nameData = prompt(name)["name"]
         processorData = prompt(processor)
         RAMData = prompt(RAM)
         graphic_cardData = prompt(graphic_card)
@@ -278,6 +295,7 @@ class Computers :
         nbStorageData = int(prompt(nbStorage)["nb_storage"])
         storageData = []
         purchaseData["purchase_date_timestamp"] = self._convertDate(purchaseData["purchase_date_timestamp"])
+
         for i in range(0, nbStorageData):
             storageData.append(prompt([
                 {
@@ -308,34 +326,42 @@ class Computers :
         confirmData = prompt(confirm)["confirm"]
 
         if confirmData: 
-            API.addComputer(processorData, RAMData, graphic_cardData, video_portsData, screenData, network_cardData, purchaseData, userData, specs_techData, USBData, nbStorageData)
+            API.addComputer(nameData, processorData, RAMData, graphic_cardData, video_portsData, screenData, network_cardData, purchaseData, userData, specs_techData, USBData, storageData, "")
             
-    def remove_display(self):
+    def form_get_id_computer(self):
         options = [
             {
                 'type': 'input',
-                "message": "Entrez l'Id de l'ordinateur à supprimer",
-                "name": 'remove_id',
+                "message": "Entrez L'identifiant de l'ordinateur",
+                "name": 'computer_id',
                 "validate": lambda val: self._checkSelectedIndex(val, len(self.base_data))
             }
         ]
-        remove_index = int(prompt(options)["remove_id"])
-        remove_id = list(API.getComputers().keys())[remove_index]
+        index = int(prompt(options)["computer_id"])
+        id = list(API.getComputers().keys())[index]
+
+        return id
+
+    def remove_computer_display(self):
+
+        computer_id = self.form_get_id_computer()
+        
         confirm = [
             {
                 'type': 'confirm',
                 'name': "confirm",
-                'message': "Etes-vous sur de supprimer l'ordinateur de " + API.getComputers()[remove_id]["user"]["name"] +" ?"
+                'message': "Etes-vous sur de supprimer l'ordinateur de " + API.getComputers()[computer_id]["user"]["name"] +" ?"
             }
         ]
         res = prompt(confirm)["confirm"]
         if res == True:
-            API.removeComputer(remove_id)
+            API.removeComputer(computer_id)
+
         self.display_options()
 
     def display_tables(self, disp_active = False):
         table = PrettyTable()
-        table.field_names = ["Id", "Utilisateurs", "Logiciels", "Localisation"]
+        table.field_names = ["Id", "Utilisateurs", "Logiciels"]
         i = 0
         for table_row_key in self.base_data.keys():
             if table_row_key not in list(self.active_data.keys()) and disp_active:
@@ -343,15 +369,11 @@ class Computers :
                 continue
             else:
                 table_row_el = self.active_data[table_row_key]
-                try:
-                    room_el = API.getRoom(table_row_el["localisation"])["room_name"]
-                except KeyError:
-                    room_el = "Pas de salle spécifiée"
+
                 table.add_row([
                     i, 
                     table_row_el["user"]["username"], 
-                    str(len(table_row_el["softwares"])) + " logiciel(s) installé(s)",
-                    room_el
+                    str(len(table_row_el["softwares"])) + " logiciel(s) installé(s)"
                 ])
                 i += 1
         print(table)
@@ -359,7 +381,7 @@ class Computers :
 
 
 
-    def display_computer_detail(self, computer_id = "pc1779"):
+    def display_computer_detail(self, computer_id):      
     
         computer = API.getComputer(computer_id) ##Demander l'id de l'ordi à l'utilisateur
         
@@ -378,28 +400,28 @@ class Computers :
         ]
 
         clear()
-        print("Ordinateur : " + computer_id + "\n")
+        print("Ordinateur : " + str(computer['name']) + "\n")
         print(Separator())
         print(style.bold("\nSpécifications techniques :"))
 
         #Computer
         print(style.blue("\nProcesseur :"))
-        print(style.light_cyan("\t" + "Architecture : ") + computer["specs"]["processor"]["plateform"] + " bits")
-        print(style.light_cyan("\t" + "Marque : ") + computer["specs"]["processor"]["brand"])
-        print(style.light_cyan("\t" + "Vitesse : ") + computer["specs"]["processor"]["speed"])
-        print(style.light_cyan("\t" + "Cache : ") + computer["specs"]["processor"]["size_cache"])
-        print(style.light_cyan("\t" + "Modèle : ") + computer["specs"]["processor"]["model"])
+        print(style.light_cyan("\t" + "Architecture : ") + str(computer["specs"]["processor"]["plateform"]) + " bits")
+        print(style.light_cyan("\t" + "Marque : ") + str(computer["specs"]["processor"]["brand"]))
+        print(style.light_cyan("\t" + "Vitesse : ") + str(computer["specs"]["processor"]["speed"]))
+        print(style.light_cyan("\t" + "Cache : ") + str(computer["specs"]["processor"]["size_cache"]))
+        print(style.light_cyan("\t" + "Modèle : ") + str(computer["specs"]["processor"]["model"]))
 
         #RAM
         print(style.blue("\nRAM :"))
-        print(style.light_cyan("\t" + "Nombre de barette : ") + computer["specs"]["RAM"]["number"])
-        print(style.light_cyan("\t" + "Taille : ") + computer["specs"]["RAM"]["total_size"])
+        print(style.light_cyan("\t" + "Nombre de barette : ") + str(computer["specs"]["RAM"]["number"]))
+        print(style.light_cyan("\t" + "Taille : ") + str(computer["specs"]["RAM"]["total_size"]))
 
         #Graphic card
         print(style.blue("\nCarte graphique :"))
-        print(style.light_cyan("\t" + "Marque : ") + computer["specs"]["graphic_card"]["brand"])
-        print(style.light_cyan("\t" + "Mémoire : ") + computer["specs"]["graphic_card"]["memory"])
-        print(style.light_cyan("\t" + "Modèle : ") + computer["specs"]["graphic_card"]["model"])
+        print(style.light_cyan("\t" + "Marque : ") + str(computer["specs"]["graphic_card"]["brand"]))
+        print(style.light_cyan("\t" + "Mémoire : ") + str(computer["specs"]["graphic_card"]["memory"]))
+        print(style.light_cyan("\t" + "Modèle : ") + str(computer["specs"]["graphic_card"]["model"]))
 
         #Video port
         print(style.blue("\nPorts vidéo :"))
@@ -407,13 +429,13 @@ class Computers :
 
         #Screen
         print(style.blue("\nEcran :"))
-        print(style.light_cyan("\t" + "Résolution : ") + computer["specs"]["screen"]['screen_res'])
+        print(style.light_cyan("\t" + "Résolution : ") + str(computer["specs"]["screen"]['screen_res']))
         print(style.light_cyan("\t" + "Taille : ") + str(computer["specs"]["screen"]['screen_size']).strip('[]').replace(', ', 'x') + "px")
 
         #Connectors
         print(style.blue("\nConnectique :"))
         print(style.light_cyan("\t" + "Lecteur CD : ") + "Oui" if  computer["specs"]["CD_player"] else "Non" )
-        print(style.light_cyan("\t" + "Ports USB : ") + computer["specs"]["nb_USB_port"])
+        print(style.light_cyan("\t" + "Ports USB : ") + str(computer["specs"]["nb_USB_port"]))
 
         #Stockage
         print(style.blue("\nStockage :"))
@@ -421,27 +443,27 @@ class Computers :
         n_storage = 1
         for storage in computer["specs"]['storage']:
             print(style.light_cyan("\tStockage " + str(n_storage) + " :"))
-            print(style.magenta("\t\tType : ") + storage["type"])
+            print(style.magenta("\t\tType : ") + str(storage["type"]))
             print(style.magenta("\t\tPort : ") + str(storage["port"]))
             print(style.magenta("\t\tTaille : ") + str(storage["size"]))
             n_storage+=1
 
         #Network card
         print(style.blue("\nCarte réseau :"))
-        print(style.light_cyan("\t" + "Vitesse : ") + computer["specs"]["network_card"]['speed'])
-        print(style.light_cyan("\t" + "Marque : ") + computer["specs"]["network_card"]['brand'])
+        print(style.light_cyan("\t" + "Vitesse : ") + str(computer["specs"]["network_card"]['speed']))
+        print(style.light_cyan("\t" + "Marque : ") + str(computer["specs"]["network_card"]['brand']))
 
         #User
         print(style.blue("\nUtilisateur :"))
-        print(style.light_cyan("\t" + "Nom : ") + computer["user"]['name'])
-        print(style.light_cyan("\t" + "Nom  d'utilisation : ") + computer["user"]['username'])
+        print(style.light_cyan("\t" + "Nom : ") + str(computer["user"]['name']))
+        print(style.light_cyan("\t" + "Nom  d'utilisation : ") + str(computer["user"]['username']))
 
         #Other
         print(style.blue("\nAutre :"))
-        print(style.light_cyan("\t" + "WiFi : ") + "Oui" if  computer["specs"]["wifi"] else "Non" )
-        print(style.light_cyan("\t" + "Bluetooth : ") + "Oui" if  computer["specs"]["bluetooth"] else "Non" )
-        print(style.light_cyan("\t" + "Fabriquant : ") + computer["specs"]["maker"])
-        print(style.light_cyan("\t" + "Fournisseur : ") + computer["specs"]["provider"])
+        print(style.light_cyan("\t" + "WiFi : ") + ("Oui" if  computer["specs"]["wifi"] else "Non" ))
+        print(style.light_cyan("\t" + "Bluetooth : ") + ("Oui" if  computer["specs"]["bluetooth"] else "Non" ))
+        print(style.light_cyan("\t" + "Fabriquant : ") + str(computer["specs"]["maker"]))
+        print(style.light_cyan("\t" + "Fournisseur : ") + str(computer["specs"]["provider"]))
         print(style.light_cyan("\t" + "Date d'achat : ") + datetime.fromtimestamp(computer["specs"]["purchase_date_timestamp"]).strftime("%d/%m/%Y"))
 
         print("\n")
@@ -449,8 +471,10 @@ class Computers :
 
         print(style.bold("\nLocalisation :\n"))
         print(style.blue("Salle :"))
-        print(style.light_cyan("\t" + "Nom : ") + API.getRoom(computer["localisation"])["room_name"])
-        print(style.light_cyan("\t" + "Batiment : ") + API.getRoom(computer["localisation"])["building_name"])
+
+        if API.getRoom(computer["localisation"]) != None:
+            print(style.light_cyan("\t" + "Nom : ") + API.getRoom(computer["localisation"])["room_name"])
+            print(style.light_cyan("\t" + "Batiment : ") + API.getRoom(computer["localisation"])["building_name"])
 
         print("\n")
         print(Separator())
@@ -470,14 +494,25 @@ class Computers :
             
         elif res_index == 3: ##Retour
             clear()
-            #self.display_options()
+            self.display_options()
 
 
     def edit_computer_detail(self, computer_id):
         clear()
-        print(style.bold("\nEdition de l'ordinateur " + computer_id + " :\n"))
 
         computer = API.getComputer(computer_id)
+
+        print(style.bold("\nEdition de l'ordinateur " + computer['name'] + " :\n"))
+
+        name = [
+            {
+                'type': 'input',
+                'name': 'name',
+                'message': "Nom de l'ordinateur :",
+                'validate': lambda val: True if val != "" else "Nom invalide",
+                'default' : str(computer["name"])
+            }
+        ]
 
         processor = [
             {
@@ -694,6 +729,7 @@ class Computers :
             }
         ]
 
+        nameData = prompt(name)["name"]
         processorData = prompt(processor)
         RAMData = prompt(RAM)
         graphic_cardData = prompt(graphic_card)
@@ -706,7 +742,8 @@ class Computers :
         USBData = int(prompt(USB)["nb_USB_port"])
         nbStorageData = int(prompt(nbStorage)["nb_storage"])
         storageData = []
-        
+        purchaseData["purchase_date_timestamp"] = self._convertDate(purchaseData["purchase_date_timestamp"])
+
         for i in range(0, nbStorageData):
 
             storageData.append(prompt([
@@ -739,5 +776,38 @@ class Computers :
             }
         ]
         confirmData = prompt(confirm)
+
+        if confirmData: 
+            new_computer = {
+                "name" : nameData,
+                "softwares": {},
+                "specs": {
+                    "processor": processorData,
+                    "RAM": RAM,
+                    "graphic_card": graphic_cardData,
+                    "video_port": video_portsData,
+                    "screen": {
+                        "screen_res": screenData["screen_res"],
+                        "screen_size": [
+                            screenData["screen_size_x"],
+                            screenData["screen_size_y"]
+                        ]
+                    },
+                    "nb_USB_port": USBData,
+                    "storage": nbStorageData,
+                    "network_card": network_cardData,
+                    "CD_player": "Lecteur CD" in specs_techData["specs_tech"],
+                    "wifi": "Wifi" in specs_techData["specs_tech"],
+                    "bluetooth": "Bluetooth" in specs_techData["specs_tech"],
+                    "maker": purchaseData["maker"],
+                    "provider": purchaseData["provider"],
+                    "purchase_date_timestamp": purchaseData["purchase_date_timestamp"]
+                },
+                "user": userData,
+                "localisation": computer["localisation"]
+            }
+            API.setComputer(computer_id, new_computer)
+        
+        self.display_computer_detail(computer_id)
 
 

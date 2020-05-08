@@ -65,7 +65,10 @@ class API():
 
     @staticmethod 
     def getRoom(id):
-        return API.room_data[id]
+        if id in API.room_data:
+            return API.room_data[id]
+        else:
+            return None
     """
     Retourne une liste de tous les bâtiments disponibles
     """
@@ -90,8 +93,9 @@ class API():
 
     #COMPUTER
     @staticmethod 
-    def addComputer(processor, ram, graphic_card, video_ports, screen, network_card, purchase, user, specs_tech, usb_data, nb_storage):
+    def addComputer(name, processor, ram, graphic_card, video_ports, screen, network_card, purchase, user, specs_tech, usb_data, nb_storage, localisation=None):
         API.computer_data[str(uuid.uuid4())] = {
+            "name" : name,
             "softwares": {},
             "specs": {
                 "processor": processor,
@@ -105,8 +109,9 @@ class API():
                         screen["screen_size_y"]
                     ]
                 },
-                "nb_USB_port": nb_storage,
-                "storage": usb_data,
+                "nb_USB_port": usb_data,
+                "storage": nb_storage,
+                "network_card": network_card,
                 "CD_player": "Lecteur CD" in specs_tech["specs_tech"],
                 "wifi": "Wifi" in specs_tech["specs_tech"],
                 "bluetooth": "Bluetooth" in specs_tech["specs_tech"],
@@ -115,7 +120,7 @@ class API():
                 "purchase_date_timestamp": purchase["purchase_date_timestamp"]
             },
             "user": user,
-            "localisation": None
+            "localisation": localisation
         }
         return API.saveData()
 
