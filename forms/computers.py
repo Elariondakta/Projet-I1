@@ -552,22 +552,28 @@ class Computers :
                 'name': 'video_port',
                 'choices': [ 
                     {
-                        'name': 'VGA'
+                        'name': 'VGA',
+                        'checked' : True if 'VGA' in computer["specs"]["video_port"] else False
                     },
                     {
-                        'name': 'HDMI'
+                        'name': 'HDMI',
+                        'checked' : True if 'HDMI' in computer["specs"]["video_port"] else False
                     },
                     {
-                        'name': 'Display-Port'
+                        'name': 'Display-Port',
+                        'checked' : True if 'Display-Port' in computer["specs"]["video_port"] else False
                     },
                     {
-                        'name': 'DVI-A'
+                        'name': 'DVI-A',
+                        'checked' : True if 'DVI-A' in computer["specs"]["video_port"] else False
                     },
                     {
-                        'name': 'DVI-D'
+                        'name': 'DVI-D',
+                        'checked' : True if 'DVI-D' in computer["specs"]["video_port"] else False
                     },
                     {
-                        'name': 'USB-C'
+                        'name': 'USB-C',
+                        'checked' : True if 'USB-C' in computer["specs"]["video_port"] else False
                     }
                 ]
             }
@@ -652,13 +658,16 @@ class Computers :
                 'name': 'specs_tech',
                 'choices': [ 
                     {
-                        'name': 'Lecteur CD'
+                        'name': 'Lecteur CD',
+                        'checked' : True if computer["specs"]["CD_player"] else False
                     },
                     {
-                        'name': 'Wifi'
+                        'name': 'Wifi',
+                        'checked' : True if computer["specs"]["wifi"] else False
                     },
                     {
-                        'name': 'Bluetooth'
+                        'name': 'Bluetooth',
+                        'checked' : True if computer["specs"]["bluetooth"] else False
                     }
                 ]
             }
