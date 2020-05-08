@@ -105,7 +105,7 @@ class API():
                 "graphic_card": graphic_card,
                 "video_port": video_ports,
                 "screen": {
-                    "screen_res": screen["screen_res"],
+                    "screen_res": screen["screen_res"]
                     "screen_size": [
                         screen["screen_size_x"],
                         screen["screen_size_y"]
