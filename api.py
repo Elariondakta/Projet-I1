@@ -127,6 +127,7 @@ class API():
     @staticmethod 
     def setComputer(id, computer):
         API.computer_data[id] = computer
+        return API.saveData()
 
     @staticmethod 
     def removeComputer(id):
