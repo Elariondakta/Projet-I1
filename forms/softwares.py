@@ -4,6 +4,7 @@ from examples import custom_style_2
 from utils import clear
 from api import API
 import datetime
+import style
 
 class Software:
     def __init__(self): ##Métthode qui charge les données etc...
@@ -168,17 +169,18 @@ class Software:
             }
         ]
         soft_index = int(prompt(options)["get_id"])
-        soft_id = list(API.getSoftwares().keys())[room_index]
+        soft_id = list(API.getSoftwares().keys())[soft_index]
+        return soft_id
 
     def display_delete(self): ##Formulaire de suppression de logiciel
 
-        remove_id = self.form_get_id_room() ##Demande à l'user l'id de la salle
+        remove_id = self.form_get_id_soft() ##Demande à l'user l'id du logiciel
         
         confirm = [
             {
                 'type': 'confirm',
                 'name': "confirm",
-                'message': "Etes-vous sur de supprimer la salle " + API.getRooms()[remove_id]["room_name"] + " ?"
+                'message': "Etes-vous sur de supprimer le logiciel " + API.getSoftwares()[remove_id]["name"] + " ?"
             }
         ]
         res = prompt(confirm)["confirm"] ##Affiche le formulaire
@@ -186,8 +188,8 @@ class Software:
 
         ##Traitement de la réponse
         if res == True:
-            API.removeRoom(remove_id) ##Suppression dans la BDD        
-            print(style.green("La salle à bien été supprimée !"))
+            API.removeSoftware(remove_id) ##Suppression dans la BDD        
+            print(style.green("Le logiciel à bien été supprimée !"))
         else:
             print(style.red("Action annulée"))
 
