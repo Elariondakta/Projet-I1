@@ -799,7 +799,7 @@ class Computers :
                 "softwares": {},
                 "specs": {
                     "processor": processorData,
-                    "RAM": RAM,
+                    "RAM": RAMData,
                     "graphic_card": graphic_cardData,
                     "video_port": video_portsData,
                     "screen": {
@@ -810,7 +810,7 @@ class Computers :
                         ]
                     },
                     "nb_USB_port": USBData,
-                    "storage": nbStorageData,
+                    "storage": storageData,
                     "network_card": network_cardData,
                     "CD_player": "Lecteur CD" in specs_techData["specs_tech"],
                     "wifi": "Wifi" in specs_techData["specs_tech"],
