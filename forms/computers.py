@@ -474,6 +474,9 @@ class Computers :
 
 
     def edit_computer_detail(self, computer_id):
+        clear()
+        print(style.bold("\nEdition de l'ordinateur " + computer_id + " :\n"))
+
         computer = API.getComputer(computer_id)
 
         processor = [
