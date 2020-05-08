@@ -23,6 +23,9 @@ class Computers :
         except:
             return "Vous devez rentrer un nombre."
 
+    def _convertDate(self, val):
+        return datetime.strptime(val, '%d/%m/%Y')
+
     def _checkDate(self, val):
         date_format = '%d/%m/%Y'
         try:
@@ -210,7 +213,7 @@ class Computers :
             {
                 'type': 'input',
                 'name': 'purchase_date_timestamp',
-                'message': "Date d'achat :",
+                'message': "Date d'achat (au format JJ/MM/AAAA):",
                 'validate': lambda val: self._checkDate(val)
             }
         ]
@@ -274,7 +277,7 @@ class Computers :
         USBData = int(prompt(USB)["nb_USB_port"])
         nbStorageData = int(prompt(nbStorage)["nb_storage"])
         storageData = []
-
+        purchaseData["purchase_date_timestamp"] = self._convertDate(purchaseData["purchase_date_timestamp"])
         for i in range(0, nbStorageData):
             storageData.append(prompt([
                 {
