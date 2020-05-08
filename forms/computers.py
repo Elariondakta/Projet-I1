@@ -24,7 +24,7 @@ class Computers :
             return "Vous devez rentrer un nombre."
 
     def _convertDate(self, val):
-        return datetime.strptime(val, '%d/%m/%Y')
+        return datetime.strptime(val, '%d/%m/%Y').timestamp()
 
     def _checkDate(self, val):
         date_format = '%d/%m/%Y'
@@ -305,9 +305,9 @@ class Computers :
                 'message': "Confirmer l'ajout de l'ordinateur"
             }
         ]
-        confirmData = prompt(confirm)
+        confirmData = prompt(confirm)["confirm"]
 
-        if confirmData == True: 
+        if confirmData: 
             API.addComputer(processorData, RAMData, graphic_cardData, video_portsData, screenData, network_cardData, purchaseData, userData, specs_techData, USBData, nbStorageData)
             
     def remove_display(self):
