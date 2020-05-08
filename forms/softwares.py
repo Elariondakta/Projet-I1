@@ -206,8 +206,9 @@ class Software:
         print("- Version : " + soft["version"])
         print("- Date d'expiration de la license : " + str(datetime.date.fromtimestamp(soft["licence_exp_date"])))
         add_on_of_software = soft["add_on"]
-        for i in range(len(add_on_of_software)):
+        i = 0
+        for software_key in add_on_of_software.keys():
             print("-"*5+"Plug-in "+str(i+1)+"-"*5)
-            print(add_on_of_software)
-            print("- Nom : " + add_on_of_software[i]["name"])
+            print("- Nom : " + add_on_of_software[software_key]["name"])
+            i += 1
         self.display_options()
