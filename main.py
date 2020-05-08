@@ -8,6 +8,9 @@ import sys
 
 
 if __name__ == '__main__':
+    """
+    Chargement des données
+    """
     API.loadData()
     options = [
         {
