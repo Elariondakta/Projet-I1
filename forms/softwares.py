@@ -3,8 +3,9 @@ from prettytable import PrettyTable
 from examples import custom_style_2
 from utils import clear
 from api import API
-import datetime
+from datetime import datetime
 import style
+import uuid
 
 class Software:
     def __init__(self): ##Métthode qui charge les données etc...
@@ -14,6 +15,14 @@ class Software:
         clear()
         print("*"*5, "Affichage des logiciels", "*"*5)
         self.display_table(API.getSoftwares()) 
+
+    def _checkDate(self, val):
+        date_format = '%d/%m/%Y'
+        try:
+            datetime.strptime(val, date_format)
+        except ValueError:
+            return "Format incorrect, la date doit etre de la forme JJ/MM/AAAA"
+        return True
 
     def display_options(self):
         options = [
@@ -25,7 +34,7 @@ class Software:
                     "Lister les logiciels",
                     "Lister les détails d'un logiciel",
                     "Ajouter un logiciel",
-                    "Supprimer un loficiel",
+                    "Supprimer un logiciel",
                     "Retour"
                 ]
             }
@@ -54,7 +63,7 @@ class Software:
             return "Veillez entrez une valeur"
 
     def addSoftware(self):
-        addOn = []
+        addOn = {}
         questions = [
         {
             'type': 'input',
@@ -89,7 +98,7 @@ class Software:
             'qmark':'',
             'name': 'licence_exp_date',
             'message': 'Quelle est la date d\'expiration de la license ? ', 
-            'validate': lambda val: self.checkStrLenght(val)
+            'validate': lambda val: self._checkDate(val)
         },
         {
             'type': 'list',
@@ -112,31 +121,32 @@ class Software:
                 {
                     'type': 'input',
                     'qmark':'',
-                    'name': 'editeur',
+                    'name': 'editor',
                     'message': 'Quel est son éditeur ? ', 
                     'validate': lambda val: self.checkStrLenght(val)
                 }, 
                 {
                     'type': 'input',
                     'qmark':'',
-                    'name': 'providor',
+                    'name': 'provider',
                     'message': 'Quel est son fournisseur ? ', 
                     'validate': lambda val: self.checkStrLenght(val)
                 }, 
                 {
                     'type': 'input',
                     'qmark':'',
-                    'name': 'nom',
+                    'name': 'version',
                     'message': 'Quelle est sa version ? ', 
                     'validate': lambda val: self.checkStrLenght(val)
                 }
             ]
             print(Separator())
             newAddOnCarateristic = prompt(addOnCharacteristic)
-            addOn.append(newAddOnCarateristic)
+            addOn[str(uuid.uuid4())]=newAddOnCarateristic
         newSoftware['add_on']=addOn
-        newSoftware['licence_exp_date']=int(newSoftware['licence_exp_date']) #TRES MOCHE A ENLEVER EN FAISANT LES TEST
-        API.addSoftware(newSoftware["name"], newSoftware["editor"], newSoftware["provider"], newSoftware["version"], newSoftware["licence_exp_date"], newSoftware["add_on"])
+        date_format = '%d/%m/%Y'
+        newSoftware['licence_exp_date'] = datetime.strptime(newSoftware['licence_exp_date'], date_format)
+        API.addSoftware(newSoftware)
         clear()
         print(Separator("Le logiciel à bien été ajoutée !"))
     
