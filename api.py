@@ -96,27 +96,7 @@ class API():
     #COMPUTER
     @staticmethod 
     def addComputer(processor, ram, graphic_card, video_ports, screen, network_card, purchase, user, specs_tech, usb_data, nb_storage):
-        
-        API.computer_data[str(uuid.uuid4())] = {
-            "softwares": {},
-            "specs": {
-                "processor": processor,
-                "RAM": ram,
-                "graphic_card": graphic_card,
-                "video_port": video_ports,
-                "screen": {
-                    "screen_res": screen["screen_res"],
-                    "screen_size": [
-                        screen["screen_size_x"],
-                        screen["screen_size_y"]
-                    ]
-                },
-                "network_card": network_card,
-                "nb_usb_port": 0,
-                "wifi": specs_tech["wifi"],
-                "bluetooth": specs_tech["bluetooth"],
-            }
-        }
+        API.computer_data[str(uuid.uuid4())] = computer
 
     @staticmethod 
     def setComputer(id, computer):
