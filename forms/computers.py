@@ -732,7 +732,7 @@ class Computers :
             {
                 'type': 'confirm',
                 'name': "confirm",
-                'message': "Confirmer l'ajout de l'ordinateur"
+                'message': "Confirmer l'édition de l'ordinateur"
             }
         ]
         confirmData = prompt(confirm)
