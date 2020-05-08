@@ -121,6 +121,7 @@ class API():
     @staticmethod 
     def setComputer(id, computer):
         API.computer_data[id] = computer
+        return API.saveData()
 
     @staticmethod 
     def removeComputer(id):
@@ -163,10 +164,12 @@ class API():
     @staticmethod 
     def setSoftware(software_id, software):
         API.software_data[software_id] = software
+        return API.saveData()
 
     @staticmethod 
     def removeSoftware(software_id):
         del API.software_data[software_id]
+        return API.saveData()
 
     @staticmethod 
     def getSoftwares():
@@ -188,14 +191,17 @@ class API():
     @staticmethod 
     def addPlugin(software_id, plugin):
         API.software_data[software_id]['add_on'][str(uuid.uuid4())] = plugin
+        return API.saveData()
 
     @staticmethod 
     def setPlugin(software_id, plugin_id, plugin):
         API.software_data[software_id]['add_on'][plugin_id] = plugin
+        return API.saveData()
 
     @staticmethod 
     def removePlugin(software_id, plugin_id):
         API.software_data[software_id]['add_on'].remove(plugin_id)
+        return API.saveData()
 
     @staticmethod 
     def getPlugins(software_id):
