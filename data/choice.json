@@ -1,0 +1,25 @@
+{
+    "computer": {
+        "specs": {
+            "processor": {
+                "plateform": [
+                    32,
+                    64
+                ]
+            },
+            "video_port": [
+                "VGA",
+                "HDMI",
+                "DISPLAY PORT",
+                "DVI-D",
+                "USB-C"
+            ],
+            "storage": {
+                "type": [
+                    "SSD",
+                    "HDD"
+                ]
+            }
+        }
+    }
+}
