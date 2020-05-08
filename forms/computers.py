@@ -26,7 +26,7 @@ class Computers :
     def _checkDate(self, val):
         date_format = '%d/%m/%Y'
         try:
-            datetime.strptime(val, date_format)
+            date = datetime.strptime(val, date_format)
         except ValueError:
             return "Format incorrect, la date doit etre de la forme JJ/MM/AAAA"
         return True
@@ -302,9 +302,9 @@ class Computers :
                 'message': "Confirmer l'ajout de l'ordinateur"
             }
         ]
-        confirmData = prompt(confirm)
+        confirmData = prompt(confirm)["confirm"]
 
-        if confirmData == True: 
+        if confirmData: 
             API.addComputer(processorData, RAMData, graphic_cardData, video_portsData, screenData, network_cardData, purchaseData, userData, specs_techData, USBData, nbStorageData)
             
     def remove_display(self):
@@ -340,12 +340,15 @@ class Computers :
                 continue
             else:
                 table_row_el = self.active_data[table_row_key]
-                room_el = API.getRoom(table_row_el["localisation"])
+                try:
+                    room_el = API.getRoom(table_row_el["localisation"])["room_name"]
+                except KeyError:
+                    room_el = "Pas de salle spécifiée"
                 table.add_row([
                     i, 
                     table_row_el["user"]["username"], 
                     str(len(table_row_el["softwares"])) + " logiciel(s) installé(s)",
-                    room_el["room_name"]
+                    room_el
                 ])
                 i += 1
         print(table)
@@ -405,19 +408,31 @@ class Computers :
         print(style.light_cyan("\t" + "Taille : ") + str(computer["specs"]["screen"]['screen_size']).strip('[]').replace(', ', 'x') + "px")
 
         #Connectors
-        print(style.blue("\nConnecteurs"))
+        print(style.blue("\nConnectique :"))
         print(style.light_cyan("\t" + "Lecteur CD : ") + "Oui" if  computer["specs"]["CD_player"] else "Non" )
         print(style.light_cyan("\t" + "Ports USB : ") + computer["specs"]["nb_USB_port"])
 
         #Stockage
         print(style.blue("\nStockage :"))
-        for stockage in computer["specs"]['storage']:
-            pass
+
+        n_storage = 1
+        for storage in computer["specs"]['storage']:
+            print(style.light_cyan("\tStockage " + str(n_storage) + " :"))
+            print(style.magenta("\t\tType : ") + storage["type"])
+            print(style.magenta("\t\tPort : ") + str(storage["port"]))
+            print(style.magenta("\t\tTaille : ") + str(storage["size"]))
+            n_storage+=1
 
         #Network card
         print(style.blue("\nCarte réseau :"))
         print(style.light_cyan("\t" + "Vitesse : ") + computer["specs"]["network_card"]['speed'])
         print(style.light_cyan("\t" + "Marque : ") + computer["specs"]["network_card"]['brand'])
+
+        #User
+        print(style.blue("\nUtilisateur :"))
+        print(style.light_cyan("\t" + "Nom : ") + computer["specs"]["user"]['name'])
+        print(style.light_cyan("\t" + "Nom  d'utilisation : ") + computer["specs"]["user"]['username'])
+        print(style.light_cyan("\t" + "Identifiant : ") + computer["specs"]["user"]['ID'])
 
         #Other
         print(style.blue("\nAutre :"))
@@ -426,6 +441,10 @@ class Computers :
         print(style.light_cyan("\t" + "Fabriquant : ") + computer["specs"]["maker"])
         print(style.light_cyan("\t" + "Fournisseur : ") + computer["specs"]["provider"])
         print(style.light_cyan("\t" + "Date d'achat : ") + datetime.fromtimestamp(computer["specs"]["purchase_date_timestamp"]))
+
+        print(Separator())
+        print(style.bold("Localisation :"))
+
 
         res = prompt(options) ##On affiche le formulaire
 

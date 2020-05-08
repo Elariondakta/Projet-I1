@@ -4,8 +4,6 @@ import json, uuid
 import logging
 class API():
 
-    choice_file = "./data/choice.json"
-
     computer_file = "./data/computers.json"
 
     room_file = "./data/rooms.json"
@@ -14,9 +12,6 @@ class API():
 
     @staticmethod 
     def loadData():
-        with open(API.choice_file, 'r') as f:
-            API.choice_data = json.load(f)
-
         with open(API.computer_file, 'r') as f:
             API.computer_data = json.load(f)
         
@@ -96,7 +91,32 @@ class API():
     #COMPUTER
     @staticmethod 
     def addComputer(processor, ram, graphic_card, video_ports, screen, network_card, purchase, user, specs_tech, usb_data, nb_storage):
-        API.computer_data[str(uuid.uuid4())] = {}
+        API.computer_data[str(uuid.uuid4())] = {
+            "softwares": {},
+            "specs": {
+                "processor": processor,
+                "RAM": ram,
+                "graphic_card": graphic_card,
+                "video_port": video_ports,
+                "screen": {
+                    "screen_res": screen["screen_res"],
+                    "screen_size": [
+                        screen["screen_size_x"],
+                        screen["screen_size_y"]
+                    ]
+                },
+                "nb_USB_port": nb_storage,
+                "storage": usb_data,
+                "CD_player": "Lecteur CD" in specs_tech["specs_tech"],
+                "wifi": "Wifi" in specs_tech["specs_tech"],
+                "bluetooth": "Bluetooth" in specs_tech["specs_tech"],
+                "maker": purchase["maker"],
+                "provider": purchase["provider"],
+                "purchase_date_timestamp": purchase["purchase_date_timestamp"]
+            },
+            "user": user,
+            "localisation": None
+        }
         return API.saveData()
 
     @staticmethod 
