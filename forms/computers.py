@@ -26,7 +26,7 @@ class Computers :
     def _checkDate(self, val):
         date_format = '%d/%m/%Y'
         try:
-            datetime.strptime(val, date_format)
+            date = datetime.strptime(val, date_format)
         except ValueError:
             return "Format incorrect, la date doit etre de la forme JJ/MM/AAAA"
         return True
@@ -302,9 +302,9 @@ class Computers :
                 'message': "Confirmer l'ajout de l'ordinateur"
             }
         ]
-        confirmData = prompt(confirm)
+        confirmData = prompt(confirm)["confirm"]
 
-        if confirmData == True: 
+        if confirmData: 
             API.addComputer(processorData, RAMData, graphic_cardData, video_portsData, screenData, network_cardData, purchaseData, userData, specs_techData, USBData, nbStorageData)
             
     def remove_display(self):
