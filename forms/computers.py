@@ -340,12 +340,15 @@ class Computers :
                 continue
             else:
                 table_row_el = self.active_data[table_row_key]
-                room_el = API.getRoom(table_row_el["localisation"])
+                try:
+                    room_el = API.getRoom(table_row_el["localisation"])["room_name"]
+                except KeyError:
+                    room_el = "Pas de salle spécifiée"
                 table.add_row([
                     i, 
                     table_row_el["user"]["username"], 
                     str(len(table_row_el["softwares"])) + " logiciel(s) installé(s)",
-                    room_el["room_name"]
+                    room_el
                 ])
                 i += 1
         print(table)
