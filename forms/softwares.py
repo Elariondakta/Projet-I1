@@ -22,19 +22,21 @@ class Software:
                 'name': 'action_choices',
                 'message': "Que voulez vous faire ?",
                 'choices': [
-                    "Effectuer une recherche",
+                    "Lister les logiciels",
                     "Lister les détails d'un logiciel",
                     "Ajouter un logiciel",
                     "Supprimer un loficiel",
+                    "Retour"
                 ]
             }
         ]
         res = prompt(options)["action_choices"]
         res_index = options[0]['choices'].index(res)
         if res_index == 0:
-            ##On lance une recherche
-            self.display_search()
+            ##affiche la liste des logiciels
+            self.display_table(API.getSoftwares())
         elif res_index == 1:
+            self.display_detail()
             ##On liste les détails d'un logiciel
             pass
         elif res_index == 2:
@@ -42,18 +44,8 @@ class Software:
             self.addSoftware()
         elif res_index == 3:
             self.display_delete()
-        
-    
-    def display_search(self):
-        options = [
-            {
-                'type': 'input',
-                'name': 'search_query',
-                'message': 'Rechercher un logiciel : ',
-            },
-        ]
-        query = prompt(options)["search_query"]
-        self.display_table(API.searchSoftware(query)) 
+        elif res_index == 4:
+            pass
 
     def checkStrLenght(self, str):
         if len(str)>0:
@@ -203,3 +195,15 @@ class Software:
             else: return "Vous devez rentrer un index existant !"
         except:
             return "Vous devez rentrer un nombre !"
+
+    def display_detail(self):
+        soft_id = self.form_get_id_soft()
+        soft = API.getSoftware(soft_id)
+        clear() 
+        print("- Nom : " + soft["name"])
+        print("- Fournisseur : " + soft["provider"])
+        print("- Editeur : " + soft["editor"])
+        print("- Version : " + soft["version"])
+        print("- Date d'expiration de la license : " + str(datetime.date.fromtimestamp(soft["licence_exp_date"])))
+        
+        self.display_options()
