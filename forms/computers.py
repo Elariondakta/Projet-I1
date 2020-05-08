@@ -6,7 +6,7 @@ from datetime import datetime
 import style
 
 class Computers :
-    
+
     def __init__(self): ##Métthode qui charge les données etc...
         self.base_data = API.getComputers()
         self.active_data = API.getComputers()
@@ -325,9 +325,18 @@ class Computers :
         ]
         confirmData = prompt(confirm)["confirm"]
 
+        clear()
         if confirmData: 
             API.addComputer(nameData, processorData, RAMData, graphic_cardData, video_portsData, screenData, network_cardData, purchaseData, userData, specs_techData, USBData, storageData, "")
-            
+            print(style.green("L'ordinateur a bien été ajouté !"))
+        else:
+            print(style.red("Action annulée"))
+
+        self.display_options()
+        
+
+
+
     def form_get_id_computer(self):
         options = [
             {
@@ -354,14 +363,20 @@ class Computers :
             }
         ]
         res = prompt(confirm)["confirm"]
+
+        clear()
+
         if res == True:
             API.removeComputer(computer_id)
+            print(style.green("L'ordinateur a bien été supprimé !"))
+        else :
+            print(style.red("Action annulée"))
 
         self.display_options()
 
     def display_tables(self, disp_active = False):
         table = PrettyTable()
-        table.field_names = ["Id", "Utilisateurs", "Logiciels"]
+        table.field_names = ["Id", "Nom", "Utilisateur", "Logiciels"]
         i = 0
         for table_row_key in self.base_data.keys():
             if table_row_key not in list(self.active_data.keys()) and disp_active:
@@ -372,6 +387,7 @@ class Computers :
 
                 table.add_row([
                     i, 
+                    table_row_el["name"],
                     table_row_el["user"]["username"], 
                     str(len(table_row_el["softwares"])) + " logiciel(s) installé(s)"
                 ])
@@ -434,7 +450,7 @@ class Computers :
 
         #Connectors
         print(style.blue("\nConnectique :"))
-        print(style.light_cyan("\t" + "Lecteur CD : ") + "Oui" if  computer["specs"]["CD_player"] else "Non" )
+        print(style.light_cyan("\t" + "Lecteur CD : ") + ("Oui" if  computer["specs"]["CD_player"] else "Non" ))
         print(style.light_cyan("\t" + "Ports USB : ") + str(computer["specs"]["nb_USB_port"]))
 
         #Stockage
