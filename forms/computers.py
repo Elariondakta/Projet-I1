@@ -432,7 +432,6 @@ class Computers :
         print(style.blue("\nUtilisateur :"))
         print(style.light_cyan("\t" + "Nom : ") + computer["user"]['name'])
         print(style.light_cyan("\t" + "Nom  d'utilisation : ") + computer["user"]['username'])
-        print(style.light_cyan("\t" + "Identifiant : ") + computer["user"]['ID'])
 
         #Other
         print(style.blue("\nAutre :"))
@@ -440,7 +439,7 @@ class Computers :
         print(style.light_cyan("\t" + "Bluetooth : ") + "Oui" if  computer["specs"]["bluetooth"] else "Non" )
         print(style.light_cyan("\t" + "Fabriquant : ") + computer["specs"]["maker"])
         print(style.light_cyan("\t" + "Fournisseur : ") + computer["specs"]["provider"])
-        print(style.light_cyan("\t" + "Date d'achat : ") + datetime.fromtimestamp(computer["specs"]["purchase_date_timestamp"]))
+        print(style.light_cyan("\t" + "Date d'achat : ") + datetime.fromtimestamp(computer["specs"]["purchase_date_timestamp"]).strftime("%d/%m/%Y"))
 
         print("\n")
         print(Separator())
@@ -462,11 +461,268 @@ class Computers :
             res_index = 0
 
         if res_index == 0: ##Formulaire d'edition de l'ordinateur
-            #self.edit_room(room_id)
-            pass
+            self.edit_computer_detail(computer_id)
         elif res_index == 1: ##Formulaire des logiciels
             pass
             
         elif res_index == 3: ##Retour
             clear()
             #self.display_options()
+
+
+    def edit_computer_detail(self, computer_id):
+        computer = API.getComputer(computer_id)
+
+        processor = [
+            {
+                'type': 'input',
+                'name': 'plateform',
+                'message': 'Platforme du processeur:',
+                'validate': lambda val: True if val == "32" or val == "64" else "Veuillez rentrer '32' ou '64' bits",
+                'default' : str(computer["specs"]["processor"]["plateform"])
+            },
+            {
+                'type': 'input',
+                'name': 'brand',
+                'message': 'Marque du processeur :',
+                'default' : str(computer["specs"]["processor"]["brand"])
+            },
+            {
+                'type': 'input',
+                'name': 'speed',
+                'message': 'Vitese du processeur :',
+                'default' : str(computer["specs"]["processor"]["speed"])
+            },
+            {
+                'type': 'input',
+                'name': 'size_cache',
+                'message': 'Taille du Cache :',
+                'default' : str(computer["specs"]["processor"]["size_cache"])
+            },
+            {
+                'type': 'input',
+                'name': 'model',
+                'message': 'Modèle de processeur :',
+                'default' : str(computer["specs"]["processor"]["model"])
+            }
+        ]
+        RAM = [
+            {
+                'type': 'input',
+                'name': 'number',
+                'message': 'Nombre de RAM :',
+                'validate': lambda val: self._checkSelectedIndex(val, 10),
+                'default' : str(computer["specs"]["RAM"]["number"])
+
+            },
+            {
+                'type': 'input',
+                'name': 'total_size',
+                'message': 'Taille totale de la RAM :',
+                'default' : str(computer["specs"]["RAM"]["total_size"])
+            }
+        ]
+        graphic_card = [
+            {
+                'type': 'input',
+                'name': 'brand',
+                'message': 'Marque de la carte graphique :',
+                'default' : str(computer["specs"]["graphic_card"]["brand"])
+            },
+            {
+                'type': 'input',
+                'name': 'memory',
+                'message': 'Taille Mémoire de la carte graphique :',
+                'default' : str(computer["specs"]["graphic_card"]["memory"])               
+            },
+            {
+                'type': 'input',
+                'name': 'model',
+                'message': 'Modèle de la carte graphique :',
+                'default' : str(computer["specs"]["graphic_card"]["model"])
+            }
+        ]
+        video_ports = [
+            {
+                'type': 'checkbox',
+                'message': 'Selectionner les ports disponibles',
+                'name': 'video_port',
+                'choices': [ 
+                    {
+                        'name': 'VGA'
+                    },
+                    {
+                        'name': 'HDMI'
+                    },
+                    {
+                        'name': 'Display-Port'
+                    },
+                    {
+                        'name': 'DVI-A'
+                    },
+                    {
+                        'name': 'DVI-D'
+                    },
+                    {
+                        'name': 'USB-C'
+                    }
+                ]
+            }
+        ]
+        screen = [
+            {
+                'type': 'input',
+                'name': 'screen_res',
+                'message': "Résolution de l'écran :",
+                'validate': lambda val: self._checkSelectedIndex(val, 10000),
+                'default' : str(computer["specs"]["screen"]["screen_res"])
+            },
+            {
+                'type': 'input',
+                'name': 'screen_size_x',
+                'message': "Largeur de l'écran (en px) :",
+                'validate': lambda val: self._checkSelectedIndex(val, 10000),
+                'default' : str(computer["specs"]["screen"]["screen_size"][0])
+            },
+            {
+                'type': 'input',
+                'name': 'screen_size_y',
+                'message': "Longueur de l'écran (en px) :",
+                'validate': lambda val: self._checkSelectedIndex(val, 30000),
+                'default' : str(computer["specs"]["screen"]["screen_size"][1])
+            }
+        ]
+        network_card = [
+            {
+                'type': 'input',
+                'name': 'speed',
+                'message': 'Vitesse de la carte réseau :',
+                'default' : str(computer['specs']["network_card"]["speed"])
+            },
+            {
+                'type': 'input',
+                'name': 'brand',
+                'message': 'Marque de la carte réseau :',
+                'default' : str(computer['specs']["network_card"]["brand"])
+            }
+        ]
+        purchase = [
+            {
+                'type': 'input',
+                'name': 'maker',
+                'message': "Fabricant de l'ordinateur:",
+                'default' : str(computer['specs']["maker"])
+            },
+            {
+                'type': 'input',
+                'name': 'provider',
+                'message': "Fournisseur de l'ordinateur:",
+                'default' : str(computer['specs']["provider"])
+            },
+            {
+                'type': 'input',
+                'name': 'purchase_date_timestamp',
+                'message': "Date d'achat :",
+                'validate': lambda val: self._checkDate(val),
+                'default' : str(datetime.fromtimestamp(computer["specs"]["purchase_date_timestamp"]).strftime("%d/%m/%Y"))
+            }
+        ]
+
+        user = [
+            {
+                'type': 'input',
+                'name': 'name',
+                'message': 'Nom :',
+                'default' : str(computer["user"]['name'])
+            },
+            {
+                'type': 'input',
+                'name': 'username',
+                'message': "Nom d'utilisateur :",
+                'default' : str(computer["user"]['username'])
+            }
+        ]
+        specs_tech = [
+            {
+                'type': 'checkbox',
+                'message': 'Selectionner les characteristiques technique',
+                'name': 'specs_tech',
+                'choices': [ 
+                    {
+                        'name': 'Lecteur CD'
+                    },
+                    {
+                        'name': 'Wifi'
+                    },
+                    {
+                        'name': 'Bluetooth'
+                    }
+                ]
+            }
+        ]
+        USB = [
+            {
+                'type': 'input',
+                'name': 'nb_USB_port',
+                'message': "Combien l'ordinateur à t'il de ports USB ? :",
+                'validate': lambda val: self._checkSelectedIndex(val, 10),
+                'default' : str(computer["specs"]['nb_USB_port'])
+            }
+        ]
+        nbStorage = [
+            {
+                'type': 'input',
+                'name': 'nb_storage',
+                'message': "Combien d'espaces de stockage l'ordinateur a t'il ? :",
+                'validate': lambda val: self._checkSelectedIndex(val, 10),
+                'default' : str(len(computer["specs"]['storage']))
+            }
+        ]
+
+        processorData = prompt(processor)
+        RAMData = prompt(RAM)
+        graphic_cardData = prompt(graphic_card)
+        video_portsData = prompt(video_ports)
+        screenData = prompt(screen)
+        network_cardData = prompt(network_card)
+        purchaseData = prompt(purchase)
+        userData = prompt(user)
+        specs_techData = prompt(specs_tech)
+        USBData = int(prompt(USB)["nb_USB_port"])
+        nbStorageData = int(prompt(nbStorage)["nb_storage"])
+        storageData = []
+        
+        for i in range(0, nbStorageData):
+
+            storageData.append(prompt([
+                {
+                    'type': 'input',
+                    'name': 'port',
+                    'message': 'Port n° :',
+                    'validate': lambda val: self._checkSelectedIndex(val, 10),
+                    'default' : str(computer['specs']['storage'][i]['port']) if len(computer['specs']['storage']) > i else ""
+                },
+                {
+                    'type': 'input',
+                    'name': 'type',
+                    'message': 'Type :',
+                    'default' : str(computer['specs']['storage'][i]['type']) if len(computer['specs']['storage']) > i else ""
+                },
+                {
+                    'type': 'input',
+                    'name': 'size',
+                    'message': 'Taille :',
+                    'default' : str(computer['specs']['storage'][i]['size']) if len(computer['specs']['storage']) > i else ""
+                }
+            ]))
+
+        confirm = [
+            {
+                'type': 'confirm',
+                'name': "confirm",
+                'message': "Confirmer l'ajout de l'ordinateur"
+            }
+        ]
+        confirmData = prompt(confirm)
+
+
