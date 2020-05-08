@@ -26,7 +26,7 @@ class Computers :
     def _checkDate(self, val):
         date_format = '%d/%m/%Y'
         try:
-            date = datetime.strptime(val, date_format)
+            datetime.strptime(val, date_format)
         except ValueError:
             return "Format incorrect, la date doit etre de la forme JJ/MM/AAAA"
         return True
@@ -302,9 +302,9 @@ class Computers :
                 'message': "Confirmer l'ajout de l'ordinateur"
             }
         ]
-        confirmData = prompt(confirm)["confirm"]
+        confirmData = prompt(confirm)
 
-        if confirmData: 
+        if confirmData == True: 
             API.addComputer(processorData, RAMData, graphic_cardData, video_portsData, screenData, network_cardData, purchaseData, userData, specs_techData, USBData, nbStorageData)
             
     def remove_display(self):
@@ -374,7 +374,7 @@ class Computers :
         clear()
         print("Ordinateur : " + computer_id)
         print(Separator())
-        print(style.bold("Spécifications techniques :"))
+        print(style.bold("\nSpécifications techniques :"))
 
         #Computer
         print(style.blue("\nProcesseur :"))
@@ -427,9 +427,9 @@ class Computers :
 
         #User
         print(style.blue("\nUtilisateur :"))
-        print(style.light_cyan("\t" + "Nom : ") + computer["specs"]["user"]['name'])
-        print(style.light_cyan("\t" + "Nom  d'utilisation : ") + computer["specs"]["user"]['username'])
-        print(style.light_cyan("\t" + "Identifiant : ") + computer["specs"]["user"]['ID'])
+        print(style.light_cyan("\t" + "Nom : ") + computer["user"]['name'])
+        print(style.light_cyan("\t" + "Nom  d'utilisation : ") + computer["user"]['username'])
+        print(style.light_cyan("\t" + "Identifiant : ") + computer["user"]['ID'])
 
         #Other
         print(style.blue("\nAutre :"))
@@ -440,8 +440,14 @@ class Computers :
         print(style.light_cyan("\t" + "Date d'achat : ") + datetime.fromtimestamp(computer["specs"]["purchase_date_timestamp"]))
 
         print(Separator())
-        print(style.bold("Localisation :"))
 
+        print(style.bold("\nLocalisation :\n"))
+        print(style.blue("\tSalle :"))
+        print(style.light_cyan("\t\t" + "Nom : ") + API.getRoom(computer["localisation"])["room_name"])
+        print(style.light_cyan("\t\t" + "Batiment : ") + API.getRoom(computer["localisation"])["building_name"])
+
+        print("\n")
+        print(Separator())
 
         res = prompt(options) ##On affiche le formulaire
 
