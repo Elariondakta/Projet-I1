@@ -400,41 +400,6 @@ class Computers :
         print(table)
         
 
-    def display_form_computer_detail(self, computer_id):
-        print("\n")
-        print(Separator())
-        print("\n")
-
-        options = [
-            {
-                'type': 'list',
-                'name': 'menu_computer_detail',
-                'message': 'Selectionner un des menus avec les flèches du clavier.',
-                'choices': [
-                    'Editer',
-                    "Logiciels installés",
-                    Separator(),
-                    "Retour"
-                ]
-            },
-        ]
-
-        res = prompt(options) ##On affiche le formulaire
-
-        try:
-            res_index = options[0]['choices'].index(res["menu_computer_detail"])
-        except KeyError:
-            res_index = 0
-
-        if res_index == 0: ##Formulaire d'edition de l'ordinateur
-            self.edit_computer_detail(computer_id)
-        elif res_index == 1: ##Formulaire des logiciels
-            self.display_installed_software(computer_id)
-            
-        elif res_index == 3: ##Retour
-            clear()
-            self.display_options()
-
     def display_computer_detail(self, computer_id):      
     
         computer = API.getComputer(computer_id) ##Demander l'id de l'ordi à l'utilisateur
@@ -517,7 +482,40 @@ class Computers :
             print(style.light_cyan("\t" + "Nom : ") + API.getRoom(computer["localisation"])["room_name"])
             print(style.light_cyan("\t" + "Batiment : ") + API.getRoom(computer["localisation"])["building_name"])
 
-        self.display_form_computer_detail(computer_id)
+        print("\n")
+        print(Separator())
+        print("\n")
+
+        options = [
+            {
+                'type': 'list',
+                'name': 'menu_computer_detail',
+                'message': 'Selectionner un des menus avec les flèches du clavier.',
+                'choices': [
+                    'Editer',
+                    "Logiciels installés",
+                    Separator(),
+                    "Retour"
+                ]
+            },
+        ]
+
+        res = prompt(options) ##On affiche le formulaire
+
+        try:
+            res_index = options[0]['choices'].index(res["menu_computer_detail"])
+        except KeyError:
+            res_index = 0
+
+        if res_index == 0: ##Formulaire d'edition de l'ordinateur
+            self.edit_computer_detail(computer_id)
+        elif res_index == 1: ##Formulaire des logiciels
+            clear()
+            self.display_installed_software(computer_id)
+            
+        elif res_index == 3: ##Retour
+            clear()
+            self.display_options()
 
 
     def edit_computer_detail(self, computer_id):
@@ -834,15 +832,71 @@ class Computers :
         self.display_computer_detail(computer_id)
 
 
-    def display_installed_software(self, computer_id):
-        clear()
+    def display_installed_software(self, computer_id):       
         computer = API.getComputer(computer_id)
         print(style.bold("\nListe des logiciels installés sur l'ordinateur " + computer['name'] + " :\n"))
 
-        for software in computer['softwares']:
-            print(API.getSoftware(software)['name'])
 
-        self.display_form_computer_detail(computer_id)
+        count = 0
+        for software in computer['softwares']:
+            print(str(count) + " : " + API.getSoftware(software)['name'])
+
+        print("\n")
+        print(Separator())
+        print("\n")
+
+        options = [
+            {
+                'type': 'list',
+                'name': 'menu_software_detail',
+                'message': 'Selectionner un des menus avec les flèches du clavier.',
+                'choices': [
+                    'Ajouter un logiciel',
+                    'Supprimer un logiciel',
+                    Separator(),
+                    "Retour"
+                ]
+            },
+        ]
+
+        res = prompt(options) ##On affiche le formulaire
+
+        try:
+            res_index = options[0]['choices'].index(res["menu_software_detail"])
+        except KeyError:
+            res_index = 0
+
+        if res_index == 0: ##Formulaire d'edition de l'ordinateur
+            self.edit_computer_detail(computer_id)
+        elif res_index == 1: ##Formulaire des logiciels
+            self.remove_software_from_computer(computer_id)
+            
+        elif res_index == 3: ##Retour
+            clear()
+            self.display_options()
+
+    def remove_software_from_computer(self, computer_id):
+        computer = API.getComputer(computer_id)
+
+        options = [
+            {
+                'type': 'input',
+                "message": "Entrez le numéro de l'ogiciel",
+                "name": 'remove_software_from_computer',
+                "validate": lambda val: self._checkSelectedIndex(val, len(self.base_data))
+            }
+        ]
+        index = int(prompt(options)["remove_software_from_computer"])
+
+        count = 0
+        for software in computer['softwares']:
+            if count == index:
+                API.removeSoftwareFromComputer(computer_id, software)
+        print(style.green("Le logiciel a bien été supprimé de l'ordinateur"))
+
+        clear()
+        self.display_installed_software(computer_id)
+        
 
 
 

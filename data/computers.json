@@ -1,7 +1,7 @@
 {
     "92c3c18a-a9da-4610-8df9-579c9fefca7b": {
         "name": "Ordi super puissant",
-        "softwares": [],
+        "softwares": ["uid1"],
         "specs": {
             "processor": {
                 "plateform": "64",
