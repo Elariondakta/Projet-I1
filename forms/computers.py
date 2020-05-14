@@ -73,10 +73,12 @@ class Computers :
             computer_id = self.form_get_id_computer()
             self.display_computer_detail(computer_id)
 
-        elif res_index == 6:
+        elif res_index == 5:
             ##On effectue une recherche 
+            self.display_search()
+            self.display_options()
             pass
-        elif res_index == 8:
+        elif res_index == 7:
             pass
 
     def display_search(self): ##Formulaire de recherche de salle
@@ -89,7 +91,7 @@ class Computers :
         ]
         query = prompt(options)["search_query"]
         self.active_data = API.searchComputers(query)
-        self.display_table(True)
+        self.display_tables(True)
 
     def addComputer (self):
 

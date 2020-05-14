@@ -6,7 +6,7 @@
         {
             "label": "Launch Python",
             "type": "shell",
-            "command": "python3 ${workspaceFolder}/main.py",
+            "command": "python ${workspaceFolder}/main.py",
             "group": {
                 "kind": "build",
                 "isDefault": true
