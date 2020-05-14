@@ -96,7 +96,7 @@ class API():
     def addComputer(name, processor, ram, graphic_card, video_ports, screen, network_card, purchase, user, specs_tech, usb_data, nb_storage, localisation=None):
         API.computer_data[str(uuid.uuid4())] = {
             "name" : name,
-            "softwares": {},
+            "softwares": [],
             "specs": {
                 "processor": processor,
                 "RAM": ram,
