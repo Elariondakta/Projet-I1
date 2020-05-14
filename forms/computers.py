@@ -870,9 +870,10 @@ class Computers :
             
         elif res_index == 2: ##Retour
             clear()
-            self.display_options()
+            self.display_computer_detail(computer_id)
 
     def edit_software_in_computer(self, computer_id):
+        computer = API.getComputer(computer_id)
 
         listSoftwares = []
 
@@ -880,23 +881,29 @@ class Computers :
             listSoftwares.append(
                 {
                 'name' : API.getSoftware(software)["name"], 
-                'checked' : True, 
-                'value' : software
+                'checked' : True if software in computer['softwares'] else False
                 }
             )
 
-        questions = [
+        new_softwares = [
             {
                 'type': 'checkbox',
-                'message': 'Sélectionner les logiciels',
-                'name': 'select_installed_softwares',
-                'choices': listSoftwares,
+                'message': 'Selectionner les logiciels',
+                'name': 'edit_softwares',
+                'choices': listSoftwares
             }
         ]
 
-        listSoftwares = prompt(questions)['select_installed_softwares']
+        listSoftwaresChecked = prompt(new_softwares)['edit_softwares']
+
+        listSoftwareId = []
+
+        for software in API.getSoftwares():
+            if API.getSoftware(software)['name'] in listSoftwaresChecked:
+                print("ok")
+                listSoftwareId.append(software)
         
-        API.setSoftwareComputer(computer_id, listSoftwares)
+        API.setSoftwareComputer(computer_id, listSoftwareId)
 
         clear()
 
