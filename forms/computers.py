@@ -79,6 +79,18 @@ class Computers :
         elif res_index == 8:
             pass
 
+    def display_search(self): ##Formulaire de recherche de salle
+        options = [
+            {
+                'type': 'input',
+                'name': 'search_query',
+                'message': 'Rechercher un ordinateur par nom : ',
+            },
+        ]
+        query = prompt(options)["search_query"]
+        self.active_data = API.searchComputers(query)
+        self.display_table(True)
+
     def addComputer (self):
 
         name = [
@@ -371,12 +383,12 @@ class Computers :
         table = PrettyTable()
         table.field_names = ["Id", "Nom", "Utilisateur", "Logiciels"]
         i = 0
-        for table_row_key in self.base_data.keys():
-            if table_row_key not in list(self.active_data.keys()) and disp_active:
-                i += 1
+        for table_row_key in self.base_data.keys():         #Pour chaque ordinateur de la base de donnée
+            if table_row_key not in list(self.active_data.keys()) and disp_active:  #Si on a active le mode recherche et si l'ordinateur ne se
+                i += 1  #trouve pas dans les résulats de recherche on affiche rien mais on incrément de un pour garder un id cohérent
                 continue
             else:
-                table_row_el = self.active_data[table_row_key]
+                table_row_el = self.active_data[table_row_key]  #Sinon on affiche les données
 
                 table.add_row([
                     i, 
