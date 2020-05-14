@@ -66,7 +66,6 @@ class Rooms:
     def display_table(self, disp_active = False): #On affiche la liste des salles
         table = PrettyTable()
         table.field_names = ["Id", "Bâtiment", "Salle"]
-        self.active_data = API.getRooms() ##Recharge les données
 
         i = 0
         for table_row_key in self.base_data.keys():
@@ -74,7 +73,7 @@ class Rooms:
                 i += 1
                 continue
             else:
-                table_row_el = self.active_data[table_row_key]
+                table_row_el = self.base_data[table_row_key]
                 table.add_row([i, table_row_el["building_name"], table_row_el["room_name"]])
                 i += 1
 

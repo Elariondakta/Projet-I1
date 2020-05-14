@@ -154,6 +154,14 @@ class API():
                 results[computer_key] = API.computer_data[computer_key]
         return results
 
+    @staticmethod 
+    def searchComputers(query):
+        results = {}    #Dictionnaire comportant les résultats
+        for computer_id in API.computer_data.keys():    #Pour chaque clef d'ordinateur
+            if API.computer_data[computer_id]["name"].find(query) != -1:    #Si query (ce qu'on recherche est compris dans le nom de l'ordi) alors 
+                results[computer_id] = API.computer_data[computer_id]   #On l'ajoute au résultat
+        return results
+
     #SOFTWARE
     @staticmethod 
     def addSoftware(softwares):
