@@ -169,7 +169,7 @@ class API():
 
     @staticmethod
     def addSoftwareToComputer(computer_id, software_id):
-        API.computer_data[computer_id]["softwares"].append(softawre_id)
+        API.computer_data[computer_id]["softwares"].append(software_id)
         return API.saveData()
 
     #SOFTWARE
