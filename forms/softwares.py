@@ -31,6 +31,7 @@ class Software:
                 'name': 'action_choices',
                 'message': "Que voulez vous faire ?",
                 'choices': [
+                    "Recherche un logiciel",
                     "Lister les logiciels",
                     "Lister les détails d'un logiciel",
                     "Ajouter un logiciel",
@@ -41,20 +42,36 @@ class Software:
         ]
         res = prompt(options)["action_choices"]
         res_index = options[0]['choices'].index(res)
-        if res_index == 0:
+        if res_index == 1:
+            ##affiche la recherche
+            self.display_search()
+        elif res_index == 1:
             ##affiche la liste des logiciels
             self.display_table(API.getSoftwares())
-        elif res_index == 1:
+        elif res_index == 2:
             self.display_detail()
             ##On liste les détails d'un logiciel
             pass
-        elif res_index == 2:
+        elif res_index == 3:
             # On ajoute un logiciel
             self.addSoftware()
-        elif res_index == 3:
-            self.display_delete()
         elif res_index == 4:
+            self.display_delete()
+        elif res_index == 5:
             pass
+
+    def display_search(self): ##Formulaire de recherche de logiciel
+            options = [
+                {
+                    'type': 'input',
+                    'name': 'search_query',
+                    'message': 'Rechercher un logiciel : ',
+                },
+            ]
+            query = prompt(options)["search_query"]
+            self.active_data = API.searchSoftware(query)
+            self.display_table()
+            self.display_options()
 
     def checkStrLenght(self, str):
         if len(str)>0:
