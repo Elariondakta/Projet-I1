@@ -42,7 +42,6 @@ class Computers :
                 'name': 'action_choices',
                 'message': "Que voulez vous faire ?",
                 'choices': [
-
                     "Ajouter un ordinateur",
                     "Supprimer un ordinateur",
                     "Lister les ordinateurs",
@@ -892,9 +891,10 @@ class Computers :
         for software in computer['softwares']:
             if count == index:
                 API.removeSoftwareFromComputer(computer_id, software)
-        print(style.green("Le logiciel a bien été supprimé de l'ordinateur"))
 
         clear()
+        print(style.green("Le logiciel a bien été supprimé de l'ordinateur"))
+
         self.display_installed_software(computer_id)
         
 
