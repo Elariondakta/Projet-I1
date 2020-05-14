@@ -8,8 +8,12 @@ import style
 import uuid
 
 class Software:
+
+
     def __init__(self): ##Métthode qui charge les données etc...
-        pass
+        self.base_data = API.getSoftwares()
+        self.active_data = API.getSoftwares()
+
 
     def display(self):  ##Méthode qui lance l'affichage avec interaction etc...
         clear()
@@ -31,8 +35,8 @@ class Software:
                 'name': 'action_choices',
                 'message': "Que voulez vous faire ?",
                 'choices': [
-                    "Recherche un logiciel",
                     "Lister les logiciels",
+                    "Rechercher un logiciel",
                     "Lister les détails d'un logiciel",
                     "Ajouter un logiciel",
                     "Supprimer un logiciel",
@@ -45,7 +49,7 @@ class Software:
         if res_index == 1:
             ##affiche la recherche
             self.display_search()
-        elif res_index == 1:
+        elif res_index == 0:
             ##affiche la liste des logiciels
             self.display_table(API.getSoftwares())
         elif res_index == 2:
@@ -167,14 +171,20 @@ class Software:
         clear()
         print(Separator("Le logiciel à bien été ajoutée !"))
     
-    def display_table(self, data):
+    def display_table(self, disp_active = False):
         table = PrettyTable()
         table.field_names = ["ID", "Nom", "Editeur"] #,"Date d'expiraion de la lisence"
+
         i = 0
-        for table_row_key in data.keys():
-            table_row_el = data[table_row_key]
-            table.add_row([i, table_row_el["name"], table_row_el["editor"]]) #, datetime.date.fromtimestamp(table_row_el["licence_exp_date"])
-            i += 1
+        for table_row_key in self.base_data.keys():
+            if table_row_key not in list(self.active_data.keys()) and disp_active:
+                i += 1
+                continue
+            else:
+                table_row_el = self.base_data[table_row_key]
+                table.add_row([i, table_row_el["name"], table_row_el["editor"]]) #, datetime.date.fromtimestamp(table_row_el["licence_exp_date"])
+                i += 1
+
         print(table)
         self.display_options()
 
