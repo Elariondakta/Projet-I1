@@ -163,7 +163,7 @@ class API():
         return results
 
     @staticmethod
-    def removeSoftwareFromComuter(computer_id, software_id):
+    def removeSoftwareFromComputer(computer_id, software_id):
         API.computer_data[computer_id]["softwares"].remove(software_id)
         return API.saveData()
 
