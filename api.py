@@ -96,7 +96,7 @@ class API():
     def addComputer(name, processor, ram, graphic_card, video_ports, screen, network_card, purchase, user, specs_tech, usb_data, nb_storage, localisation=None):
         API.computer_data[str(uuid.uuid4())] = {
             "name" : name,
-            "softwares": {},
+            "softwares": [],
             "specs": {
                 "processor": processor,
                 "RAM": ram,
@@ -152,6 +152,14 @@ class API():
         for computer_key in list(API.computer_data.keys()):
             if API.computer_data[computer_key]["localisation"]["room_id"] == roomId:
                 results[computer_key] = API.computer_data[computer_key]
+        return results
+
+    @staticmethod 
+    def searchComputers(query):
+        results = {}    #Dictionnaire comportant les résultats
+        for computer_id in API.computer_data.keys():    #Pour chaque clef d'ordinateur
+            if API.computer_data[computer_id]["name"].find(query) != -1:    #Si query (ce qu'on recherche est compris dans le nom de l'ordi) alors 
+                results[computer_id] = API.computer_data[computer_id]   #On l'ajoute au résultat
         return results
 
     #SOFTWARE
