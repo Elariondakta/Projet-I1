@@ -163,13 +163,8 @@ class API():
         return results
 
     @staticmethod
-    def removeSoftwareFromComputer(computer_id, software_id):
-        API.computer_data[computer_id]["softwares"].remove(software_id)
-        return API.saveData()
-
-    @staticmethod
-    def addSoftwareToComputer(computer_id, software_id):
-        API.computer_data[computer_id]["softwares"].append(software_id)
+    def setSoftwareComputer(computer_id, software_list):
+        API.computer_data[computer_id]["softwares"] = software_list
         return API.saveData()
 
     #SOFTWARE
