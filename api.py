@@ -87,7 +87,7 @@ class API():
     def searchRooms(query):
         results = {}
         for room_id in API.room_data.keys():
-            if API.room_data[room_id]["room_name"].find(query) != -1:
+            if API.room_data[room_id]["room_name"].lower().find(query.lower()) != -1:
                 results[room_id] = API.room_data[room_id]
         return results
 
@@ -158,7 +158,7 @@ class API():
     def searchComputers(query):
         results = {}    #Dictionnaire comportant les résultats
         for computer_id in API.computer_data.keys():    #Pour chaque clef d'ordinateur
-            if API.computer_data[computer_id]["name"].find(query) != -1:    #Si query (ce qu'on recherche est compris dans le nom de l'ordi) alors 
+            if API.computer_data[computer_id]["name"].lower().find(query.lower()) != -1:    #Si query (ce qu'on recherche est compris dans le nom de l'ordi) alors 
                 results[computer_id] = API.computer_data[computer_id]   #On l'ajoute au résultat
         return results
 
@@ -199,7 +199,7 @@ class API():
     def searchSoftware(query):
         results = {}
         for software_id in API.software_data.keys():
-            if API.software_data[software_id]["name"].find(query) != -1:
+            if API.software_data[software_id]["name"].lower().find(query.lower()) != -1:
                 results[software_id] = API.software_data[software_id]
         return results
 
