@@ -45,7 +45,6 @@ class Computers :
 
                     "Ajouter un ordinateur",
                     "Supprimer un ordinateur",
-                    "Rennommer un ordinateur",
                     "Lister les ordinateurs",
                     "Lister les détails d'un ordinateur",
                     "Ajouter un software à un ordinateur",
@@ -65,21 +64,15 @@ class Computers :
             self.remove_computer_display()
             pass
         elif res_index == 2:
-            ##On renomme un ordi
-            pass
-        elif res_index == 3:
             ##On liste les ordis 
             self.display_tables()
             self.display_options()
             pass
-        elif res_index == 4:
+        elif res_index == 3:
             ##On liste les détails d'un ordi
             computer_id = self.form_get_id_computer()
             self.display_computer_detail(computer_id)
 
-        elif res_index == 5:
-            ##On ajoute un software à un ordi
-            pass
         elif res_index == 6:
             ##On effectue une recherche 
             pass
