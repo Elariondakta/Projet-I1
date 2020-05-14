@@ -51,7 +51,7 @@ class Software:
             self.display_search()
         elif res_index == 0:
             ##affiche la liste des logiciels
-            self.display_table(API.getSoftwares())
+            self.display_table()
         elif res_index == 2:
             self.display_detail()
             ##On liste les détails d'un logiciel
@@ -173,7 +173,7 @@ class Software:
     
     def display_table(self, disp_active = False):
         table = PrettyTable()
-        table.field_names = ["ID", "Nom", "Editeur"] #,"Date d'expiraion de la lisence"
+        table.field_names = ["ID", "Nom", "Editeur","Date d'expiraion de la lisence"]
 
         i = 0
         for table_row_key in self.base_data.keys():
@@ -182,7 +182,7 @@ class Software:
                 continue
             else:
                 table_row_el = self.base_data[table_row_key]
-                table.add_row([i, table_row_el["name"], table_row_el["editor"]]) #, datetime.date.fromtimestamp(table_row_el["licence_exp_date"])
+                table.add_row([i, table_row_el["name"], table_row_el["editor"], date.fromtimestamp(table_row_el["licence_exp_date"])])
                 i += 1
 
         print(table)
