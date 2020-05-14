@@ -46,7 +46,6 @@ class Computers :
                     "Supprimer un ordinateur",
                     "Lister les ordinateurs",
                     "Lister les détails d'un ordinateur",
-                    "Ajouter un software à un ordinateur",
                     "Effectuer une recherche",
                     Separator(),
                     "Retour"
@@ -840,7 +839,7 @@ class Computers :
 
         count = 0
         for software in computer['softwares']:
-            print(str(count) + " : " + API.getSoftware(software)['name'])
+            print(API.getSoftware(software)['name'])
 
         print("\n")
         print(Separator())
@@ -852,8 +851,7 @@ class Computers :
                 'name': 'menu_software_detail',
                 'message': 'Selectionner un des menus avec les flèches du clavier.',
                 'choices': [
-                    'Ajouter un logiciel',
-                    'Supprimer un logiciel',
+                    'Editer les logiciels installés',
                     Separator(),
                     "Retour"
                 ]
@@ -868,34 +866,41 @@ class Computers :
             res_index = 0
 
         if res_index == 0: ##Formulaire d'edition de l'ordinateur
-            self.edit_computer_detail(computer_id)
-        elif res_index == 1: ##Formulaire des logiciels
-            self.remove_software_from_computer(computer_id)
+            self.edit_software_in_computer(computer_id)
             
-        elif res_index == 3: ##Retour
+        elif res_index == 2: ##Retour
             clear()
             self.display_options()
 
-    def remove_software_from_computer(self, computer_id):
-        computer = API.getComputer(computer_id)
+    def edit_software_in_computer(self, computer_id):
 
-        options = [
+        listSoftwares = []
+
+        for software in API.getSoftwares():
+            listSoftwares.append(
+                {
+                'name' : API.getSoftware(software)["name"], 
+                'checked' : True, 
+                'value' : software
+                }
+            )
+
+        questions = [
             {
-                'type': 'input',
-                "message": "Entrez le numéro de l'ogiciel",
-                "name": 'remove_software_from_computer',
-                "validate": lambda val: self._checkSelectedIndex(val, len(self.base_data))
+                'type': 'checkbox',
+                'message': 'Sélectionner les logiciels',
+                'name': 'select_installed_softwares',
+                'choices': listSoftwares,
             }
         ]
-        index = int(prompt(options)["remove_software_from_computer"])
 
-        count = 0
-        for software in computer['softwares']:
-            if count == index:
-                API.removeSoftwareFromComputer(computer_id, software)
+        listSoftwares = prompt(questions)['select_installed_softwares']
+        
+        API.setSoftwareComputer(computer_id, listSoftwares)
 
         clear()
-        print(style.green("Le logiciel a bien été supprimé de l'ordinateur"))
+
+        print(style.green("La liste des logiciels installés sur cet ordinateur a bien été mise à jour !"))
 
         self.display_installed_software(computer_id)
         
