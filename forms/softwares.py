@@ -74,7 +74,7 @@ class Software:
             ]
             query = prompt(options)["search_query"]
             self.active_data = API.searchSoftware(query)
-            self.display_table()
+            self.display_table(True)
             self.display_options()
 
     def checkStrLenght(self, str):
@@ -130,7 +130,7 @@ class Software:
         },
         ]
         newSoftware = prompt(questions)
-        for i in range (0, int(newSoftware['numberOfAddOn'])):
+        for _ in range (0, int(newSoftware['numberOfAddOn'])):
             addOnCharacteristic = [
                 {
                     'type': 'input',
