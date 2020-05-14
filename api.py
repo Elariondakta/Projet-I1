@@ -199,7 +199,7 @@ class API():
     def searchSoftware(query):
         results = {}
         for software_id in API.software_data.keys():
-            if API.room_data[software_id]["name"].find(query) != -1:
+            if API.software_data[software_id]["name"].find(query) != -1:
                 results[software_id] = API.software_data[software_id]
         return results
 
