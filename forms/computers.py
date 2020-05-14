@@ -70,7 +70,7 @@ class Computers :
             pass
         elif res_index == 3:
             ##On liste les détails d'un ordi
-            computer_id = self.form_get_id_computer()
+            computer_id = self.form_get_id_computer()            
             self.display_computer_detail(computer_id)
 
         elif res_index == 6:
@@ -388,12 +388,11 @@ class Computers :
         print(table)
         
 
+    def display_form_computer_detail(self, computer_id):
+        print("\n")
+        print(Separator())
+        print("\n")
 
-
-    def display_computer_detail(self, computer_id):      
-    
-        computer = API.getComputer(computer_id) ##Demander l'id de l'ordi à l'utilisateur
-        
         options = [
             {
                 'type': 'list',
@@ -408,7 +407,28 @@ class Computers :
             },
         ]
 
+        res = prompt(options) ##On affiche le formulaire
+
+        try:
+            res_index = options[0]['choices'].index(res["menu_computer_detail"])
+        except KeyError:
+            res_index = 0
+
+        if res_index == 0: ##Formulaire d'edition de l'ordinateur
+            self.edit_computer_detail(computer_id)
+        elif res_index == 1: ##Formulaire des logiciels
+            self.display_installed_software(computer_id)
+            
+        elif res_index == 3: ##Retour
+            clear()
+            self.display_options()
+
+    def display_computer_detail(self, computer_id):      
+    
+        computer = API.getComputer(computer_id) ##Demander l'id de l'ordi à l'utilisateur
+        
         clear()
+        
         print("Ordinateur : " + str(computer['name']) + "\n")
         print(Separator())
         print(style.bold("\nSpécifications techniques :"))
@@ -485,25 +505,7 @@ class Computers :
             print(style.light_cyan("\t" + "Nom : ") + API.getRoom(computer["localisation"])["room_name"])
             print(style.light_cyan("\t" + "Batiment : ") + API.getRoom(computer["localisation"])["building_name"])
 
-        print("\n")
-        print(Separator())
-        print("\n")
-
-        res = prompt(options) ##On affiche le formulaire
-
-        try:
-            res_index = options[0]['choices'].index(res["menu_computer_detail"])
-        except KeyError:
-            res_index = 0
-
-        if res_index == 0: ##Formulaire d'edition de l'ordinateur
-            self.edit_computer_detail(computer_id)
-        elif res_index == 1: ##Formulaire des logiciels
-            pass
-            
-        elif res_index == 3: ##Retour
-            clear()
-            self.display_options()
+        self.display_form_computer_detail(computer_id)
 
 
     def edit_computer_detail(self, computer_id):
@@ -789,7 +791,7 @@ class Computers :
         if confirmData: 
             new_computer = {
                 "name" : nameData,
-                "softwares": {},
+                "softwares": [],
                 "specs": {
                     "processor": processorData,
                     "RAM": RAMData,
@@ -818,5 +820,17 @@ class Computers :
             API.setComputer(computer_id, new_computer)
         
         self.display_computer_detail(computer_id)
+
+
+    def display_installed_software(self, computer_id):
+        clear()
+        computer = API.getComputer(computer_id)
+        print(style.bold("\nListe des logiciels installés sur l'ordinateur " + computer['name'] + " :\n"))
+
+        for software in computer['softwares']:
+            print(API.getSoftware(software)['name'])
+
+        self.display_form_computer_detail(computer_id)
+
 
 
