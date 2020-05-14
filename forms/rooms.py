@@ -52,7 +52,7 @@ class Rooms:
         elif res_index == 1: ##Effectuer une recherche
             self.display_search()
             self.display_options()
-
+            
         elif res_index == 2: ##Ouvrir les détails d'une salle   
             room_id = self.form_get_id_room() ##Demande l'id de la salle
             self.display_room_detail(room_id) ##Ouvre le formulaire
