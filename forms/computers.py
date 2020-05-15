@@ -71,12 +71,12 @@ class Computers :
             computer_id = self.form_get_id_computer()            
             self.display_computer_detail(computer_id)
 
-        elif res_index == 5:
+        elif res_index == 4:
             ##On effectue une recherche 
             self.display_search()
             self.display_options()
             pass
-        elif res_index == 7:
+        elif res_index == 6:
             pass
 
     def display_search(self): ##Formulaire de recherche de salle
