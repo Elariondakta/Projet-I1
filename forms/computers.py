@@ -899,14 +899,14 @@ class Computers :
         listSoftwareId = []
 
         for software_req in listSoftwaresChecked:
-            index = str(software_req).split(" ")[0] #On récupère l'id affiché dans les questions pour s'en servir d'identifiant
+            index = str(software_req).split(" ")[1] #On récupère l'id affiché dans les questions pour s'en servir d'identifiant
             key = list(API.getSoftwares().keys())[int(index)]
             listSoftwareId.append(key)
         
         API.setSoftwareComputer(computer_id, listSoftwareId)
 
         clear()
-        print(listSoftwareId)
+
         print(style.green("La liste des logiciels installés sur cet ordinateur a bien été mise à jour !"))
 
         self.display_installed_software(computer_id)
