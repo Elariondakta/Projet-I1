@@ -388,7 +388,7 @@ class Computers :
                 i += 1  #trouve pas dans les résulats de recherche on affiche rien mais on incrément de un pour garder un id cohérent
                 continue
             else:
-                table_row_el = self.active_data[table_row_key]  #Sinon on affiche les données
+                table_row_el = self.base_data[table_row_key]  #Sinon on affiche les données
 
                 table.add_row([
                     i, 
