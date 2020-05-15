@@ -880,7 +880,7 @@ class Computers :
         for software_key in API.getSoftwares():
             listSoftwares.append(
                 {
-                'name' : str(i) + " : " + API.getSoftware(software_key)["name"], 
+                'name' : " " + str(i) + " : " + API.getSoftware(software_key)["name"], 
                 'checked' : True if software_key in computer['softwares'] else False
                 }
             )
