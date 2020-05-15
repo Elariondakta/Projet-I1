@@ -876,14 +876,15 @@ class Computers :
         computer = API.getComputer(computer_id)
 
         listSoftwares = []
-
-        for software in API.getSoftwares():
+        i = 0
+        for software_key in API.getSoftwares():
             listSoftwares.append(
                 {
-                'name' : API.getSoftware(software)["name"], 
-                'checked' : True if software in computer['softwares'] else False
+                'name' : str(i) + " : " + API.getSoftware(software_key)["name"], 
+                'checked' : True if software_key in computer['softwares'] else False
                 }
             )
+            i += 1
 
         new_softwares = [
             {
@@ -895,18 +896,17 @@ class Computers :
         ]
 
         listSoftwaresChecked = prompt(new_softwares)['edit_softwares']
-
         listSoftwareId = []
 
-        for software in API.getSoftwares():
-            if API.getSoftware(software)['name'] in listSoftwaresChecked:
-                print("ok")
-                listSoftwareId.append(software)
+        for software_req in listSoftwaresChecked:
+            index = str(software_req).split(" ")[0] #On récupère l'id affiché dans les questions pour s'en servir d'identifiant
+            key = list(API.getSoftwares().keys())[int(index)]
+            listSoftwareId.append(key)
         
         API.setSoftwareComputer(computer_id, listSoftwareId)
 
         clear()
-
+        print(listSoftwareId)
         print(style.green("La liste des logiciels installés sur cet ordinateur a bien été mise à jour !"))
 
         self.display_installed_software(computer_id)
