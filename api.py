@@ -124,6 +124,11 @@ class API():
         }
         return API.saveData()
 
+    @staticmethod
+    def setComputerRoom(computer_id, room_id):
+        API.computer_data[computer_id]["localisation"] = room_id
+        return API.saveData()
+
     @staticmethod 
     def setComputer(id, computer):
         API.computer_data[id] = computer
