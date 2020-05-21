@@ -7,14 +7,18 @@ import style
 
 class Computers :
 
-    def __init__(self): ##Métthode qui charge les données etc...
+    def __init__(self, computer_id = False): ##Métthode qui charge les données etc...
         self.base_data = API.getComputers()
-        self.active_data = API.getComputers()
-        pass
+        self.active_data = API.getComputers()      
+        self.computer_id = computer_id  
 
     def display(self):  ##Méthode qui lance l'affichage avec interaction etc...
         clear()
-        self.display_options()
+
+        if not self.computer_id:
+            self.display_options()
+        else:
+            self.display_computer_detail(self.computer_id)
 
     def _checkSelectedIndex(self, val, maxValue):
         try:

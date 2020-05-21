@@ -154,8 +154,8 @@ class API():
     @staticmethod 
     def getComputersInRoom(roomId):
         results = {}
-        for computer_key in list(API.computer_data.keys()):
-            if API.computer_data[computer_key]["localisation"]["room_id"] == roomId:
+        for computer_key in API.computer_data.keys():
+            if API.computer_data[computer_key]["localisation"] == roomId:
                 results[computer_key] = API.computer_data[computer_key]
         return results
 
