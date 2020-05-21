@@ -53,7 +53,7 @@ class API():
     def setRoom(id, room):
         API.room_data[id] = room
         return API.saveData()
- 
+
     @staticmethod 
     def removeRoom(id):
         del API.room_data[id]
@@ -197,6 +197,15 @@ class API():
             if API.software_data[software_id]["name"].lower().find(query.lower()) != -1:
                 results[software_id] = API.software_data[software_id]
         return results
+    
+    @staticmethod
+    def getComputersFromSoftware(soft_id):
+        results = {}
+        for computer_key in API.computer_data.keys():
+            if soft_id in API.computer_data[computer_key]["softwares"]: 
+                results[computer_key] = API.computer_data[computer_key]
+        return results
+
 
     #PLUGINS
     @staticmethod 
