@@ -525,7 +525,10 @@ class Computers :
             self.ask_for_room(computer_id)
         elif res_index == 4: ##Retour
             clear()
-            self.display_options()
+            if not self.computer_id:
+                self.display_options()
+            else:
+                pass
 
     def display_rooms(self):
         table = PrettyTable()

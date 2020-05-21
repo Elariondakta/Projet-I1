@@ -5,6 +5,7 @@ from prettytable import PrettyTable
 from utils import clear
 from api import API
 import style
+from forms.computers import Computers
 
 class Rooms:
     def __init__(self): ##Métthode qui charge les données etc...
@@ -227,9 +228,9 @@ class Rooms:
         listComputer = []
         listIdComputer = []
 
-        for computer in API.getComputersInRoom(room_id):
-            listComputer.append(str(len(listComputer)) + ". " + computer['name'])
-            listIdComputer.append(computer)
+        for computer_key in API.getComputersInRoom(room_id).keys():
+            listComputer.append(str(len(listComputer)) + ". " + API.getComputer(computer_key)['name'])
+            listIdComputer.append(computer_key)
 
         listComputer.append(Separator())
         listComputer.append("Retour")
@@ -253,9 +254,13 @@ class Rooms:
         if res_index == len(listComputer)-1:
             self.display_room_detail(room_id)
         else:
-            computer_id = listComputer[res_index]
+            computer_id = listIdComputer[res_index]
 
-        res = prompt(options) ##
+            comp = Computers(computer_id)
+            comp.display()
+
+            self.display_room_detail(room_id)
+
 
         
 
