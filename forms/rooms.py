@@ -181,7 +181,7 @@ class Rooms:
             self.edit_room(room_id)
 
         elif res_index == 1: ##Formulaire des ordinateurs de la salle
-            pass
+            self.display_computers_in_room(room_id)
             
         elif res_index == 3: ##Retour
             clear()
@@ -217,4 +217,48 @@ class Rooms:
         API.setRoom(room_id, new_room) ##On enregistre
 
         self.display_room_detail(room_id) ##On retourne sur le detail de la classe
+
+
+    def display_computers_in_room(self, room_id):
+        room = API.getRoom(room_id)
+        clear()
+        print("Ordinateurs de la salle :")
+
+        listComputer = []
+        listIdComputer = []
+
+        for computer in API.getComputersInRoom(room_id):
+            listComputer.append(str(len(listComputer)) + ". " + computer['name'])
+            listIdComputer.append(computer)
+
+        listComputer.append(Separator())
+        listComputer.append("Retour")
+
+        options = [
+            {
+                'type': 'list',
+                'name': 'menu_computer_in_room',
+                'message': 'Selectionner un des menus avec les flèches du clavier.',
+                'choices': listComputer
+            },
+        ]
+
+        res = prompt(options) ##On affiche le formulaire
+
+        try:
+            res_index = options[0]['choices'].index(res["menu_computer_in_room"])
+        except KeyError:
+            res_index = 0
+
+        if res_index == len(listComputer)+2:
+            self.display_room_detail(room_id)
+        else:
+            computer_id = listComputer[res_index]
+            
+        
+
+
+
+
+
 
