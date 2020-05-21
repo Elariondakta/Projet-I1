@@ -251,4 +251,33 @@ class Software:
             print("- Fournisseur : " + add_on_of_software[software_key]["provider"])
             print("- Version : " + add_on_of_software[software_key]["version"])
             i += 1
+
+        options = [
+            {
+                'type': 'list',
+                'name': 'action_choices',
+                'message': "Voulez vous affichez la liste des ordinateur sur lequel ce logiciel est installé ?",
+                'choices': [
+                    "Oui",
+                    "Non"
+                ]
+            }
+        ]
+        res = prompt(options)["action_choices"]
+        res_index = options[0]['choices'].index(res)
+        if res_index == 0:
+            computer_list = API.getComputersFromSoftware(soft_id)
+            table = PrettyTable()
+            table.field_names = ["Id", "Nom", "Utilisateur", "Logiciels"]
+            i = 0
+            for table_row_key in computer_list:         #Pour chaque ordinateur de la liste
+                table_row_el = computer_list[table_row_key]  #Sinon on affiche les données
+                table.add_row([
+                    i, 
+                    table_row_el["name"],
+                    table_row_el["user"]["username"], 
+                    str(len(table_row_el["softwares"])) + " logiciel(s) installé(s)"
+                ])
+                i += 1
+            print(table)
         self.display_options()
