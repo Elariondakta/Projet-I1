@@ -385,7 +385,7 @@ class Computers :
 
     def display_tables(self, disp_active = False):
         table = PrettyTable()
-        table.field_names = ["Id", "Nom", "Utilisateur", "Logiciels"]
+        table.field_names = ["Id", "Nom", "Utilisateur", "Logiciels", "Salle", "Bâtiment"]
         i = 0
         for table_row_key in self.base_data.keys():         #Pour chaque ordinateur de la base de donnée
             if table_row_key not in list(self.active_data.keys()) and disp_active:  #Si on a active le mode recherche et si l'ordinateur ne se
@@ -398,7 +398,9 @@ class Computers :
                     i, 
                     table_row_el["name"],
                     table_row_el["user"]["username"], 
-                    str(len(table_row_el["softwares"])) + " logiciel(s) installé(s)"
+                    str(len(table_row_el["softwares"])) + " logiciel(s) installé(s)",
+                    "Pas de salle attribuée" if API.getRoom(table_row_el["localisation"]) == None else API.getRoom(table_row_el["localisation"])["room_name"],
+                    "Pas de salle attribuée" if API.getRoom(table_row_el["localisation"]) == None else API.getRoom(table_row_el["localisation"])["building_name"]
                 ])
                 i += 1
         print(table)
@@ -498,6 +500,7 @@ class Computers :
                 'choices': [
                     'Editer',
                     "Logiciels installés",
+                    "Ajouter une salle à cet ordinateur",
                     Separator(),
                     "Retour"
                 ]
@@ -516,11 +519,36 @@ class Computers :
         elif res_index == 1: ##Formulaire des logiciels
             clear()
             self.display_installed_software(computer_id)
-            
-        elif res_index == 3: ##Retour
+        elif res_index == 2:
+            clear()
+            self.display_rooms()
+            self.ask_for_room(computer_id)
+        elif res_index == 4: ##Retour
             clear()
             self.display_options()
 
+    def display_rooms(self):
+        table = PrettyTable()
+        table.field_names = ["Id", "Bâtiment", "Salle"]
+        i = 0
+        for table_row_key in API.getRooms():
+            table_row_el = API.getRooms()[table_row_key]
+            table.add_row([i, table_row_el["building_name"], table_row_el["room_name"]])
+            i += 1
+        print(table)
+
+    def ask_for_room(self, computer_id):
+        ask_room_index = [
+            {
+                'type': 'input',
+                'name': 'room_index',
+                'message': "Id de la salle"
+            }
+        ]
+        room_index = prompt(ask_room_index)["room_index"]
+        room_id = list(API.getRooms().keys())[int(room_index)]
+        API.setComputerRoom(computer_id, room_id)
+        self.display_computer_detail(computer_id)
 
     def edit_computer_detail(self, computer_id):
         clear()
