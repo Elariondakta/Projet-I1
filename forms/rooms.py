@@ -250,11 +250,13 @@ class Rooms:
         except KeyError:
             res_index = 0
 
-        if res_index == len(listComputer)+2:
+        if res_index == len(listComputer)-1:
             self.display_room_detail(room_id)
         else:
             computer_id = listComputer[res_index]
-            
+
+        res = prompt(options) ##
+
         
 
 
