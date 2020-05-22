@@ -173,7 +173,7 @@ class Software:
     
     def display_table(self, disp_active = False):
         table = PrettyTable()
-        table.field_names = ["ID", "Nom", "Editeur","Date d'expiraion de la lisence"]
+        table.field_names = ["ID", "Nom", "Editeur","Date d'expiration de la licence"]
 
         i = 0
         for table_row_key in self.base_data.keys():
