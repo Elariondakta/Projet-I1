@@ -43,26 +43,33 @@ class Software:
                     "Retour"
                 ]
             }
-        ]
-        res = prompt(options)["action_choices"]
-        res_index = options[0]['choices'].index(res)
-        if res_index == 1:
-            ##affiche la recherche
-            self.display_search()
-        elif res_index == 0:
-            ##affiche la liste des logiciels
-            self.display_table()
-        elif res_index == 2:
-            self.display_detail()
-            ##On liste les détails d'un logiciel
-            pass
-        elif res_index == 3:
-            # On ajoute un logiciel
-            self.addSoftware()
-        elif res_index == 4:
-            self.display_delete()
-        elif res_index == 5:
-            pass
+        ]      
+
+        try:
+
+            res = prompt(options)["action_choices"]
+            res_index = options[0]['choices'].index(res)
+
+            if res_index == 1:
+                ##affiche la recherche
+                self.display_search()
+            elif res_index == 0:
+                ##affiche la liste des logiciels
+                self.display_table()
+            elif res_index == 2:
+                self.display_detail()
+                ##On liste les détails d'un logiciel
+                pass
+            elif res_index == 3:
+                # On ajoute un logiciel
+                self.addSoftware()
+            elif res_index == 4:
+                self.display_delete()
+            elif res_index == 5:
+                pass
+        except:
+            clear()
+            self.display()
 
     def display_search(self): ##Formulaire de recherche de logiciel
             options = [
@@ -263,21 +270,31 @@ class Software:
                 ]
             }
         ]
-        res = prompt(options)["action_choices"]
-        res_index = options[0]['choices'].index(res)
-        if res_index == 0:
-            computer_list = API.getComputersFromSoftware(soft_id)
-            table = PrettyTable()
-            table.field_names = ["Id", "Nom", "Utilisateur", "Logiciels"]
-            i = 0
-            for table_row_key in computer_list:         #Pour chaque ordinateur de la liste
-                table_row_el = computer_list[table_row_key]  #Sinon on affiche les données
-                table.add_row([
-                    i, 
-                    table_row_el["name"],
-                    table_row_el["user"]["username"], 
-                    str(len(table_row_el["softwares"])) + " logiciel(s) installé(s)"
-                ])
-                i += 1
-            print(table)
-        self.display_options()
+        try:
+            res = prompt(options)["action_choices"]
+            res_index = options[0]['choices'].index(res)
+            if res_index == 0:
+                print("\n" + "*"*5, "Ordinateurs possédant ce logiciel :", "*"*5 + "\n")
+                computer_list = API.getComputersFromSoftware(soft_id)
+                table = PrettyTable()
+                table.field_names = ["Id", "Nom", "Utilisateur", "Logiciels"]
+                i = 0
+                for table_row_key in computer_list:         #Pour chaque ordinateur de la liste
+                    table_row_el = computer_list[table_row_key]  #Sinon on affiche les données
+                    table.add_row([
+                        i, 
+                        table_row_el["name"],
+                        table_row_el["user"]["username"], 
+                        str(len(table_row_el["softwares"])) + " logiciel(s) installé(s)"
+                    ])
+                    i += 1
+                print(table)
+
+                print("\n" + "*"*5, "Menu :", "*"*5 + "\n")
+
+            elif res_index == 1:
+                clear()
+
+            self.display_options()
+        except:
+            self.display_detail()

@@ -56,32 +56,36 @@ class Computers :
                 ]
             }
         ]
-        res = prompt(options)["action_choices"]
-        res_index = options[0]['choices'].index(res)
-        if res_index == 0:
-            ##On ajoute un ordi
-            self.addComputer ()
-        elif res_index == 1:
-            ##On supprime un ordi
-            self.remove_computer_display()
-            pass
-        elif res_index == 2:
-            ##On liste les ordis 
-            self.display_tables()
-            self.display_options()
-            pass
-        elif res_index == 3:
-            ##On liste les détails d'un ordi
-            computer_id = self.form_get_id_computer()            
-            self.display_computer_detail(computer_id)
 
-        elif res_index == 4:
-            ##On effectue une recherche 
-            self.display_search()
-            self.display_options()
-            pass
-        elif res_index == 6:
-            pass
+        try:
+            res = prompt(options)["action_choices"]
+            res_index = options[0]['choices'].index(res)
+            if res_index == 0:
+                ##On ajoute un ordi
+                self.addComputer ()
+            elif res_index == 1:
+                ##On supprime un ordi
+                self.remove_computer_display()
+                pass
+            elif res_index == 2:
+                ##On liste les ordis 
+                self.display_tables()
+                self.display_options()
+                pass
+            elif res_index == 3:
+                ##On liste les détails d'un ordi
+                computer_id = self.form_get_id_computer()            
+                self.display_computer_detail(computer_id)
+
+            elif res_index == 4:
+                ##On effectue une recherche 
+                self.display_search()
+                self.display_options()
+                pass
+            elif res_index == 6:
+                pass
+        except:
+            self.display()
 
     def display_search(self): ##Formulaire de recherche de salle
         options = [
@@ -498,7 +502,7 @@ class Computers :
                 'name': 'menu_computer_detail',
                 'message': 'Selectionner un des menus avec les flèches du clavier.',
                 'choices': [
-                    'Editer',
+                    "Editer",
                     "Logiciels installés",
                     "Ajouter une salle à cet ordinateur",
                     Separator(),
@@ -511,24 +515,25 @@ class Computers :
 
         try:
             res_index = options[0]['choices'].index(res["menu_computer_detail"])
-        except KeyError:
-            res_index = 0
 
-        if res_index == 0: ##Formulaire d'edition de l'ordinateur
-            self.edit_computer_detail(computer_id)
-        elif res_index == 1: ##Formulaire des logiciels
-            clear()
-            self.display_installed_software(computer_id)
-        elif res_index == 2:
-            clear()
-            self.display_rooms()
-            self.ask_for_room(computer_id)
-        elif res_index == 4: ##Retour
-            clear()
-            if not self.computer_id:
-                self.display_options()
-            else:
-                pass
+
+            if res_index == 0: ##Formulaire d'edition de l'ordinateur
+                self.edit_computer_detail(computer_id)
+            elif res_index == 1: ##Formulaire des logiciels
+                clear()
+                self.display_installed_software(computer_id)
+            elif res_index == 2:
+                clear()
+                self.display_rooms()
+                self.ask_for_room(computer_id)
+            elif res_index == 4: ##Retour
+                clear()
+                if not self.computer_id:
+                    self.display_options()
+                else:
+                    pass
+        except:
+            self.display_computer_detail(computer_id)
 
     def display_rooms(self):
         table = PrettyTable()
@@ -869,6 +874,7 @@ class Computers :
 
     def display_installed_software(self, computer_id):       
         computer = API.getComputer(computer_id)
+        clear()
         print(style.bold("\nListe des logiciels installés sur l'ordinateur " + computer['name'] + " :\n"))
 
 
@@ -897,15 +903,16 @@ class Computers :
 
         try:
             res_index = options[0]['choices'].index(res["menu_software_detail"])
-        except KeyError:
-            res_index = 0
 
-        if res_index == 0: ##Formulaire d'edition de l'ordinateur
-            self.edit_software_in_computer(computer_id)
-            
-        elif res_index == 2: ##Retour
-            clear()
-            self.display_computer_detail(computer_id)
+
+            if res_index == 0: ##Formulaire d'edition de l'ordinateur
+                self.edit_software_in_computer(computer_id)
+                
+            elif res_index == 2: ##Retour
+                clear()
+                self.display_computer_detail(computer_id)
+        except:
+            self.display_installed_software(computer_id)
 
     def edit_software_in_computer(self, computer_id):
         computer = API.getComputer(computer_id)

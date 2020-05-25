@@ -44,25 +44,29 @@ class Rooms:
                 ]
             }
         ]
-        res = prompt(options)["action_choices"]
-        res_index = options[0]['choices'].index(res)
-        if res_index == 0: ##Lister les salles
-            self.display_table()
-            self.display_options()
 
-        elif res_index == 1: ##Effectuer une recherche
-            self.display_search()
-            self.display_options()
-            
-        elif res_index == 2: ##Ouvrir les détails d'une salle   
-            room_id = self.form_get_id_room() ##Demande l'id de la salle
-            self.display_room_detail(room_id) ##Ouvre le formulaire
+        try:
+            res = prompt(options)["action_choices"]
+            res_index = options[0]['choices'].index(res)
+            if res_index == 0: ##Lister les salles
+                self.display_table()
+                self.display_options()
 
-        elif res_index == 3: ##Creer une salle
-            self.createRoom()
-            
-        elif res_index == 4: ##Supprimer une salle
-            self.display_delete()
+            elif res_index == 1: ##Effectuer une recherche
+                self.display_search()
+                self.display_options()
+                
+            elif res_index == 2: ##Ouvrir les détails d'une salle   
+                room_id = self.form_get_id_room() ##Demande l'id de la salle
+                self.display_room_detail(room_id) ##Ouvre le formulaire
+
+            elif res_index == 3: ##Creer une salle
+                self.createRoom()
+                
+            elif res_index == 4: ##Supprimer une salle
+                self.display_delete()
+        except:
+            self.display()
 
     def display_table(self, disp_active = False): #On affiche la liste des salles
         table = PrettyTable()
@@ -174,19 +178,19 @@ class Rooms:
         res = prompt(options) ##On affiche le formulaire
 
         try:
-            res_index = options[0]['choices'].index(res["menu_room_detail"])
-        except KeyError:
-            res_index = 0
+            res_index = options[0]['choices'].index(res["menu_room_detail"])       
 
-        if res_index == 0: ##Formulaire d'edition de la salle
-            self.edit_room(room_id)
+            if res_index == 0: ##Formulaire d'edition de la salle
+                self.edit_room(room_id)
 
-        elif res_index == 1: ##Formulaire des ordinateurs de la salle
-            self.display_computers_in_room(room_id)
-            
-        elif res_index == 3: ##Retour
-            clear()
-            self.display_options()
+            elif res_index == 1: ##Formulaire des ordinateurs de la salle
+                self.display_computers_in_room(room_id)
+                
+            elif res_index == 3: ##Retour
+                clear()
+                self.display_options()
+        except:
+            self.display_room_detail(room_id)
 
     def edit_room(self, room_id): ##Formulaire d'édition de la salle
         room = API.getRoom(room_id)
@@ -248,18 +252,18 @@ class Rooms:
 
         try:
             res_index = options[0]['choices'].index(res["menu_computer_in_room"])
-        except KeyError:
-            res_index = 0
 
-        if res_index == len(listComputer)-1:
-            self.display_room_detail(room_id)
-        else:
-            computer_id = listIdComputer[res_index]
+            if res_index == len(listComputer)-1:
+                self.display_room_detail(room_id)
+            else:
+                computer_id = listIdComputer[res_index]
 
-            comp = Computers(computer_id)
-            comp.display()
+                comp = Computers(computer_id)
+                comp.display()
 
-            self.display_room_detail(room_id)
+                self.display_room_detail(room_id)
+        except:
+            self.display_computers_in_room(room_id)
 
 
         
