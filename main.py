@@ -28,24 +28,27 @@ if __name__ == '__main__':
     ]
     while True:
         clear()
-        res = prompt(options)
+        
         try:
+            res = prompt(options)
             res_index = options[0]['choices'].index(res["menu_choice"])
-        except KeyError:
-            res_index = 0
+        
 
-        if res_index == 0:
-            ##Afficher le gestionnaire des salles
-            rooms_handler = Rooms()
-            rooms_handler.display()
-        elif res_index == 1:
-            ##Afficher le gestionnaire des ordinateurs
-            computers_handler = Computers()
-            computers_handler.display()
+            if res_index == 0:
+                ##Afficher le gestionnaire des salles
+                rooms_handler = Rooms()
+                rooms_handler.display()
+            elif res_index == 1:
+                ##Afficher le gestionnaire des ordinateurs
+                computers_handler = Computers()
+                computers_handler.display()
+                pass
+            elif res_index == 2:
+                ##Afficher le gestionnaire des softwares
+                software_handler = Software()
+                software_handler.display()
+            elif res_index == 4:    ##Fonction pour quiter
+                break
+
+        except:
             pass
-        elif res_index == 2:
-            ##Afficher le gestionnaire des softwares
-            software_handler = Software()
-            software_handler.display()
-        elif res_index == 4:    ##Fonction pour quiter
-            break
