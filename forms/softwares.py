@@ -10,7 +10,7 @@ import uuid
 class Software:
 
 
-    def __init__(self): ##Métthode qui charge les données etc...
+    def __init__(self): ##Métthode qui charge les données 
         self.base_data = API.getSoftwares()
         self.active_data = API.getSoftwares()
 
@@ -20,15 +20,17 @@ class Software:
         print("*"*5, "Affichage des logiciels", "*"*5)
         self.display_table(API.getSoftwares()) 
 
-    def _checkDate(self, val):
+    def _checkDate(self, val): ##Fonction qui permet de vérifier le format de la date saisie
         date_format = '%d/%m/%Y'
         try:
-            datetime.strptime(val, date_format)
+            datetime.strptime(val, date_format) #Convertit la date en timestamp
         except ValueError:
             return "Format incorrect, la date doit etre de la forme JJ/MM/AAAA"
         return True
 
-    def display_options(self):
+    def display_options(self): #affichage du menu
+        print("\n" + "*"*5, "Menu :", "*"*5 + "\n")
+
         options = [
             {
                 'type': 'list',
@@ -49,7 +51,7 @@ class Software:
 
             res = prompt(options)["action_choices"]
             res_index = options[0]['choices'].index(res)
-
+            # différentes options de la recherche
             if res_index == 1:
                 ##affiche la recherche
                 self.display_search()
@@ -79,20 +81,20 @@ class Software:
                     'message': 'Rechercher un logiciel : ',
                 },
             ]
-            query = prompt(options)["search_query"]
-            self.active_data = API.searchSoftware(query)
-            self.display_table(True)
-            self.display_options()
+            query = prompt(options)["search_query"] #affichage des options
+            self.active_data = API.searchSoftware(query) #Récupère le logiciel
+            self.display_table(True) #Affiche le logiciel
+            self.display_options() #Affiche les options
 
-    def checkStrLenght(self, str):
+    def checkStrLenght(self, str): #méthode qui vérifie qu'il y a bien une chaine de caractère rentrée
         if len(str)>0:
             return True
         else:
             return "Veillez entrez une valeur"
 
-    def addSoftware(self):
-        addOn = {}
-        questions = [
+    def addSoftware(self): #méthode pour ajouter un software
+        addOn = {} #réinitialise d'éventueles variables restantes
+        questions = [ #liste des questions
         {
             'type': 'input',
             'qmark':'',
@@ -137,7 +139,7 @@ class Software:
         },
         ]
         newSoftware = prompt(questions)
-        for _ in range (0, int(newSoftware['numberOfAddOn'])):
+        for _ in range (0, int(newSoftware['numberOfAddOn'])): #pour chaque ADD-ON déclarer
             addOnCharacteristic = [
                 {
                     'type': 'input',
@@ -170,11 +172,11 @@ class Software:
             ]
             print(Separator())
             newAddOnCarateristic = prompt(addOnCharacteristic)
-            addOn[str(uuid.uuid4())]=newAddOnCarateristic
-        newSoftware['add_on']=addOn
+            addOn[str(uuid.uuid4())]=newAddOnCarateristic #créer un identifiant unique pour l'addOn et l'ajoute au dictionnaire des add on de ce logiciel
+        newSoftware['add_on']=addOn #ajoute les addON au logiciel
         date_format = '%d/%m/%Y'
         newSoftware['licence_exp_date'] = datetime.strptime(newSoftware['licence_exp_date'], date_format).timestamp()
-        API.addSoftware(newSoftware)
+        API.addSoftware(newSoftware) #ajoute le logiciel à la base de données
         clear()
         print(Separator("Le logiciel à bien été ajoutée !"))
     
@@ -183,7 +185,7 @@ class Software:
         table.field_names = ["ID", "Nom", "Editeur","Date d'expiration de la licence"]
 
         i = 0
-        for table_row_key in self.base_data.keys():
+        for table_row_key in self.base_data.keys(): #méthode pour permettre la création des ID de l'affichage
             if table_row_key not in list(self.active_data.keys()) and disp_active:
                 i += 1
                 continue
@@ -196,7 +198,7 @@ class Software:
         self.display_options()
 
     def form_get_id_soft(self): ##Formulaire qui demande pour demander l'id d'une salle
-        options = [
+        options = [ #affiche les options
             {
                 'type': 'input',
                 "message": "Entrez l'identifiant du logiciel",
@@ -205,14 +207,14 @@ class Software:
             }
         ]
         soft_index = int(prompt(options)["get_id"])
-        soft_id = list(API.getSoftwares().keys())[soft_index]
+        soft_id = list(API.getSoftwares().keys())[soft_index] #récupère l'identifiant du loficiel
         return soft_id
 
     def display_delete(self): ##Formulaire de suppression de logiciel
 
         remove_id = self.form_get_id_soft() ##Demande à l'user l'id du logiciel
         
-        confirm = [
+        confirm = [ #méthode de confirmation
             {
                 'type': 'confirm',
                 'name': "confirm",
@@ -232,7 +234,7 @@ class Software:
         ##Afficher les options
         self.display_options()
 
-    def _checkSelectedIndex(self, val, data):
+    def _checkSelectedIndex(self, val, data): #méthode qui vérifie l'index rentré
         try:
             if int(val) >= 0 and int(val) < len(data):
                 return True
@@ -240,15 +242,16 @@ class Software:
         except:
             return "Vous devez rentrer un nombre !"
 
-    def display_detail(self):
-        soft_id = self.form_get_id_soft()
-        soft = API.getSoftware(soft_id)
+    def display_detail(self): #méthode qui affiche les détails du programme
+        soft_id = self.form_get_id_soft() #récupère l'identifiant du programe dont il faut afficher les détails 
+        soft = API.getSoftware(soft_id) #récupère le logiciel
         clear() 
+        #affiche les détails
         print("- Nom : " + soft["name"])
         print("- Fournisseur : " + soft["provider"])
         print("- Editeur : " + soft["editor"])
         print("- Version : " + soft["version"])
-        print("- Date d'expiration de la license : " + str(date.fromtimestamp(soft["licence_exp_date"])))
+        print("- Date d'expiration de la license : " + str(date.fromtimestamp(soft["licence_exp_date"]))) #converti la date en format jour mois année
         add_on_of_software = soft["add_on"]
         i = 0
         for software_key in add_on_of_software.keys():
@@ -271,11 +274,11 @@ class Software:
             }
         ]
         try:
-            res = prompt(options)["action_choices"]
-            res_index = options[0]['choices'].index(res)
-            if res_index == 0:
+            res = prompt(options)["action_choices"] #affiche les options
+            res_index = options[0]['choices'].index(res) #récupère les résultats 
+            if res_index == 0: #si oui
                 print("\n" + "*"*5, "Ordinateurs possédant ce logiciel :", "*"*5 + "\n")
-                computer_list = API.getComputersFromSoftware(soft_id)
+                computer_list = API.getComputersFromSoftware(soft_id) #récupère les ordi sur lequel ce logiciel est installé
                 table = PrettyTable()
                 table.field_names = ["Id", "Nom", "Utilisateur", "Logiciels"]
                 i = 0
@@ -290,7 +293,6 @@ class Software:
                     i += 1
                 print(table)
 
-                print("\n" + "*"*5, "Menu :", "*"*5 + "\n")
 
             elif res_index == 1:
                 clear()
