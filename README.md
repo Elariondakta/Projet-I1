@@ -1,6 +1,6 @@
 # Projet-I1
 
-Ca va être le turfu
+## Gestionnaire de parc informatique en ligne de commande 
 
 Requirements : *PyInquirer PrettyTable style*
 
